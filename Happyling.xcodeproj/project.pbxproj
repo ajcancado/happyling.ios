@@ -1,0 +1,481 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		38022AAD201C04F60D22A4A5 /* Pods_Happyling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A448AB0592D852FB57D4B5E /* Pods_Happyling.framework */; };
+		8E55F4021DEA024500911C05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F4011DEA024500911C05 /* AppDelegate.swift */; };
+		8E55F4071DEA024500911C05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E55F4051DEA024500911C05 /* Main.storyboard */; };
+		8E55F4091DEA024500911C05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E55F4081DEA024500911C05 /* Assets.xcassets */; };
+		8E55F40C1DEA024600911C05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E55F40A1DEA024600911C05 /* LaunchScreen.storyboard */; };
+		8E55F41C1DEA05F100911C05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F41B1DEA05F100911C05 /* LoginViewController.swift */; };
+		8E55F41E1DEA09FB00911C05 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F41D1DEA09FB00911C05 /* UserRouter.swift */; };
+		8E55F4201DEA0A1000911C05 /* CompanyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F41F1DEA0A1000911C05 /* CompanyRouter.swift */; };
+		8E55F4221DEA0A2100911C05 /* IssueRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F4211DEA0A2100911C05 /* IssueRouter.swift */; };
+		8E55F4241DEA131300911C05 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F4231DEA131300911C05 /* HomeViewController.swift */; };
+		8E55F4261DEA1A5F00911C05 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F4251DEA1A5F00911C05 /* SignUpTableViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5A448AB0592D852FB57D4B5E /* Pods_Happyling.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Happyling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D237CF94C26B67967047897 /* Pods-Happyling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Happyling.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Happyling/Pods-Happyling.debug.xcconfig"; sourceTree = "<group>"; };
+		8E55F3FE1DEA024500911C05 /* Happyling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Happyling.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E55F4011DEA024500911C05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8E55F4061DEA024500911C05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8E55F4081DEA024500911C05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E55F40B1DEA024600911C05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8E55F40D1DEA024600911C05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E55F41B1DEA05F100911C05 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8E55F41D1DEA09FB00911C05 /* UserRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
+		8E55F41F1DEA0A1000911C05 /* CompanyRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyRouter.swift; sourceTree = "<group>"; };
+		8E55F4211DEA0A2100911C05 /* IssueRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueRouter.swift; sourceTree = "<group>"; };
+		8E55F4231DEA131300911C05 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8E55F4251DEA1A5F00911C05 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
+		CC5CF2DAF012F706F9236D87 /* Pods-Happyling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Happyling.release.xcconfig"; path = "Pods/Target Support Files/Pods-Happyling/Pods-Happyling.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E55F3FB1DEA024500911C05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38022AAD201C04F60D22A4A5 /* Pods_Happyling.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E9FB817BE397B06E883700F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A448AB0592D852FB57D4B5E /* Pods_Happyling.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E55F3F51DEA024500911C05 = {
+			isa = PBXGroup;
+			children = (
+				8E55F4001DEA024500911C05 /* Happyling */,
+				8E55F3FF1DEA024500911C05 /* Products */,
+				C458BF8CA78F7DFBC409792F /* Pods */,
+				5E9FB817BE397B06E883700F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8E55F3FF1DEA024500911C05 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E55F3FE1DEA024500911C05 /* Happyling.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E55F4001DEA024500911C05 /* Happyling */ = {
+			isa = PBXGroup;
+			children = (
+				8E55F4011DEA024500911C05 /* AppDelegate.swift */,
+				8E55F4051DEA024500911C05 /* Main.storyboard */,
+				8E55F4151DEA05CB00911C05 /* Controllers */,
+				8E55F4161DEA05CB00911C05 /* Models */,
+				8E55F4171DEA05CB00911C05 /* API */,
+				8E55F4181DEA05CB00911C05 /* CustomCells */,
+				8E55F4191DEA05CB00911C05 /* CustomFonts */,
+				8E55F41A1DEA05CB00911C05 /* Extensions */,
+				8E55F4131DEA036400911C05 /* Supporting Files */,
+			);
+			path = Happyling;
+			sourceTree = "<group>";
+		};
+		8E55F4131DEA036400911C05 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E55F4081DEA024500911C05 /* Assets.xcassets */,
+				8E55F40A1DEA024600911C05 /* LaunchScreen.storyboard */,
+				8E55F40D1DEA024600911C05 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8E55F4151DEA05CB00911C05 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8E55F4231DEA131300911C05 /* HomeViewController.swift */,
+				8E55F41B1DEA05F100911C05 /* LoginViewController.swift */,
+				8E55F4251DEA1A5F00911C05 /* SignUpTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8E55F4161DEA05CB00911C05 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8E55F4171DEA05CB00911C05 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8E55F41D1DEA09FB00911C05 /* UserRouter.swift */,
+				8E55F41F1DEA0A1000911C05 /* CompanyRouter.swift */,
+				8E55F4211DEA0A2100911C05 /* IssueRouter.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8E55F4181DEA05CB00911C05 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		8E55F4191DEA05CB00911C05 /* CustomFonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomFonts;
+			sourceTree = "<group>";
+		};
+		8E55F41A1DEA05CB00911C05 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C458BF8CA78F7DFBC409792F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8D237CF94C26B67967047897 /* Pods-Happyling.debug.xcconfig */,
+				CC5CF2DAF012F706F9236D87 /* Pods-Happyling.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8E55F3FD1DEA024500911C05 /* Happyling */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E55F4101DEA024600911C05 /* Build configuration list for PBXNativeTarget "Happyling" */;
+			buildPhases = (
+				DE0116AA5A54253C3BAE134C /* [CP] Check Pods Manifest.lock */,
+				8E55F3FA1DEA024500911C05 /* Sources */,
+				8E55F3FB1DEA024500911C05 /* Frameworks */,
+				8E55F3FC1DEA024500911C05 /* Resources */,
+				66DE0C24E65F11BD8961A8E7 /* [CP] Embed Pods Frameworks */,
+				CFB4870B4951C4CAB8BC2675 /* [CP] Copy Pods Resources */,
+				8E55F4141DEA043200911C05 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Happyling;
+			productName = Happyling;
+			productReference = 8E55F3FE1DEA024500911C05 /* Happyling.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E55F3F61DEA024500911C05 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = Happyling;
+				TargetAttributes = {
+					8E55F3FD1DEA024500911C05 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = CFU6825MEZ;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8E55F3F91DEA024500911C05 /* Build configuration list for PBXProject "Happyling" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8E55F3F51DEA024500911C05;
+			productRefGroup = 8E55F3FF1DEA024500911C05 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E55F3FD1DEA024500911C05 /* Happyling */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E55F3FC1DEA024500911C05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E55F40C1DEA024600911C05 /* LaunchScreen.storyboard in Resources */,
+				8E55F4091DEA024500911C05 /* Assets.xcassets in Resources */,
+				8E55F4071DEA024500911C05 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		66DE0C24E65F11BD8961A8E7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Happyling/Pods-Happyling-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E55F4141DEA043200911C05 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" b6f821bc123d0be4e61f36b170caff3a9093cc76 e31e0ab945558a19dd85e0e84317755e58fa620224d28c98b112da84cca9443e";
+		};
+		CFB4870B4951C4CAB8BC2675 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Happyling/Pods-Happyling-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE0116AA5A54253C3BAE134C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E55F3FA1DEA024500911C05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E55F4221DEA0A2100911C05 /* IssueRouter.swift in Sources */,
+				8E55F4261DEA1A5F00911C05 /* SignUpTableViewController.swift in Sources */,
+				8E55F41C1DEA05F100911C05 /* LoginViewController.swift in Sources */,
+				8E55F41E1DEA09FB00911C05 /* UserRouter.swift in Sources */,
+				8E55F4201DEA0A1000911C05 /* CompanyRouter.swift in Sources */,
+				8E55F4021DEA024500911C05 /* AppDelegate.swift in Sources */,
+				8E55F4241DEA131300911C05 /* HomeViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8E55F4051DEA024500911C05 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E55F4061DEA024500911C05 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8E55F40A1DEA024600911C05 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E55F40B1DEA024600911C05 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8E55F40E1DEA024600911C05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Leandro Henrique Junqueira (A46MHC5N4R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Leandro Henrique Junqueira (A46MHC5N4R)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = CFU6825MEZ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8E55F40F1DEA024600911C05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Leandro Henrique Junqueira (CFU6825MEZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Leandro Henrique Junqueira (CFU6825MEZ)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = CFU6825MEZ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8E55F4111DEA024600911C05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D237CF94C26B67967047897 /* Pods-Happyling.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = CFU6825MEZ;
+				INFOPLIST_FILE = Happyling/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.happyling.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		8E55F4121DEA024600911C05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC5CF2DAF012F706F9236D87 /* Pods-Happyling.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				DEVELOPMENT_TEAM = CFU6825MEZ;
+				INFOPLIST_FILE = Happyling/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.happyling.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E55F3F91DEA024500911C05 /* Build configuration list for PBXProject "Happyling" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E55F40E1DEA024600911C05 /* Debug */,
+				8E55F40F1DEA024600911C05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E55F4101DEA024600911C05 /* Build configuration list for PBXNativeTarget "Happyling" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E55F4111DEA024600911C05 /* Debug */,
+				8E55F4121DEA024600911C05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E55F3F61DEA024500911C05 /* Project object */;
+}
