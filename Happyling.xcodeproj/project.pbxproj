@@ -18,6 +18,13 @@
 		8E55F4221DEA0A2100911C05 /* IssueRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F4211DEA0A2100911C05 /* IssueRouter.swift */; };
 		8E55F4241DEA131300911C05 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F4231DEA131300911C05 /* HomeViewController.swift */; };
 		8E55F4261DEA1A5F00911C05 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F4251DEA1A5F00911C05 /* SignUpTableViewController.swift */; };
+		8E5841AE1DEA49930026A293 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5841AC1DEA49930026A293 /* Constants.swift */; };
+		8E5841AF1DEA49930026A293 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5841AD1DEA49930026A293 /* Environment.swift */; };
+		8E5841B21DEA4ADE0026A293 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5841B11DEA4ADE0026A293 /* SessionManager.swift */; };
+		8E813C871DEA7C410056C759 /* SignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C861DEA7C410056C759 /* SignInRouter.swift */; };
+		8E813C891DEA7EA90056C759 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C881DEA7EA90056C759 /* SignInResponse.swift */; };
+		8E813C8B1DEA7EF10056C759 /* ResponseAttrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C8A1DEA7EF10056C759 /* ResponseAttrs.swift */; };
+		8E813C8D1DEA82FB0056C759 /* GenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C8C1DEA82FB0056C759 /* GenericViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +42,13 @@
 		8E55F4211DEA0A2100911C05 /* IssueRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueRouter.swift; sourceTree = "<group>"; };
 		8E55F4231DEA131300911C05 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8E55F4251DEA1A5F00911C05 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
+		8E5841AC1DEA49930026A293 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8E5841AD1DEA49930026A293 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		8E5841B11DEA4ADE0026A293 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		8E813C861DEA7C410056C759 /* SignInRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
+		8E813C881DEA7EA90056C759 /* SignInResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
+		8E813C8A1DEA7EF10056C759 /* ResponseAttrs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseAttrs.swift; sourceTree = "<group>"; };
+		8E813C8C1DEA82FB0056C759 /* GenericViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericViewController.swift; sourceTree = "<group>"; };
 		CC5CF2DAF012F706F9236D87 /* Pods-Happyling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Happyling.release.xcconfig"; path = "Pods/Target Support Files/Pods-Happyling/Pods-Happyling.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +95,7 @@
 			children = (
 				8E55F4011DEA024500911C05 /* AppDelegate.swift */,
 				8E55F4051DEA024500911C05 /* Main.storyboard */,
+				8E5841B01DEA4ACB0026A293 /* Helpers */,
 				8E55F4151DEA05CB00911C05 /* Controllers */,
 				8E55F4161DEA05CB00911C05 /* Models */,
 				8E55F4171DEA05CB00911C05 /* API */,
@@ -95,6 +110,8 @@
 		8E55F4131DEA036400911C05 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E5841AC1DEA49930026A293 /* Constants.swift */,
+				8E5841AD1DEA49930026A293 /* Environment.swift */,
 				8E55F4081DEA024500911C05 /* Assets.xcassets */,
 				8E55F40A1DEA024600911C05 /* LaunchScreen.storyboard */,
 				8E55F40D1DEA024600911C05 /* Info.plist */,
@@ -108,6 +125,7 @@
 				8E55F4231DEA131300911C05 /* HomeViewController.swift */,
 				8E55F41B1DEA05F100911C05 /* LoginViewController.swift */,
 				8E55F4251DEA1A5F00911C05 /* SignUpTableViewController.swift */,
+				8E813C8C1DEA82FB0056C759 /* GenericViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -115,6 +133,8 @@
 		8E55F4161DEA05CB00911C05 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8E813C881DEA7EA90056C759 /* SignInResponse.swift */,
+				8E813C8A1DEA7EF10056C759 /* ResponseAttrs.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,6 +145,7 @@
 				8E55F41D1DEA09FB00911C05 /* UserRouter.swift */,
 				8E55F41F1DEA0A1000911C05 /* CompanyRouter.swift */,
 				8E55F4211DEA0A2100911C05 /* IssueRouter.swift */,
+				8E813C861DEA7C410056C759 /* SignInRouter.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -148,6 +169,14 @@
 			children = (
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8E5841B01DEA4ACB0026A293 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8E5841B11DEA4ADE0026A293 /* SessionManager.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C458BF8CA78F7DFBC409792F /* Pods */ = {
@@ -297,13 +326,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E813C8B1DEA7EF10056C759 /* ResponseAttrs.swift in Sources */,
 				8E55F4221DEA0A2100911C05 /* IssueRouter.swift in Sources */,
 				8E55F4261DEA1A5F00911C05 /* SignUpTableViewController.swift in Sources */,
 				8E55F41C1DEA05F100911C05 /* LoginViewController.swift in Sources */,
+				8E813C8D1DEA82FB0056C759 /* GenericViewController.swift in Sources */,
 				8E55F41E1DEA09FB00911C05 /* UserRouter.swift in Sources */,
+				8E813C891DEA7EA90056C759 /* SignInResponse.swift in Sources */,
+				8E5841AF1DEA49930026A293 /* Environment.swift in Sources */,
 				8E55F4201DEA0A1000911C05 /* CompanyRouter.swift in Sources */,
+				8E813C871DEA7C410056C759 /* SignInRouter.swift in Sources */,
 				8E55F4021DEA024500911C05 /* AppDelegate.swift in Sources */,
 				8E55F4241DEA131300911C05 /* HomeViewController.swift in Sources */,
+				8E5841B21DEA4ADE0026A293 /* SessionManager.swift in Sources */,
+				8E5841AE1DEA49930026A293 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

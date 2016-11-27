@@ -11,12 +11,9 @@ import Alamofire
 
 enum UserRouter: URLRequestConvertible{
     
-    static let baseURLString = "http://localhost:8080/happyling-web"
-    static var OAuthToken: String?
-    
-    case CreateUser([String: AnyObject])
+    case CreateUser([String: Any])
     case ReadUser(String)
-    case UpdateUser(String, [String: AnyObject])
+    case UpdateUser(String, [String: Any])
     case DestroyUser(String)
     
     var method: Alamofire.HTTPMethod {
@@ -49,13 +46,10 @@ enum UserRouter: URLRequestConvertible{
     
     
     func asURLRequest() throws -> URLRequest {
-        let url = URL(string: UserRouter.baseURLString)!
+        let url = URL(string: Constants.API.baseURL)!
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
-        
-        if let token = UserRouter.OAuthToken {
-            urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
+    
         
         switch self {
         case .CreateUser(let parameters):

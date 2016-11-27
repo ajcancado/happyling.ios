@@ -31,17 +31,10 @@ class SignUpTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         updateWidthsForLabels(labels: labels)
         
         setupTableView()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func setupTableView(){
@@ -87,25 +80,32 @@ class SignUpTableViewController: UITableViewController{
         
         if validate() {
             
-            let params: [String: Any] = [
+            var params: [String: Any] = [:]
+
+            params["name"] = txName.text
+            params["surname"] = txSurname.text
+            params["email"] = txEmail.text
+            params["dateOfBirth"] = txDateOfBirth.text
+            params["phoneNumber"] = txPhoneNumber.text
+            params["mobileNumber"] = txMobileNumber.text
+            params["gender"] = txGender.text
+            params["identificationNumber"] = txIdentificationNumber.text
+            params["postalCode"] = txPostalCode.text
+            params["city"] = txCity.text
+            params["state"] = txState.text
+            params["country"] = txCountry.text
+            params["username"] = txUsername.text
+            params["password"] = txPassword.text
             
-                "name" : txName.text,
-                "surname" : txSurname.text,
-                "email" : txEmail.text,
-                "dateOfBirth" : txDateOfBirth.text,
-                "phoneNumber" : txPhoneNumber.text,
-                "mobileNumber" : txMobileNumber.text,
-                "gender" : txGender.text,
-                "identificationNumber" : txIdentificationNumber.text,
-                "postalCode" : txPostalCode.text,
-                "city" : txCity.text,
-                "state" : txState.text,
-                "country" : txCountry.text,
-                "username" : txUsername.text,
-                "password" : txPassword.text
-            ]
-            
-            Alamofire.reques
+            Alamofire.request(UserRouter.CreateUser(params)).responseJSON { response in
+                
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                }
+                
+                
+            }
             
             
             

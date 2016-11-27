@@ -15,6 +15,5 @@ target 'Happyling' do
     pod 'Crashlytics' #objective-c
     pod 'ObjectMapper'
     pod 'TPKeyboardAvoiding' #objective-c
-    pod 'SWRevealViewController' #objective-c
 
 end
