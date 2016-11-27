@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		38022AAD201C04F60D22A4A5 /* Pods_Happyling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A448AB0592D852FB57D4B5E /* Pods_Happyling.framework */; };
 		8E55F4021DEA024500911C05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F4011DEA024500911C05 /* AppDelegate.swift */; };
-		8E55F4071DEA024500911C05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E55F4051DEA024500911C05 /* Main.storyboard */; };
+		8E55F4071DEA024500911C05 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E55F4051DEA024500911C05 /* SignIn.storyboard */; };
 		8E55F4091DEA024500911C05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E55F4081DEA024500911C05 /* Assets.xcassets */; };
-		8E55F40C1DEA024600911C05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E55F40A1DEA024600911C05 /* LaunchScreen.storyboard */; };
 		8E55F41C1DEA05F100911C05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F41B1DEA05F100911C05 /* LoginViewController.swift */; };
 		8E55F41E1DEA09FB00911C05 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F41D1DEA09FB00911C05 /* UserRouter.swift */; };
 		8E55F4201DEA0A1000911C05 /* CompanyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55F41F1DEA0A1000911C05 /* CompanyRouter.swift */; };
@@ -21,10 +20,12 @@
 		8E5841AE1DEA49930026A293 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5841AC1DEA49930026A293 /* Constants.swift */; };
 		8E5841AF1DEA49930026A293 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5841AD1DEA49930026A293 /* Environment.swift */; };
 		8E5841B21DEA4ADE0026A293 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5841B11DEA4ADE0026A293 /* SessionManager.swift */; };
+		8E6C89871DEB57100007AED7 /* AboutMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6C89861DEB57100007AED7 /* AboutMeViewController.swift */; };
 		8E813C871DEA7C410056C759 /* SignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C861DEA7C410056C759 /* SignInRouter.swift */; };
 		8E813C891DEA7EA90056C759 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C881DEA7EA90056C759 /* SignInResponse.swift */; };
 		8E813C8B1DEA7EF10056C759 /* ResponseAttrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C8A1DEA7EF10056C759 /* ResponseAttrs.swift */; };
 		8E813C8D1DEA82FB0056C759 /* GenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C8C1DEA82FB0056C759 /* GenericViewController.swift */; };
+		8E813C8F1DEB4C360056C759 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E813C8E1DEB4C360056C759 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,9 +33,8 @@
 		8D237CF94C26B67967047897 /* Pods-Happyling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Happyling.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Happyling/Pods-Happyling.debug.xcconfig"; sourceTree = "<group>"; };
 		8E55F3FE1DEA024500911C05 /* Happyling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Happyling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E55F4011DEA024500911C05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8E55F4061DEA024500911C05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8E55F4061DEA024500911C05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignIn.storyboard; sourceTree = "<group>"; };
 		8E55F4081DEA024500911C05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8E55F40B1DEA024600911C05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E55F40D1DEA024600911C05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E55F41B1DEA05F100911C05 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8E55F41D1DEA09FB00911C05 /* UserRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
@@ -45,10 +45,12 @@
 		8E5841AC1DEA49930026A293 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8E5841AD1DEA49930026A293 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		8E5841B11DEA4ADE0026A293 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		8E6C89861DEB57100007AED7 /* AboutMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutMeViewController.swift; path = Happyling/AboutMeViewController.swift; sourceTree = SOURCE_ROOT; };
 		8E813C861DEA7C410056C759 /* SignInRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
 		8E813C881DEA7EA90056C759 /* SignInResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
 		8E813C8A1DEA7EF10056C759 /* ResponseAttrs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseAttrs.swift; sourceTree = "<group>"; };
 		8E813C8C1DEA82FB0056C759 /* GenericViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericViewController.swift; sourceTree = "<group>"; };
+		8E813C8E1DEB4C360056C759 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CC5CF2DAF012F706F9236D87 /* Pods-Happyling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Happyling.release.xcconfig"; path = "Pods/Target Support Files/Pods-Happyling/Pods-Happyling.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				8E55F4011DEA024500911C05 /* AppDelegate.swift */,
-				8E55F4051DEA024500911C05 /* Main.storyboard */,
+				8E55F4051DEA024500911C05 /* SignIn.storyboard */,
+				8E813C8E1DEB4C360056C759 /* Main.storyboard */,
 				8E5841B01DEA4ACB0026A293 /* Helpers */,
 				8E55F4151DEA05CB00911C05 /* Controllers */,
 				8E55F4161DEA05CB00911C05 /* Models */,
@@ -113,7 +116,6 @@
 				8E5841AC1DEA49930026A293 /* Constants.swift */,
 				8E5841AD1DEA49930026A293 /* Environment.swift */,
 				8E55F4081DEA024500911C05 /* Assets.xcassets */,
-				8E55F40A1DEA024600911C05 /* LaunchScreen.storyboard */,
 				8E55F40D1DEA024600911C05 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -124,6 +126,7 @@
 			children = (
 				8E55F4231DEA131300911C05 /* HomeViewController.swift */,
 				8E55F41B1DEA05F100911C05 /* LoginViewController.swift */,
+				8E6C89861DEB57100007AED7 /* AboutMeViewController.swift */,
 				8E55F4251DEA1A5F00911C05 /* SignUpTableViewController.swift */,
 				8E813C8C1DEA82FB0056C759 /* GenericViewController.swift */,
 			);
@@ -252,9 +255,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E55F40C1DEA024600911C05 /* LaunchScreen.storyboard in Resources */,
 				8E55F4091DEA024500911C05 /* Assets.xcassets in Resources */,
-				8E55F4071DEA024500911C05 /* Main.storyboard in Resources */,
+				8E55F4071DEA024500911C05 /* SignIn.storyboard in Resources */,
+				8E813C8F1DEB4C360056C759 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E813C8B1DEA7EF10056C759 /* ResponseAttrs.swift in Sources */,
+				8E6C89871DEB57100007AED7 /* AboutMeViewController.swift in Sources */,
 				8E55F4221DEA0A2100911C05 /* IssueRouter.swift in Sources */,
 				8E55F4261DEA1A5F00911C05 /* SignUpTableViewController.swift in Sources */,
 				8E55F41C1DEA05F100911C05 /* LoginViewController.swift in Sources */,
@@ -346,20 +350,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8E55F4051DEA024500911C05 /* Main.storyboard */ = {
+		8E55F4051DEA024500911C05 /* SignIn.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8E55F4061DEA024500911C05 /* Base */,
 			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8E55F40A1DEA024600911C05 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8E55F40B1DEA024600911C05 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
+			name = SignIn.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -465,6 +461,7 @@
 			baseConfigurationReference = 8D237CF94C26B67967047897 /* Pods-Happyling.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = CFU6825MEZ;
 				INFOPLIST_FILE = Happyling/Info.plist;
@@ -480,6 +477,7 @@
 			baseConfigurationReference = CC5CF2DAF012F706F9236D87 /* Pods-Happyling.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = CFU6825MEZ;
 				INFOPLIST_FILE = Happyling/Info.plist;

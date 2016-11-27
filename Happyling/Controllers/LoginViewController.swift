@@ -22,6 +22,15 @@ class LoginViewController: GenericViewController {
     
     func validate() -> Bool {
         
+        if (txUsername.text?.isEmpty)! {
+           
+            return false
+        }
+        
+        if (txPassword.text?.isEmpty)! {
+            return false
+        }
+        
         
         return true
     }
@@ -35,7 +44,7 @@ class LoginViewController: GenericViewController {
             var params: [String: Any] = [:]
             
             params["username"] = txUsername.text
-            params["pass"] = txUsername.text
+            params["pass"] = txPassword.text
             
             Alamofire.request(SignInRouter.MakeLogin(params)).responseJSON { response in
                 
@@ -45,19 +54,20 @@ class LoginViewController: GenericViewController {
                     
                 case .success(let json):
                     
+                    print(json)
                     
                     let signInResponse = Mapper<SignInResponse>().map(JSON: json as! [String: Any])
                     
-            
-                    if signInResponse?.responseAttrs.errorMessage != nil {
+                    if signInResponse?.data != nil {
                         
+                        SessionManager.setInteger(int: (signInResponse?.data)!, forKey: "userID")
                         
+                        self.segueToMainStoryboard()
                         
                     }
-                    else{
+                    else if signInResponse?.responseAttrs.errorMessage != nil {
                         
-                        
-                        
+                        print(signInResponse?.responseAttrs.errorMessage!)
                         
                     }
 
@@ -78,6 +88,8 @@ class LoginViewController: GenericViewController {
          performSegue(withIdentifier: "showSignUpView", sender: self)
         
     }
+    
+    
     
 }
 

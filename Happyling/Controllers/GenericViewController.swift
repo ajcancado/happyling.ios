@@ -13,8 +13,6 @@ class GenericViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     func showHUD() {
@@ -27,4 +25,14 @@ class GenericViewController: UIViewController {
         HUD.hide()
     }
 
+    func segueToMainStoryboard(){
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
+        
+        self.present(viewController, animated: true, completion: nil)
+        
+        
+    }
+    
 }

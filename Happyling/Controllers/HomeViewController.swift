@@ -8,13 +8,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: GenericViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = ""
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -38,11 +37,10 @@ class HomeViewController: UIViewController {
             
             let _ = segue.destination as! LoginViewController
             
-            
-            
         }
     }
     
+    // MARK: - IBActions
     
     @IBAction func segueForLoginWithEmail(_ sender: Any) {
         
@@ -50,4 +48,9 @@ class HomeViewController: UIViewController {
         
     }
 
+    @IBAction func segueWithoutAuthentication(_ sender: Any) {
+        
+        segueToMainStoryboard()
+        
+    }
 }

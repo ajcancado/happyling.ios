@@ -14,7 +14,8 @@ struct Constants {
         static var baseURL: String {
             switch Environment.current {
             case .Development:
-                return "http://localhost:8080/happyling-web"
+//                return "http://localhost:8080/happyling-web"
+                return "http://192.168.25.2:8080/happyling-web"
             case .Production:
                 return "http://m.valuegaia.com.br/"
             }

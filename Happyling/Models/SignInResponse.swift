@@ -11,7 +11,7 @@ import ObjectMapper
 
 class SignInResponse: Mappable {
 
-    var data: Any!
+    var data: Int!
     var responseAttrs: ResponseAttrs!
     
     required init?(map: Map) {

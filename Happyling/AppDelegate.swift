@@ -23,22 +23,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UserDefaults.standard.register(defaults: [Constants.DefaultKey.environment: 0 ])
         
-//        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        let viewController: UIViewController
-//        
-//        if SessionManager.containsObjectForKey(key: Constants.DefaultKey.user) {
-//            viewController = storyboard.instantiateViewController(withIdentifier: "SWRevealController")
-//            SessionManager.setBool(bool: false, forKey: Constants.DefaultKey.fromLogin)
-//        }
-//        else{
-//            viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-//            SessionManager.setBool(bool: true, forKey: Constants.DefaultKey.fromLogin)
-//        }
-//        
-//        window?.rootViewController = viewController
-//        
-//        window?.makeKeyAndVisible()
+        let storyboard: UIStoryboard
+        let viewController: UIViewController
+
+        if !SessionManager.containsObjectForKey(key: "userID") {
+            
+            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
+            viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
+            
+        }
+        else{
+            
+            storyboard = UIStoryboard(name: "Main", bundle: nil)
+            viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
+            
+        }
+        
+        window?.rootViewController = viewController
+        
+        window?.makeKeyAndVisible()
         
         return true
     }
