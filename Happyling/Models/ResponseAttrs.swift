@@ -12,6 +12,7 @@ import ObjectMapper
 class ResponseAttrs: Mappable {
     
     var errorMessage: String!
+    var recordsTotal: Int!
     
     required init?(map: Map) {
         
@@ -20,6 +21,7 @@ class ResponseAttrs: Mappable {
     // Mappable
     func mapping(map: Map) {
         errorMessage                <- map["errorMessage"]
+        recordsTotal                <- map["recordsTotal"]
         
     }
     

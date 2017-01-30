@@ -11,37 +11,37 @@ import Alamofire
 
 enum SignInRouter: URLRequestConvertible{
     
-    case MakeLogin([String: Any])
+    case MakeLoginEmail([String: Any])
+    case MakeLoginFacebook([String: Any])
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .MakeLogin:
+        case .MakeLoginEmail:
+            return .post
+        case .MakeLoginFacebook:
             return .post
         }
     }
     
     var path: String {
         switch self {
-        case .MakeLogin:
-            return "/login/authenticate"
+        case .MakeLoginEmail:
+            return "login/authenticate"
+        case .MakeLoginFacebook:
+            return "login/face-authenticate"
         }
     }
-    
-    
-    
     
     func asURLRequest() throws -> URLRequest {
         let url = URL(string: Constants.API.baseURL)!
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         
-        
         switch self {
-        case .MakeLogin(let parameters):
-            return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
-
-        default:
-            return urlRequest
+            case .MakeLoginEmail(let parameters):
+                return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
+            case .MakeLoginFacebook(let parameters):
+                return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
         }
     }
 }

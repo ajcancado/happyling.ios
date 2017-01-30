@@ -14,22 +14,21 @@ struct Constants {
         static var baseURL: String {
             switch Environment.current {
             case .Development:
-//                return "http://localhost:8080/happyling-web"
-                return "http://192.168.25.2:8080/happyling-web"
+                return "http://192.168.25.8:8080/happyling-web/"
             case .Production:
-                return "http://m.valuegaia.com.br/"
+                return "http://139.59.131.213:8080/happyling-web/"
             }
         }
     }
     
-    struct DefaultKey {
-        static let environment = "br.com.ingaia.Environment"
-        static let user = "br.com.ingaia.User"
-        static let accessToken = "br.com.ingaia.Token"
-        static let chatToken = "br.com.ingaia.ChatToken"
-        static let fromLogin = "br.com.ingaia.FromLogin"
-        static let so = "IOS"
-        static let deviceToken = "br.com.ingaia.deviceToken"
+    struct SessionKeys {
+        
+        static let environment = "environment"
+        
+        static let userId = "userID"
+        static let isFromFacebook = "isFromFacebook"
+    
+        static let deviceToken = "deviceToken"
     }
     
     struct Messages {
@@ -68,6 +67,10 @@ struct Constants {
         static let NavigationBarColor = UIColor(red: 47.0/255.0, green: 52.0/255.0, blue: 59.0/255.0, alpha: 1.0)
         
         static let TitleColor = UIColor(red: 0.0, green: 162.0/255.0, blue: 194.0/255.0, alpha: 1.0)
+        
+        static let gray = UIColor(red: 246.0/255.0, green: 247.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+        
+        static let oranage = UIColor(red: 230.0/255.0, green: 108.0/255.0, blue: 31.0/255.0, alpha: 1.0)
         
     }
     

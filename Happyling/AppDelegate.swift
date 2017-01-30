@@ -9,34 +9,33 @@
 import UIKit
 import Fabric
 import Crashlytics
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         Fabric.with([Crashlytics.self])
         
-        UserDefaults.standard.register(defaults: [Constants.DefaultKey.environment: 0 ])
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        UserDefaults.standard.register(defaults: [Constants.SessionKeys.environment: 1])
         
         let storyboard: UIStoryboard
         let viewController: UIViewController
 
-        if !SessionManager.containsObjectForKey(key: "userID") {
+        if !SessionManager.containsObjectForKey(key: Constants.SessionKeys.userId) {
             
             storyboard = UIStoryboard(name: "SignIn", bundle: nil)
             viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
-            
         }
         else{
             
             storyboard = UIStoryboard(name: "Main", bundle: nil)
             viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
-            
         }
         
         window?.rootViewController = viewController
@@ -62,6 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        FBSDKAppEvents.activateApp()
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

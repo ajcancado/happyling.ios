@@ -8,24 +8,14 @@
 
 import UIKit
 import Alamofire
+import ObjectMapper
 
 class SignUpTableViewController: UITableViewController{
 
     @IBOutlet var labels: [UILabel]!
     
     @IBOutlet var txName: UITextField!
-    @IBOutlet var txSurname: UITextField!
     @IBOutlet var txEmail: UITextField!
-    @IBOutlet var txDateOfBirth: UITextField!
-    @IBOutlet var txPhoneNumber: UITextField!
-    @IBOutlet var txMobileNumber: UITextField!
-    @IBOutlet var txGender: UITextField!
-    @IBOutlet var txIdentificationNumber: UITextField!
-    @IBOutlet var txPostalCode: UITextField!
-    @IBOutlet var txCity: UITextField!
-    @IBOutlet var txState: UITextField!
-    @IBOutlet var txCountry: UITextField!
-    @IBOutlet var txUsername: UITextField!
     @IBOutlet var txPassword: UITextField!
     
     
@@ -39,7 +29,7 @@ class SignUpTableViewController: UITableViewController{
     
     func setupTableView(){
         
-        
+    
         
     }
     
@@ -52,7 +42,7 @@ class SignUpTableViewController: UITableViewController{
     private func calculateMaxLabelWidth(labels: [UILabel]) -> CGFloat {
         
     
-        return 117.5//reduce(map(labels, calculateLabelWidth), 0, max)
+        return 74//reduce(map(labels, calculateLabelWidth), 0, max)
     }
     
     private func updateWidthsForLabels(labels: [UILabel]) {
@@ -69,48 +59,83 @@ class SignUpTableViewController: UITableViewController{
         }
     }
     
+    @IBAction func makeSignUp(_ sender: Any) {
+        
+        if validate() {
+            
+            var params: [String: Any] = [:]
+            
+            params["name"] = txName.text
+            params["email"] = txEmail.text
+            params["password"] = txPassword.text
+            params["confirmPassword"]  = txPassword.text
+            
+            print(params)
+            
+            Alamofire.request(UserRouter.CreateUserSimple(params)).responseJSON { response in
+                
+                
+                switch response.result {
+                    
+                case .success(let json):
+                    
+                    print(json)
+                    
+                    
+                    let signInResponse = Mapper<SignInResponse>().map(JSON: json as! [String: Any])
+                    
+                    if signInResponse?.data != nil {
+                        
+                        SessionManager.setInteger(int: (signInResponse?.data)!, forKey: Constants.SessionKeys.userId)
+                        
+                        SessionManager.setBool(bool: false, forKey: Constants.SessionKeys.isFromFacebook)
+                        
+                        self.segueToMainStoryboard()
+                        
+                    }
+                    else if signInResponse?.responseAttrs.errorMessage != nil {
+                        
+                        print(signInResponse?.responseAttrs.errorMessage!)
+                        
+                    }
+                    
+                case .failure(let error):
+                    
+                    print(error.localizedDescription)
+                }
+                
+            }
+            
+        }
+        
+    }
+    
     func validate() -> Bool {
         
+        if (txName.text?.isEmpty)! {
+            return false
+        }
+        
+        if (txEmail.text?.isEmpty)! {
+            return false
+        }
+        
+        if (txPassword.text?.isEmpty)! {
+            return false
+        }
         
         return true
         
     }
     
-    func signUpUser() {
+    func segueToMainStoryboard(){
         
-        if validate() {
-            
-            var params: [String: Any] = [:]
-
-            params["name"] = txName.text
-            params["surname"] = txSurname.text
-            params["email"] = txEmail.text
-            params["dateOfBirth"] = txDateOfBirth.text
-            params["phoneNumber"] = txPhoneNumber.text
-            params["mobileNumber"] = txMobileNumber.text
-            params["gender"] = txGender.text
-            params["identificationNumber"] = txIdentificationNumber.text
-            params["postalCode"] = txPostalCode.text
-            params["city"] = txCity.text
-            params["state"] = txState.text
-            params["country"] = txCountry.text
-            params["username"] = txUsername.text
-            params["password"] = txPassword.text
-            
-            Alamofire.request(UserRouter.CreateUser(params)).responseJSON { response in
-                
-                
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
-                }
-                
-                
-            }
-            
-            
-            
-        }
-    
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
+        
+        self.present(viewController, animated: true, completion: nil)
+        
+        
     }
     
     

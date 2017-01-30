@@ -46,7 +46,7 @@ class LoginViewController: GenericViewController {
             params["username"] = txUsername.text
             params["pass"] = txPassword.text
             
-            Alamofire.request(SignInRouter.MakeLogin(params)).responseJSON { response in
+            Alamofire.request(SignInRouter.MakeLoginEmail(params)).responseJSON { response in
                 
                 self.hideHUD()
                 
@@ -60,7 +60,9 @@ class LoginViewController: GenericViewController {
                     
                     if signInResponse?.data != nil {
                         
-                        SessionManager.setInteger(int: (signInResponse?.data)!, forKey: "userID")
+                        SessionManager.setInteger(int: (signInResponse?.data)!, forKey: Constants.SessionKeys.userId)
+                        
+                        SessionManager.setBool(bool: false, forKey: Constants.SessionKeys.isFromFacebook)
                         
                         self.segueToMainStoryboard()
                         

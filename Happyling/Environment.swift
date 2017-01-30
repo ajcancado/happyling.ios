@@ -18,10 +18,10 @@ extension Environment {
     static var current: Environment {
         
         get {
-            return Environment(rawValue: UserDefaults.standard.integer(forKey: Constants.DefaultKey.environment))!
+            return Environment(rawValue: UserDefaults.standard.integer(forKey: Constants.SessionKeys.environment))!
         }
         set (val) {
-            UserDefaults.standard.set(val.hashValue, forKey: Constants.DefaultKey.environment)
+            UserDefaults.standard.set(val.hashValue, forKey: Constants.SessionKeys.environment)
         }
     }
 }   

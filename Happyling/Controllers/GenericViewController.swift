@@ -31,8 +31,11 @@ class GenericViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
         
         self.present(viewController, animated: true, completion: nil)
+    }
+    
+    func encodeBase64(image: UIImage) -> String{
         
-        
+        return (UIImagePNGRepresentation(image)?.base64EncodedString(options: .endLineWithLineFeed))!
     }
     
 }

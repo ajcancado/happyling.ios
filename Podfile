@@ -14,6 +14,7 @@ target 'Happyling' do
     pod 'Kingfisher'
     pod 'Crashlytics' #objective-c
     pod 'ObjectMapper'
+    pod 'MHTextField'
     pod 'TPKeyboardAvoiding' #objective-c
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
