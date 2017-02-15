@@ -14,6 +14,7 @@ enum IssueRouter: URLRequestConvertible{
     case GetIssues([String: Any])
     case GetIssueTypes
     case GetIssueStatus
+    case GetIssueReport([String: Any])
     case MakeIssueReport([String: Any])
     
     var method: Alamofire.HTTPMethod {
@@ -23,6 +24,8 @@ enum IssueRouter: URLRequestConvertible{
         case .GetIssueTypes:
             return .get
         case .GetIssueStatus:
+            return .get
+        case .GetIssueReport:
             return .get
         case .MakeIssueReport:
             return .post
@@ -38,6 +41,8 @@ enum IssueRouter: URLRequestConvertible{
             return "issue-report/types"
         case .GetIssueStatus:
             return "issue-report/status"
+        case .GetIssueReport:
+            return "issue-report"
         case .MakeIssueReport:
             return "issue-report"
         }
@@ -52,6 +57,8 @@ enum IssueRouter: URLRequestConvertible{
         
         switch self {
         case .GetIssues(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .GetIssueReport(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .MakeIssueReport(let parameters):
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)

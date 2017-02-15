@@ -17,21 +17,9 @@ class HomeViewController: GenericViewController {
         super.viewDidLoad()
 
         self.navigationItem.title = ""
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "img_logo_navigation"))
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.navigationController?.isNavigationBarHidden = false
-    }
-    
-    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

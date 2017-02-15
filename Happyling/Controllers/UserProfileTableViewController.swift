@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-class UserProfileTableViewController: UITableViewController {
+class UserProfileTableViewController: GenericTableViewController {
     
     var userID: Int!
 
@@ -96,16 +96,19 @@ class UserProfileTableViewController: UITableViewController {
    
     func getUser(){
         
-        
         if let id = SessionManager.getObjectForKey(key: Constants.SessionKeys.userId) as? Int{
             
             userID = id
+            
+            showHUD()
         
             Alamofire.request(UserRouter.GetUser(userID: id)).responseJSON { response in
                 
                 switch response.result {
                     
                 case .success(let json):
+                    
+                    self.hideHUD()
                     
                     print(json)
                     
@@ -136,6 +139,8 @@ class UserProfileTableViewController: UITableViewController {
                     
                 case .failure(let error):
                     
+                    self.hideHUD()
+                    
                     print(error.localizedDescription)
                 }
 
@@ -147,7 +152,7 @@ class UserProfileTableViewController: UITableViewController {
     
 
     func handleDatePicker(sender: UIDatePicker) {
-        var dateFormatter = DateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         txDateOfBirth.text = dateFormatter.string(from: sender.date)
     }
@@ -192,15 +197,15 @@ class UserProfileTableViewController: UITableViewController {
         if (txEmail.text?.isEmpty)! {
             return false
         }
-        
-        
+    
         return true
-        
     }
     
     @IBAction func updateUser(_ sender: Any) {
     
         if validate() {
+            
+            showHUD()
             
             var params: [String: Any] = [:]
             
@@ -224,10 +229,13 @@ class UserProfileTableViewController: UITableViewController {
                     
                     case .success(let json):
                         
+                        self.hideHUD()
+                        
                         print("JSON: \(json)")
 
-
                     case .failure(let error):
+                        
+                        self.hideHUD()
                         
                         print(error.localizedDescription)
                 }
@@ -237,15 +245,6 @@ class UserProfileTableViewController: UITableViewController {
         }
         
     }
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        let cell = c
-//        
-//        return
-//        
-//    }
-
 }
 
 // MARK: - UIPickerViewDataSource
@@ -266,12 +265,9 @@ extension UserProfileTableViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if row == 0 {
-            
             return "Masculino"
-            
         }
         else {
-            
             return "Feminino"
         }
     }
@@ -285,9 +281,5 @@ extension UserProfileTableViewController: UIPickerViewDelegate {
         else{
             txGender.text = "Feminino"
         }
-        
-        
     }
-    
-    
 }

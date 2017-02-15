@@ -14,9 +14,9 @@ struct Constants {
         static var baseURL: String {
             switch Environment.current {
             case .Development:
-                return "http://192.168.25.8:8080/happyling-web/"
+                return "http://192.168.25.8:8080/happyling-web/app"
             case .Production:
-                return "http://139.59.131.213:8080/happyling-web/"
+                return "http://139.59.131.213:8080/happyling-web/app"
             }
         }
     }
@@ -69,6 +69,8 @@ struct Constants {
         static let TitleColor = UIColor(red: 0.0, green: 162.0/255.0, blue: 194.0/255.0, alpha: 1.0)
         
         static let gray = UIColor(red: 246.0/255.0, green: 247.0/255.0, blue: 248.0/255.0, alpha: 1.0)
+        
+        static let blue = UIColor(red: 14.0/255.0, green: 105.0/255.0, blue: 175.0/255.0, alpha: 1.0)
         
         static let oranage = UIColor(red: 230.0/255.0, green: 108.0/255.0, blue: 31.0/255.0, alpha: 1.0)
         

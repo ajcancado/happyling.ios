@@ -7,89 +7,128 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
 
-class CompanyInfoTableViewController: UITableViewController {
-
+class CompanyInfoTableViewController: GenericTableViewController {
+    
+    @IBOutlet var labels: [UILabel]!
+    
+    @IBOutlet var txName: UITextField!
+    @IBOutlet var txIdentificationNumber: UITextField!
+    @IBOutlet var txBusinessPerson: UITextField!
+    @IBOutlet var txEmail: UITextField!
+    @IBOutlet var txEmailNotifications: UITextField!
+    @IBOutlet var txWebSite: UITextField!
+    @IBOutlet var txPostalCode: UITextField!
+    @IBOutlet var txCity: UITextField!
+    @IBOutlet var txState: UITextField!
+    @IBOutlet var txCountry: UITextField!
+    @IBOutlet var txPhoneNumber: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        updateWidthsForLabels(labels: labels)
+        
+        tableView.keyboardDismissMode = .onDrag
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func calculateMaxLabelWidth(labels: [UILabel]) -> CGFloat {
+        
+        return 168.0//reduce(map(labels, calculateLabelWidth), 0, max)
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    private func updateWidthsForLabels(labels: [UILabel]) {
+        let maxLabelWidth = calculateMaxLabelWidth(labels: labels)
+        for label in labels {
+            let constraint = NSLayoutConstraint(item: label,
+                                                attribute: .width,
+                                                relatedBy: .equal,
+                                                toItem: nil,
+                                                attribute: .notAnAttribute,
+                                                multiplier: 1,
+                                                constant: maxLabelWidth)
+            label.addConstraint(constraint)
+        }
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
+    
+    func validate() -> Bool {
+        
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func saveCompany(){
+        
+        if validate() {
+            
+            showHUD()
+            
+            var params: [String: Any] = [:]
+            
+            params["name"] = txName.text
+            params["identificationNumber"] = txIdentificationNumber.text
+            params["businessPerson"] = txBusinessPerson.text
+            params["email"]  = txEmail.text
+            params["emailNotifications"]  = txEmailNotifications.text
+            params["webSite"]  = txWebSite.text
+            params["postalCode"]  = txPostalCode.text
+            params["city"]  = txCity.text
+            params["state"]  = txState.text
+            params["country"]  = txCountry.text
+            params["phoneNumber"]  = txPhoneNumber.text
+//            params["categorie"]  = 1
+    
+            print(params)
+            
+            
+            Alamofire.request(CompanyRouter.MakeCompany(params)).responseJSON { response in
+                
+                switch response.result {
+                    
+                case .success(let json):
+                    
+                    print(json)
+                    
+                    self.hideHUD()
+                    
+                    let signInResponse = Mapper<SignInResponse>().map(JSON: json as! [String: Any])
+                    
+                    if signInResponse?.data != nil {
+                        
+                        SessionManager.setInteger(int: (signInResponse?.data)!, forKey: Constants.SessionKeys.userId)
+                        
+                        SessionManager.setBool(bool: false, forKey: Constants.SessionKeys.isFromFacebook)
+                        
+                        self.segueToMainStoryboard()
+                        
+                    }
+                    else if signInResponse?.responseAttrs.errorMessage != nil {
+                        
+                        print(signInResponse?.responseAttrs.errorMessage!)
+                        
+                    }
+                    
+                case .failure(let error):
+                    
+                    self.hideHUD()
+                    
+                    print(error.localizedDescription)
+                }
+                
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        let section = indexPath.section
+        
+        if section == 2 {
+            saveCompany()
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

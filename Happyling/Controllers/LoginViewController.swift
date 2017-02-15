@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-class LoginViewController: GenericViewController {
+class LoginViewController: GenericTableViewController {
     
     @IBOutlet weak var txUsername: UITextField!
     @IBOutlet weak var txPassword: UITextField!
@@ -19,7 +19,7 @@ class LoginViewController: GenericViewController {
         super.viewDidLoad()
         
     }
-    
+        
     func validate() -> Bool {
         
         if (txUsername.text?.isEmpty)! {
@@ -35,7 +35,7 @@ class LoginViewController: GenericViewController {
         return true
     }
     
-    @IBAction func makeLogin(_ sender: Any) {
+    func makeLogin() {
         
         if validate() {
             
@@ -85,10 +85,24 @@ class LoginViewController: GenericViewController {
         
     }
     
-    @IBAction func segueForSignUp(_ sender: Any) {
+    func segueForSignUp() {
         
          performSegue(withIdentifier: "showSignUpView", sender: self)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let row = indexPath.row
+        let section = indexPath.section
+        
+        if section == 0 {
+            segueForSignUp()
+        }
+        else if section == 2 {
+            makeLogin()
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
