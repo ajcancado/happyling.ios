@@ -29,8 +29,7 @@ class SignUpTableViewController: UITableViewController{
     
     func setupTableView(){
         
-    
-        
+        tableView.keyboardDismissMode = .onDrag
     }
     
     private func calculateLabelWidth(label: UILabel) -> CGFloat {
@@ -59,7 +58,7 @@ class SignUpTableViewController: UITableViewController{
         }
     }
     
-    @IBAction func makeSignUp(_ sender: Any) {
+    func makeSignUp() {
         
         if validate() {
             
@@ -138,25 +137,21 @@ class SignUpTableViewController: UITableViewController{
         
     }
     
-    
-    // MARK: - Navigation
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let row = indexPath.row
+        let section = indexPath.section
+        
+        if section == 1 && row == 0{
+            
+            makeSignUp()
+            
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
 
-    
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        
-//        return UITableViewCell()
-//    }
-
-    
     /*
     // MARK: - Navigation
 

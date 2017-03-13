@@ -35,6 +35,7 @@ class UserProfileTableViewController: GenericTableViewController {
         updateWidthsForLabels(labels: labels)
         
         setupTableView()
+        
         setupTextFields()
         
         getUser()
@@ -43,9 +44,6 @@ class UserProfileTableViewController: GenericTableViewController {
     func setupTableView(){
         
         tableView.keyboardDismissMode = .onDrag
-        
-        
-        
     }
     
     func setupTextFields(){
