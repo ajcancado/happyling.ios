@@ -28,6 +28,7 @@
 		8E67BDA71DFA160800F92EE5 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E67BDA61DFA160800F92EE5 /* Company.swift */; };
 		8E67BDA91DFA16DA00F92EE5 /* CompanyCategorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E67BDA81DFA16DA00F92EE5 /* CompanyCategorie.swift */; };
 		8E67BDAB1DFA181D00F92EE5 /* GetCompanyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E67BDAA1DFA181D00F92EE5 /* GetCompanyResponse.swift */; };
+		8E7DF8A11E76DA4E00A8C617 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E7DF8A01E76DA4E00A8C617 /* GoogleService-Info.plist */; };
 		8E813C871DEA7C410056C759 /* SignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C861DEA7C410056C759 /* SignInRouter.swift */; };
 		8E813C891DEA7EA90056C759 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C881DEA7EA90056C759 /* SignInResponse.swift */; };
 		8E813C8B1DEA7EF10056C759 /* ResponseAttrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C8A1DEA7EF10056C759 /* ResponseAttrs.swift */; };
@@ -75,6 +76,7 @@
 		8E5841AC1DEA49930026A293 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8E5841AD1DEA49930026A293 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		8E5841B11DEA4ADE0026A293 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		8E61E7751E770DD20002DD46 /* Happyling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Happyling.entitlements; sourceTree = "<group>"; };
 		8E67BD9E1DF9F6D100F92EE5 /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		8E67BDA01DF9FD5C00F92EE5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8E67BDA21DF9FF1A00F92EE5 /* GetUserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		8E67BDA61DFA160800F92EE5 /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		8E67BDA81DFA16DA00F92EE5 /* CompanyCategorie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyCategorie.swift; sourceTree = "<group>"; };
 		8E67BDAA1DFA181D00F92EE5 /* GetCompanyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCompanyResponse.swift; sourceTree = "<group>"; };
+		8E7DF8A01E76DA4E00A8C617 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8E813C861DEA7C410056C759 /* SignInRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
 		8E813C881DEA7EA90056C759 /* SignInResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
 		8E813C8A1DEA7EF10056C759 /* ResponseAttrs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseAttrs.swift; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 		8E55F4131DEA036400911C05 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E61E7751E770DD20002DD46 /* Happyling.entitlements */,
+				8E7DF8A01E76DA4E00A8C617 /* GoogleService-Info.plist */,
 				8E5841AC1DEA49930026A293 /* Constants.swift */,
 				8E5841AD1DEA49930026A293 /* Environment.swift */,
 				8E55F4081DEA024500911C05 /* Assets.xcassets */,
@@ -316,6 +321,14 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = CFU6825MEZ;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -342,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E7DF8A11E76DA4E00A8C617 /* GoogleService-Info.plist in Resources */,
 				8E55F4091DEA024500911C05 /* Assets.xcassets in Resources */,
 				8E55F4071DEA024500911C05 /* SignIn.storyboard in Resources */,
 				8E813C8F1DEB4C360056C759 /* Main.storyboard in Resources */,
@@ -580,6 +594,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CODE_SIGN_ENTITLEMENTS = Happyling/Happyling.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CFU6825MEZ;
@@ -600,6 +615,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CODE_SIGN_ENTITLEMENTS = Happyling/Happyling.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = CFU6825MEZ;

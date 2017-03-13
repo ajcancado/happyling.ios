@@ -18,5 +18,7 @@ target 'Happyling' do
     pod 'TPKeyboardAvoiding' #objective-c
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
+    pod 'Firebase/Core'
+    pod 'Firebase/Messaging'
 
 end

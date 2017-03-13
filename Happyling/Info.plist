@@ -45,6 +45,8 @@
 	<string>1397655540263040</string>
 	<key>FacebookDisplayName</key>
 	<string>Happyling</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

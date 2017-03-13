@@ -10,6 +10,8 @@ import UIKit
 import Fabric
 import Crashlytics
 import FBSDKCoreKit
+import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        FIRApp.configure()
+        
         Fabric.with([Crashlytics.self])
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+        else if #available(iOS 9, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        
         UserDefaults.standard.register(defaults: [Constants.SessionKeys.environment: 1])
+
         
         let storyboard: UIStoryboard
         let viewController: UIViewController
@@ -43,6 +57,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+    
+//        #if PROD_BUILD
+//            FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .prod)
+//        #else
+            FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .sandbox)
+//        #endif
+        
+        print(FIRInstanceID.instanceID().token())
+                
+        // Convert token to string
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        
+        // Print it to console
+        print("APNs device token: \(deviceTokenString)")
+        
+        // Persist it in your backend in case it's new
+    }
+    
+    // Called when APNs failed to register the device for push notifications
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        // Print the error to console (you should alert the user that registration failed)
+        print("APNs registration failed: \(error)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
+        // Print notification payload data
+        print("Push notification received: \(data)")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
