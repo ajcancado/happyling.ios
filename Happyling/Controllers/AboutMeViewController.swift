@@ -14,10 +14,16 @@ class AboutMeViewController: GenericViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var userId: Int!
+    var isFromFacebook: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Me"
+        
+        userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
+        isFromFacebook = SessionManager.getBoolForKey(key: Constants.SessionKeys.isFromFacebook)
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -32,24 +38,13 @@ class AboutMeViewController: GenericViewController {
         self.tableView.tableFooterView = UIView(frame: .zero)
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
- 
-        if segue.identifier == "segueToProfile" {
-            
-            
-            
-            
-        }
-    }
- 
+    
     func segueToSignInStoryboard(){
         
         let storyboard = UIStoryboard(name: "SignIn", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
         
         self.present(viewController, animated: true, completion: nil)
-        
     }
     
     func changeUserPassword(){
@@ -137,9 +132,28 @@ class AboutMeViewController: GenericViewController {
             }
             
         }
+    }
+    
+    func alertToSignUp(){
+        
+        let alertController = UIAlertController(title: "Happyling", message: "Querido usuário, faça seu cadastro para poder acessar os dados.", preferredStyle: .alert)
+        
+        let makeSignUpAction = UIAlertAction(title: "Ok, fazer agora", style: .default, handler: {
+            alert -> Void in
+            
+            SessionManager.removeObjectForKey(key: Constants.SessionKeys.userId)
+            
+            self.segueToSignInStoryboard()
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Depois", style: .cancel, handler: nil)
+        
+        alertController.addAction(makeSignUpAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
 
-        
-        
         
     }
 
@@ -191,12 +205,9 @@ extension AboutMeViewController: UITableViewDataSource {
         
         if section == 0 && row == 1 {
             
-            let isFromFacebook = SessionManager.getBoolForKey(key: Constants.SessionKeys.isFromFacebook)
-            
-            if isFromFacebook {
+            if isFromFacebook || userId == Constants.SessionKeys.guestUserId{
                 
                 return 0
-                
             }
         }
         
@@ -270,20 +281,45 @@ extension AboutMeViewController: UITableViewDelegate {
         
         if section == 0 {
             
-            if row == 0 {
-                performSegue(withIdentifier: "segueToProfile", sender: self)
+            if row == 0  {
+                
+                if userId != Constants.SessionKeys.guestUserId {
+                    
+                    performSegue(withIdentifier: "segueToProfile", sender: self)
+                }
+                else{
+                    
+                    alertToSignUp()
+                }
+
             }
             else if row == 1{
                 self.changeUserPassword()
             }
         }
         else if section == 1 {
-            performSegue(withIdentifier: "segueToIssues", sender: self)
+            
+            if userId != Constants.SessionKeys.guestUserId {
+                
+                performSegue(withIdentifier: "segueToIssues", sender: self)
+            }
+            else{
+                
+                alertToSignUp()
+            }
         }
         else if section == 2{
             
             if row == 2 {
-                performSegue(withIdentifier: "segueToCompanyInfo", sender: self)
+                
+                if userId != Constants.SessionKeys.guestUserId {
+                    
+                    performSegue(withIdentifier: "segueToCompanyInfo", sender: self)
+                }
+                else{
+                
+                    alertToSignUp()
+                }
             }
             
         }

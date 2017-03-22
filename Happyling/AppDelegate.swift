@@ -41,14 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard: UIStoryboard
         let viewController: UIViewController
 
-        if !SessionManager.containsObjectForKey(key: Constants.SessionKeys.userId) {
+        if SessionManager.containsObjectForKey(key: Constants.SessionKeys.userId) && SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId) != Constants.SessionKeys.guestUserId {
             
-            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
+            storyboard = UIStoryboard(name: "Main", bundle: nil)
             viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
         }
         else{
             
-            storyboard = UIStoryboard(name: "Main", bundle: nil)
+            storyboard = UIStoryboard(name: "SignIn", bundle: nil)
             viewController = storyboard.instantiateViewController(withIdentifier: "InitialController") as UIViewController
         }
         
@@ -69,6 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .sandbox)
 //        #endif
         
+        if let token = FIRInstanceID.instanceID().token() {
+            SessionManager.setObject(object: token as AnyObject?, forKey: Constants.SessionKeys.deviceToken)
+        }
+        
         print(FIRInstanceID.instanceID().token())
                 
         // Convert token to string
@@ -76,6 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
+        
+        
+        
         
         // Persist it in your backend in case it's new
     }

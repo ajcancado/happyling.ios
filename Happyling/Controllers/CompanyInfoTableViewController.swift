@@ -16,7 +16,6 @@ class CompanyInfoTableViewController: GenericTableViewController {
     
     @IBOutlet var txName: UITextField!
     @IBOutlet var txIdentificationNumber: UITextField!
-    @IBOutlet var txBusinessPerson: UITextField!
     @IBOutlet var txEmail: UITextField!
     @IBOutlet var txEmailNotifications: UITextField!
     @IBOutlet var txWebSite: UITextField!
@@ -68,7 +67,12 @@ class CompanyInfoTableViewController: GenericTableViewController {
             
             params["name"] = txName.text
             params["identificationNumber"] = txIdentificationNumber.text
-            params["businessPerson"] = txBusinessPerson.text
+            
+            if let id = SessionManager.getObjectForKey(key: Constants.SessionKeys.userId) as? Int{
+
+                params["businessPerson"] = id 
+            }
+            
             params["email"]  = txEmail.text
             params["emailNotifications"]  = txEmailNotifications.text
             params["webSite"]  = txWebSite.text
@@ -77,7 +81,6 @@ class CompanyInfoTableViewController: GenericTableViewController {
             params["state"]  = txState.text
             params["country"]  = txCountry.text
             params["phoneNumber"]  = txPhoneNumber.text
-//            params["categorie"]  = 1
     
             print(params)
             
@@ -121,11 +124,10 @@ class CompanyInfoTableViewController: GenericTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
+    
         let section = indexPath.section
         
-        if section == 2 {
+        if section == 1 {
             saveCompany()
         }
         

@@ -335,10 +335,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMA-Zn-a7Z">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="chQ-Sg-JqU"/>
-                                    <constraint firstAttribute="height" constant="50" id="rGE-fP-fDf"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Sign in with email">
                                     <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -351,9 +347,7 @@
                                 <rect key="frame" x="0.0" y="567" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.054901960784313725" green="0.41176470588235292" blue="0.68627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="doD-qW-oxd"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="oCD-Tt-vLx"/>
-                                    <constraint firstAttribute="width" constant="375" id="pgt-CS-Bh4"/>
+                                    <constraint firstAttribute="height" constant="50" id="Nv6-xe-fQZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Sign in with facebook">
@@ -367,9 +361,7 @@
                                 <rect key="frame" x="0.0" y="517" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="IAN-fT-70x"/>
-                                    <constraint firstAttribute="height" constant="50" id="QNP-pA-NJP"/>
-                                    <constraint firstAttribute="width" constant="375" id="fZV-ml-kKf"/>
+                                    <constraint firstAttribute="height" constant="50" id="gSo-1h-fCN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Skip">
@@ -379,22 +371,32 @@
                                     <action selector="segueWithoutAuthentication:" destination="qQs-k0-Wdd" eventType="touchUpInside" id="bYx-2v-gWU"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsD-pq-eLX" customClass="EAIntroView">
+                                <rect key="frame" x="0.0" y="233" width="375" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="leading" secondItem="bMA-Zn-a7Z" secondAttribute="leading" id="7Nl-Da-q5n"/>
-                            <constraint firstItem="Epf-FM-wzB" firstAttribute="trailing" secondItem="3ln-Zi-qYF" secondAttribute="trailing" id="IiB-Ge-bVv"/>
-                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="trailing" secondItem="bMA-Zn-a7Z" secondAttribute="trailing" id="ciD-Jw-yKI"/>
-                            <constraint firstAttribute="trailing" secondItem="Epf-FM-wzB" secondAttribute="trailing" id="frz-Mc-yvu"/>
-                            <constraint firstItem="bMA-Zn-a7Z" firstAttribute="bottom" secondItem="Zi1-ym-F4Z" secondAttribute="top" id="hVG-Nr-aHq"/>
-                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="top" secondItem="Epf-FM-wzB" secondAttribute="bottom" id="nFZ-pE-iMu"/>
-                            <constraint firstItem="bMA-Zn-a7Z" firstAttribute="top" secondItem="3ln-Zi-qYF" secondAttribute="bottom" id="sMs-vq-rQd"/>
-                            <constraint firstItem="Epf-FM-wzB" firstAttribute="leading" secondItem="3ln-Zi-qYF" secondAttribute="leading" id="t8e-j2-RMT"/>
-                            <constraint firstItem="Epf-FM-wzB" firstAttribute="leading" secondItem="OXh-0W-Bi2" secondAttribute="leading" id="ylS-bg-3fv"/>
+                            <constraint firstItem="wsD-pq-eLX" firstAttribute="centerY" secondItem="OXh-0W-Bi2" secondAttribute="centerY" id="19V-bz-U8i"/>
+                            <constraint firstItem="bMA-Zn-a7Z" firstAttribute="bottom" secondItem="Zi1-ym-F4Z" secondAttribute="top" id="4SZ-0H-KQF"/>
+                            <constraint firstItem="wsD-pq-eLX" firstAttribute="leading" secondItem="Epf-FM-wzB" secondAttribute="leading" id="5sk-r2-ZFB"/>
+                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="trailing" secondItem="bMA-Zn-a7Z" secondAttribute="trailing" id="EOr-Ab-uhc"/>
+                            <constraint firstItem="wsD-pq-eLX" firstAttribute="leading" secondItem="OXh-0W-Bi2" secondAttribute="leading" id="GD9-o3-QZ8"/>
+                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="leading" secondItem="bMA-Zn-a7Z" secondAttribute="leading" id="MSY-UG-z9u"/>
+                            <constraint firstItem="wsD-pq-eLX" firstAttribute="trailing" secondItem="Epf-FM-wzB" secondAttribute="trailing" id="SHM-M1-IEJ"/>
+                            <constraint firstItem="Epf-FM-wzB" firstAttribute="top" secondItem="wsD-pq-eLX" secondAttribute="bottom" constant="84" id="Tc2-eC-6Hc"/>
+                            <constraint firstItem="Epf-FM-wzB" firstAttribute="trailing" secondItem="3ln-Zi-qYF" secondAttribute="trailing" id="Wi9-Mc-prB"/>
+                            <constraint firstItem="bMA-Zn-a7Z" firstAttribute="top" secondItem="3ln-Zi-qYF" secondAttribute="bottom" id="dNg-ye-w7X"/>
+                            <constraint firstAttribute="trailing" secondItem="wsD-pq-eLX" secondAttribute="trailing" id="jdm-LS-zpg"/>
+                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="top" secondItem="Epf-FM-wzB" secondAttribute="bottom" id="lY5-uS-Kq3"/>
+                            <constraint firstItem="Epf-FM-wzB" firstAttribute="leading" secondItem="3ln-Zi-qYF" secondAttribute="leading" id="pfz-4J-kCx"/>
+                            <constraint firstItem="wsD-pq-eLX" firstAttribute="top" secondItem="7vb-Fk-PSH" secondAttribute="bottom" constant="169" id="zN9-Tn-Ty5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="s9C-L3-pyU"/>
                     <connections>
+                        <outlet property="introView" destination="wsD-pq-eLX" id="lcw-rB-wEP"/>
                         <segue destination="d3p-UK-jGg" kind="show" identifier="showSignUpView" id="dhz-Iv-blO"/>
                         <segue destination="UeI-PI-I3M" kind="show" identifier="showLoginView" id="cMs-jZ-zgL"/>
                     </connections>

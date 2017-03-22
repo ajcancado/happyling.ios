@@ -38,6 +38,7 @@ class SearchViewController: GenericViewController {
         setupSearchController()
         
         showHUD()
+        
         getCompanies()
         
         setupPullToRefresh()
@@ -81,9 +82,9 @@ class SearchViewController: GenericViewController {
             
             params["start"] = 0
             params["pageSize"] = 10
-            //        params["sortBy"] = ""
-            //        params["direction"] = ""
-            //        params["name"] = ""
+//              params["sortBy"] = ""
+//              params["direction"] = ""
+//              params["name"] = ""
             
         }
         

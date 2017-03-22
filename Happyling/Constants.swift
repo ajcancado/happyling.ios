@@ -16,7 +16,7 @@ struct Constants {
             case .Development:
                 return "http://192.168.25.8:8080/happyling-web/app"
             case .Production:
-                return "http://139.59.131.213:8080/happyling-web/app"
+                return "http://46.101.224.75:8080/happyling-web/app"
             }
         }
     }
@@ -29,6 +29,8 @@ struct Constants {
         static let isFromFacebook = "isFromFacebook"
     
         static let deviceToken = "deviceToken"
+        
+        static let guestUserId = -1
     }
     
     struct Messages {

@@ -69,6 +69,10 @@ class SignUpTableViewController: UITableViewController{
             params["password"] = txPassword.text
             params["confirmPassword"]  = txPassword.text
             
+            if SessionManager.containsObjectForKey(key: Constants.SessionKeys.deviceToken) { 
+                params["deviceToken"] = SessionManager.getObjectForKey(key: Constants.SessionKeys.deviceToken)
+            }
+            
             print(params)
             
             Alamofire.request(UserRouter.CreateUserSimple(params)).responseJSON { response in
@@ -145,7 +149,6 @@ class SignUpTableViewController: UITableViewController{
         if section == 1 && row == 0{
             
             makeSignUp()
-            
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

@@ -10,14 +10,46 @@ import UIKit
 import Alamofire
 import ObjectMapper
 import FBSDKLoginKit
+import EAIntroView
 
 class HomeViewController: GenericViewController {
 
+    @IBOutlet weak var introView: EAIntroView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = ""
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "img_logo_navigation"))
+        
+        setupIntroView()
+    }
+    
+    func setupIntroView(){
+        
+        let page1 = EAIntroPage()
+        
+        page1.title = "Hello world"
+        page1.titleColor = UIColor.gray
+        page1.desc = "Sample description 1"
+        page1.descColor = UIColor.gray
+        
+        let page2 = EAIntroPage()
+        
+        page2.title = "Hello world 2"
+        page2.titleColor = UIColor.gray
+        page2.desc = "Sample description 2"
+        page2.descColor = UIColor.gray
+        
+        introView.pages = [page1,page2]
+        
+        introView.pageControl.pageIndicatorTintColor = UIColor.gray
+        introView.pageControl.currentPageIndicatorTintColor = UIColor.gray
+        
+    
+        
+        introView.delegate = self
+        
     }
 
     // MARK: - Navigation
@@ -45,6 +77,10 @@ class HomeViewController: GenericViewController {
     }
 
     @IBAction func segueWithoutAuthentication(_ sender: Any) {
+        
+        SessionManager.setInteger(int: Constants.SessionKeys.guestUserId, forKey: Constants.SessionKeys.userId)
+        
+        SessionManager.setBool(bool: false, forKey: Constants.SessionKeys.isFromFacebook)
         
         segueToMainStoryboard()
         
@@ -82,8 +118,6 @@ class HomeViewController: GenericViewController {
         }
         
     }
-
-
 
     func getInfoFromFacebook(){
         
@@ -163,6 +197,10 @@ class HomeViewController: GenericViewController {
         params["name"] = facebookUser.name
         params["email"] = facebookUser.email
         
+        if SessionManager.containsObjectForKey(key: Constants.SessionKeys.deviceToken) {
+            params["deviceToken"] = SessionManager.getObjectForKey(key: Constants.SessionKeys.deviceToken)
+        }
+        
         Alamofire.request(UserRouter.CreateUserFacebook(params)).responseJSON { response in
             
             self.hideHUD()
@@ -186,10 +224,7 @@ class HomeViewController: GenericViewController {
                 }
                 else if signInResponse?.responseAttrs.errorMessage != nil {
                     
-                    
-                    
                     print(signInResponse?.responseAttrs.errorMessage!)
-                    
                 }
                 
                 
@@ -200,6 +235,13 @@ class HomeViewController: GenericViewController {
             
         }
     }
+}
 
-
+extension HomeViewController : EAIntroDelegate {
+    
+    func introWillFinish(_ introView: EAIntroView!, wasSkipped: Bool) {
+        
+        introView.setCurrentPageIndex(0, animated: true)
+    }
+    
 }

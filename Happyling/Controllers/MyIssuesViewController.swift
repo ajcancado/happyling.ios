@@ -28,8 +28,8 @@ class MyIssuesViewController: GenericViewController {
         super.viewDidLoad()
 
         setupNavigationBarButtom()
-        setupTableView()
         
+        setupTableView()
         
         startServiceCalls()
     }
@@ -97,6 +97,7 @@ class MyIssuesViewController: GenericViewController {
         showHUD()
         
         getIssuesStatus()
+        
         getIssuesFromUserAnd(status: nil)
         
     }

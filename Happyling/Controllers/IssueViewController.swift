@@ -13,10 +13,11 @@ import ObjectMapper
 protocol SelectCompanyProtocol{
     
     func selectedCompany(company: Company)
-    
 }
 
 class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    @IBOutlet var cells: [UITableViewCell]!
 
     @IBOutlet weak var comanySelected: UILabel!
     
@@ -33,14 +34,16 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
     var companySelected : Company!
     var issueTypeSelected: IssueType!
     
+    let topMessage = "Ops.."
+    let bottomMessage = "Você precisa se cadastrar para poder criar uma reclamação"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "New Issue"
         
-        self.view.backgroundColor = Constants.Colors.gray
-        
         setupNavigationBarButtomItems()
+        
         setupTableView()
         
         txIssueType.delegate = self
@@ -51,17 +54,30 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
         getIssueTypes()
     }
     
+    
     func setupNavigationBarButtomItems(){
         
         let send = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(makeIssueReport))
         
-        navigationItem.rightBarButtonItem = send
+        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
+        
+        if userId != Constants.SessionKeys.guestUserId {
+        
+            navigationItem.rightBarButtonItem = send
+        }
     }
 
     func setupTableView(){
         
+        tableView.backgroundColor = Constants.Colors.gray
+        
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.keyboardDismissMode = .onDrag
+        
+        let emptyBackgroundView = EmptyBackgroundView(image: UIImage(), top: topMessage, bottom: bottomMessage)
+        
+        tableView.backgroundView = emptyBackgroundView
+        tableView.backgroundView?.isHidden = true
+    
     }
     
     func getIssueTypes(){
@@ -258,6 +274,27 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
         }
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
+        
+        if userId != Constants.SessionKeys.guestUserId {
+            
+            tableView.separatorStyle = .singleLine
+            
+            tableView.backgroundView?.isHidden = true
+            
+            return 7
+        }
+        else{
+            
+            tableView.separatorStyle = .none
+            
+            tableView.backgroundView?.isHidden = false
+            
+            return 0
+        }
+    }
 }
 
 extension IssueViewController: UITextFieldDelegate {
