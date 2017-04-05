@@ -53,6 +53,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="UeI-PI-I3M" id="Q1C-ou-Umy"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -75,6 +78,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="UeI-PI-I3M" id="w0a-Kt-hMy"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -154,6 +160,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="d3p-UK-jGg" id="U7L-fj-AOy"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFx-Pa-tKK">
                                                     <rect key="frame" x="32" y="0.0" width="45" height="43.5"/>
@@ -195,6 +204,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="d3p-UK-jGg" id="8Sf-0Z-OBv"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Oe-uf-vrV">
                                                     <rect key="frame" x="32" y="0.0" width="41" height="43.5"/>
@@ -236,6 +248,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="d3p-UK-jGg" id="ILY-Gb-uLq"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPI-g3-QIw">
                                                     <rect key="frame" x="32" y="0.0" width="74" height="43.5"/>
@@ -371,9 +386,8 @@
                                     <action selector="segueWithoutAuthentication:" destination="qQs-k0-Wdd" eventType="touchUpInside" id="bYx-2v-gWU"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsD-pq-eLX" customClass="EAIntroView">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsD-pq-eLX" customClass="EAIntroView">
                                 <rect key="frame" x="0.0" y="233" width="375" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -396,7 +410,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="s9C-L3-pyU"/>
                     <connections>
-                        <outlet property="introView" destination="wsD-pq-eLX" id="lcw-rB-wEP"/>
+                        <outlet property="introView" destination="wsD-pq-eLX" id="ACw-TS-642"/>
                         <segue destination="d3p-UK-jGg" kind="show" identifier="showSignUpView" id="dhz-Iv-blO"/>
                         <segue destination="UeI-PI-I3M" kind="show" identifier="showLoginView" id="cMs-jZ-zgL"/>
                     </connections>
@@ -407,6 +421,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dhz-Iv-blO"/>
+        <segue reference="8gW-gy-Dd6"/>
     </inferredMetricsTieBreakers>
 </document>

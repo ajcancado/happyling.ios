@@ -81,9 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
         
-        
-        
-        
         // Persist it in your backend in case it's new
     }
     

@@ -15,6 +15,9 @@ class CategoriesViewController: GenericViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var companyCategories: [CompanyCategorie] = []
+    var categoriesFiltered: [CompanyCategorie] = []
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,8 @@ class CategoriesViewController: GenericViewController {
         title = "Categories"
         
         setupTableView()
+        
+        setupSearchController()
         
         getCategories()
     }
@@ -31,6 +36,15 @@ class CategoriesViewController: GenericViewController {
         tableView.backgroundColor = Constants.Colors.gray
         
         tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
+    func setupSearchController(){
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
     }
 
     func getCategories() {
@@ -73,6 +87,23 @@ class CategoriesViewController: GenericViewController {
             
         }
     }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        
+        categoriesFiltered = companyCategories.filter { category in
+            return category.name.lowercased().contains(searchText.lowercased())
+        }
+        
+        tableView.reloadData()
+    }
+    
+}
+
+extension CategoriesViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
 }
 
 extension CategoriesViewController: UITableViewDataSource {
@@ -82,6 +113,11 @@ extension CategoriesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return categoriesFiltered.count
+        }
+        
         return companyCategories.count
     }
     
@@ -91,7 +127,13 @@ extension CategoriesViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCellID", for: indexPath)
         
-        let companyCategorie = companyCategories[row]
+        let companyCategorie: CompanyCategorie
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            companyCategorie = categoriesFiltered[row]
+        } else {
+            companyCategorie = companyCategories[row]
+        }
         
         cell.textLabel?.text = companyCategorie.name
         
@@ -109,11 +151,19 @@ extension CategoriesViewController: UITableViewDelegate {
         
         let row = indexPath.row
         
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "SearchViewControllerID") as!SearchViewController
+        var companyCategorie: CompanyCategorie
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            companyCategorie = categoriesFiltered[row]
+        } else {
+            companyCategorie = companyCategories[row]
+        }
         
         var params: [String: Any] = [:]
         
-        params["categoryId"] = companyCategories[row].id
+        params["categoryId"] = companyCategorie.id
+        
+        let viewController = storyboard?.instantiateViewController(withIdentifier: "SearchViewControllerID") as!SearchViewController
         
         viewController.params = params
         

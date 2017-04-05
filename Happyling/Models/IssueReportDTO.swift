@@ -15,6 +15,7 @@ class IssueReportDTO: NSObject, Mappable {
     var user: Int!
     var company: Int!
     var type: Int!
+    var subject: String!
     var descricao: String!
     var currentInteraction: CurrentInteraction!
     
@@ -32,6 +33,7 @@ class IssueReportDTO: NSObject, Mappable {
         user                        <- map["user"]
         company                     <- map["company"]
         type                        <- map["type"]
+        subject                     <- map["subject"]
         descricao                   <- map["description"]
         currentInteraction          <- map["currentInteraction"]
     }

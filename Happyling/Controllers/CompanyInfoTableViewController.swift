@@ -69,7 +69,6 @@ class CompanyInfoTableViewController: GenericTableViewController {
             params["identificationNumber"] = txIdentificationNumber.text
             
             if let id = SessionManager.getObjectForKey(key: Constants.SessionKeys.userId) as? Int{
-
                 params["businessPerson"] = id 
             }
             

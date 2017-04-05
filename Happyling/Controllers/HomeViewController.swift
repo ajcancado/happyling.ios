@@ -16,6 +16,8 @@ class HomeViewController: GenericViewController {
 
     @IBOutlet weak var introView: EAIntroView!
     
+    var eaIntroView: EAIntroView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +25,9 @@ class HomeViewController: GenericViewController {
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "img_logo_navigation"))
         
         setupIntroView()
+        
+        Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(moverParaProximoSlide), userInfo: nil, repeats: true)
+        
     }
     
     func setupIntroView(){
@@ -41,17 +46,31 @@ class HomeViewController: GenericViewController {
         page2.desc = "Sample description 2"
         page2.descColor = UIColor.gray
         
-        introView.pages = [page1,page2]
+        eaIntroView = EAIntroView(frame: introView.bounds, andPages: [page1,page2])
         
-        introView.pageControl.pageIndicatorTintColor = UIColor.gray
-        introView.pageControl.currentPageIndicatorTintColor = UIColor.gray
+        eaIntroView.skipButton = .none
+        eaIntroView.pageControl.pageIndicatorTintColor = UIColor.gray
+        eaIntroView.pageControl.currentPageIndicatorTintColor = UIColor.darkGray
         
-    
-        
-        introView.delegate = self
+        eaIntroView.show(in: introView, animateDuration: 0.3)
         
     }
 
+    func moverParaProximoSlide() {
+        
+        let nextSlide = eaIntroView.currentPageIndex + 1
+        
+        if Int(nextSlide) >= eaIntroView.pages.count {
+            
+            eaIntroView.scrollToPage(for: 0, animated: true)
+        }
+        else {
+            
+            eaIntroView.scrollToPage(for: nextSlide , animated: true)
+        }
+    }
+
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -237,11 +256,3 @@ class HomeViewController: GenericViewController {
     }
 }
 
-extension HomeViewController : EAIntroDelegate {
-    
-    func introWillFinish(_ introView: EAIntroView!, wasSkipped: Bool) {
-        
-        introView.setCurrentPageIndex(0, animated: true)
-    }
-    
-}

@@ -15,22 +15,25 @@ protocol SelectCompanyProtocol{
     func selectedCompany(company: Company)
 }
 
-class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+protocol SelectComplaintTypeProtocol{
     
-    @IBOutlet var cells: [UITableViewCell]!
+    func selectedComplaintType(company: IssueType)
+}
 
-    @IBOutlet weak var comanySelected: UILabel!
+class IssueViewController: GenericTableViewController, SelectCompanyProtocol, SelectComplaintTypeProtocol,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    @IBOutlet weak var txIssueType: UITextField!
+    @IBOutlet weak var companyName: UILabel!
+
+    @IBOutlet weak var issueType: UILabel!
     
-    @IBOutlet weak var txDescription: UITextField!
+    @IBOutlet weak var complaintSubject: UITextField!
+    
+    @IBOutlet weak var complaintDescription: UITextField!
     
     @IBOutlet weak var imageAttachment: UIImageView!
     
     let imagePicker = UIImagePickerController()
-    
-    var issueTypes: [IssueType] = []
-    
+
     var companySelected : Company!
     var issueTypeSelected: IssueType!
     
@@ -40,18 +43,14 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "New Issue"
+        title = "New Complaint"
         
         setupNavigationBarButtomItems()
         
         setupTableView()
-        
-        txIssueType.delegate = self
-        
+    
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
-        
-        getIssueTypes()
     }
     
     
@@ -69,6 +68,8 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
 
     func setupTableView(){
         
+        tableView.keyboardDismissMode = .onDrag
+        
         tableView.backgroundColor = Constants.Colors.gray
         
         tableView.tableFooterView = UIView(frame: .zero)
@@ -80,59 +81,23 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
     
     }
     
-    func getIssueTypes(){
-        
-        self.showHUD()
-        
-        Alamofire.request(IssueRouter.GetIssueTypes).responseJSON { response in
-            
-            self.hideHUD()
-            
-            switch response.result {
-                
-            case .success(let json):
-                
-                print(json)
-                
-                let issueTypeResponse = Mapper<IssueReportTypeResponse>().map(JSON: json as! [String: Any])
-                
-                if issueTypeResponse?.data != nil {
-                    
-                    self.issueTypes = (issueTypeResponse?.data)!
-                    
-                    self.setupPickerViewTypes()
-                    
-                }
-                else if issueTypeResponse?.responseAttrs.errorMessage != nil {
-                    
-                    print(issueTypeResponse?.responseAttrs.errorMessage!)
-                    
-                }
-                
-                
-            case .failure(let error):
-                
-                print(error.localizedDescription)
-            }
-            
-        }
-    }
-    
-    func setupPickerViewTypes(){
-        
-        let pickerView = UIPickerView()
-        
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        
-        txIssueType.inputView = pickerView
-    }
     
     func selectedCompany(company: Company){
         
         companySelected = company
         
-        comanySelected.text = company.name
+        companyName.text = company.name
+        
+        tableView.reloadData()
+    }
+    
+    func selectedComplaintType(company: IssueType) {
+        
+        issueTypeSelected = company
+        
+        issueType.text = company.name
+        
+        tableView.reloadData()
     }
     
     
@@ -174,20 +139,46 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
         self.present(alertController, animated: true, completion: nil)
         
     }
+    
+    func clearInputs(){
+        
+        companyName.text = ""
+        companySelected = nil
+        
+        issueType.text = ""
+        issueTypeSelected = nil
+        
+        complaintSubject.text = ""
+        complaintDescription.text = ""
+        
+        tableView.reloadData()
+        
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let section = indexPath.section
         
-        if indexPath.row == 0 {
+        if section == 0 {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
+            
             let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewControllerID") as!SearchViewController
             
             viewController.delegate = self
             
             self.navigationController?.pushViewController(viewController, animated: true)
-            
         }
+        else if section == 1 {
+            
+            performSegue(withIdentifier: "segueToComplaintType", sender: self)
+        }
+        else if section == 4 {
+            
+            clearInputs()
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -210,19 +201,29 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
     
     func validate() -> Bool{
         
+        var flag = true
+        
         if companySelected == nil{
-            return false
+            flag = false
         }
         
         if issueTypeSelected == nil{
-            return false
+            flag = false
         }
         
-        if (txDescription.text?.isEmpty)! {
-            return false
+        if (complaintSubject.text?.isEmpty)! {
+            
+            complaintSubject.addError()
+            flag = false
         }
         
-        return true
+        if (complaintDescription.text?.isEmpty)! {
+            
+            complaintDescription.addError()
+            flag = false
+        }
+        
+        return flag
     }
     
     
@@ -235,24 +236,27 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
             issueReportDTO.user = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
             issueReportDTO.company = companySelected.id
             issueReportDTO.type = issueTypeSelected.id
-            issueReportDTO.descricao = txDescription.text
+            issueReportDTO.subject = complaintSubject.text
+            issueReportDTO.descricao = complaintDescription.text
     
             let currentInteraction = CurrentInteraction()
     
             var attachments: [Attachment] = []
             
-            let attachment = Attachment()
+//            let attachment = Attachment()
             
-            attachment.name = "teste.jpg"
-            attachment.encodingData = imageAttachment.image?.encodeToBase64String()
+//            attachment.name = "teste.jpg"
+//            attachment.encodingData = imageAttachment.image?.encodeToBase64String()
             
-            attachments.append(attachment)
+//            attachments.append(attachment)
             
             currentInteraction.attachments = attachments
             
             issueReportDTO.currentInteraction = currentInteraction
             
             self.showHUD()
+            
+            print(issueReportDTO.toJSON())
 
             Alamofire.request(IssueRouter.MakeIssueReport(issueReportDTO.toJSON())).responseJSON { response in
             
@@ -264,6 +268,26 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
                     
                     print("Sucesso !!! \(json)")
                     
+                    let signInResponse = Mapper<SignInResponse>().map(JSON: json as! [String: Any])
+                    
+                    if signInResponse?.data != nil {
+                        
+                        self.clearInputs()
+                        
+                        let alertController = UIAlertController(title: "Happyling", message: "Congratulations!", preferredStyle: .alert)
+                        
+                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertController.addAction(defaultAction)
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    }
+                    else if signInResponse?.responseAttrs.errorMessage != nil {
+                        
+                        print(signInResponse?.responseAttrs.errorMessage!)
+                        
+                    }
+                    
                 case .failure(let error):
                     
                     print(error.localizedDescription)
@@ -274,73 +298,51 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, UI
         }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
-        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if userId != Constants.SessionKeys.guestUserId {
+        if segue.identifier == "segueToComplaintType" {
+         
+            let svc = segue.destination as! ComplaintTypeViewController
             
-            tableView.separatorStyle = .singleLine
+            svc.delegate = self
             
-            tableView.backgroundView?.isHidden = true
-            
-            return 7
-        }
-        else{
-            
-            tableView.separatorStyle = .none
-            
-            tableView.backgroundView?.isHidden = false
-            
-            return 0
         }
     }
+    
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//    
+//        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
+//        
+//        if userId != Constants.SessionKeys.guestUserId {
+//            
+//            tableView.separatorStyle = .singleLine
+//            
+//            tableView.backgroundView?.isHidden = true
+//            
+//            if section == 0 {
+//                return 1
+//            }
+//            else{
+//                return 6
+//            }
+//        }
+//        else{
+//            
+//            tableView.separatorStyle = .none
+//            
+//            tableView.backgroundView?.isHidden = false
+//            
+//            return 0
+//        }
+//    }
 }
 
 extension IssueViewController: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
-        if textField == txIssueType {
-            
-            issueTypeSelected = issueTypes[0]
-            
-            textField.text = issueTypes[0].name
-            
-        }
+        textField.removeError()
         
+        return true
     }
-    
-}
-
-extension IssueViewController: UIPickerViewDataSource {
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        return issueTypes.count
-        
-    }
-
-}
-
-extension IssueViewController: UIPickerViewDelegate {
-    
-    // The data to return for the row and component (column) that's being passed in
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        return issueTypes[row].name
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        issueTypeSelected = issueTypes[row]
-        
-        txIssueType.text = issueTypes[row].name
-    }
-    
 }

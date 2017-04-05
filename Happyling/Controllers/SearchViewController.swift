@@ -71,10 +71,7 @@ class SearchViewController: GenericViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         
         tableView.addSubview(refreshControl)
-        
     }
-    
-   
     
     func getCompanies(){
         
@@ -85,7 +82,6 @@ class SearchViewController: GenericViewController {
 //              params["sortBy"] = ""
 //              params["direction"] = ""
 //              params["name"] = ""
-            
         }
         
         Alamofire.request(CompanyRouter.GetCompany(params)).responseJSON { response in

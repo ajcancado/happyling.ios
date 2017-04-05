@@ -30,7 +30,6 @@ class CompanyProfileViewController: GenericViewController {
     
     var companyIssues: [Issue] = []
     
-//    let image = UIImage(named: "ic_empty_search_radar")!
     let topMessage = "Eba..."
     let bottomMessage = "Nenhum problema"
     

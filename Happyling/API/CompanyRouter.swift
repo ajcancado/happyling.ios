@@ -44,6 +44,12 @@ enum CompanyRouter: URLRequestConvertible{
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         
+        let id =  SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
+            
+        if id != Constants.SessionKeys.guestUserId {
+            
+            urlRequest.addValue("\(id)", forHTTPHeaderField: "x-user-id")
+        }
         
         switch self {
             case .GetCompany(let parameters):

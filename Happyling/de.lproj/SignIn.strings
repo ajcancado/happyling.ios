@@ -1,0 +1,36 @@
+
+/* Class = "UIButton"; normalTitle = "Sign in with facebook"; ObjectID = "3ln-Zi-qYF"; */
+"3ln-Zi-qYF.normalTitle" = "Sign in with facebook";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "5zt-rA-FzR"; */
+"5zt-rA-FzR.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "6Oe-uf-vrV"; */
+"6Oe-uf-vrV.text" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "Epf-FM-wzB"; */
+"Epf-FM-wzB.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "Log in"; ObjectID = "Nbm-hK-hfn"; */
+"Nbm-hK-hfn.text" = "Log in";
+
+/* Class = "UILabel"; text = "Create a new account"; ObjectID = "PWo-Bd-GeE"; */
+"PWo-Bd-GeE.text" = "Create a new account";
+
+/* Class = "UILabel"; text = "Sign up"; ObjectID = "XBn-xD-Luc"; */
+"XBn-xD-Luc.text" = "Sign up";
+
+/* Class = "UIButton"; normalTitle = "Sign in with email"; ObjectID = "bMA-Zn-a7Z"; */
+"bMA-Zn-a7Z.normalTitle" = "Sign in with email";
+
+/* Class = "UITextField"; placeholder = "Email address"; ObjectID = "hKj-Py-DlY"; */
+"hKj-Py-DlY.placeholder" = "Email address";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "rFx-Pa-tKK"; */
+"rFx-Pa-tKK.text" = "Name";
+
+/* Class = "UITableViewSection"; headerTitle = "LOG IN"; ObjectID = "ud1-YZ-v0c"; */
+"ud1-YZ-v0c.headerTitle" = "LOG IN";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "vPI-g3-QIw"; */
+"vPI-g3-QIw.text" = "Password";

@@ -18,21 +18,26 @@ class LoginViewController: GenericTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = ""
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "img_logo_navigation"))
+        
     }
         
     func validate() -> Bool {
         
+        var flag = true
+        
         if (txUsername.text?.isEmpty)! {
-           
-            return false
+            txUsername.addError()
+            flag = false
         }
         
         if (txPassword.text?.isEmpty)! {
-            return false
+            txPassword.addError()
+            flag = false
         }
         
-        
-        return true
+        return flag
     }
     
     func makeLogin() {
@@ -104,8 +109,15 @@ class LoginViewController: GenericTableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+extension LoginViewController: UITextFieldDelegate {
     
-    
-    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        textField.removeError()
+        
+        return true
+    }
 }
 

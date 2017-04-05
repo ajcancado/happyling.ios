@@ -22,6 +22,8 @@ class SignUpTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "SignUp"
+        
         updateWidthsForLabels(labels: labels)
         
         setupTableView()
@@ -115,20 +117,24 @@ class SignUpTableViewController: UITableViewController{
     
     func validate() -> Bool {
         
+        var flag = true
+        
         if (txName.text?.isEmpty)! {
-            return false
+            txName.addError()
+            flag = false
         }
         
         if (txEmail.text?.isEmpty)! {
-            return false
+            txEmail.addError()
+            flag = false
         }
         
         if (txPassword.text?.isEmpty)! {
-            return false
+            txPassword.addError()
+            flag = false
         }
         
-        return true
-        
+        return flag
     }
     
     func segueToMainStoryboard(){
@@ -154,15 +160,15 @@ class SignUpTableViewController: UITableViewController{
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
+}
+
+extension SignUpTableViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        textField.removeError()
+        
+        return true
+    }
 }
