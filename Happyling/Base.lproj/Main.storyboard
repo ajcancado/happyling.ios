@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -539,7 +539,7 @@
         <scene sceneID="wo0-nM-V9Q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L8S-uZ-CRg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" image="ic_account" id="MVn-sN-1xb"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="ic_more_onbright" id="MVn-sN-1xb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dL6-nW-ane">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1720,10 +1720,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_account" width="25" height="25"/>
         <image name="ic_categories" width="24" height="24"/>
         <image name="ic_issues" width="25" height="25"/>
-        <image name="ic_search" width="25" height="25"/>
+        <image name="ic_more_onbright" width="24" height="24"/>
+        <image name="ic_search" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ISv-eL-vee"/>

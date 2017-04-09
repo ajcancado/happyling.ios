@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UserDefaults.standard.register(defaults: [Constants.SessionKeys.environment: 1])
 
-        
         let storyboard: UIStoryboard
         let viewController: UIViewController
 
@@ -63,23 +62,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
     
-//        #if PROD_BUILD
-//            FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .prod)
-//        #else
+        switch Environment.current {
+        case .Development:
+            FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .prod)
+        case .Production:
             FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .sandbox)
-//        #endif
+        }
         
         if let token = FIRInstanceID.instanceID().token() {
             SessionManager.setObject(object: token as AnyObject?, forKey: Constants.SessionKeys.deviceToken)
         }
         
-        print(FIRInstanceID.instanceID().token())
-                
         // Convert token to string
-        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        // let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         
         // Print it to console
-        print("APNs device token: \(deviceTokenString)")
+        // print("APNs device token: \(deviceTokenString)")
         
         // Persist it in your backend in case it's new
     }

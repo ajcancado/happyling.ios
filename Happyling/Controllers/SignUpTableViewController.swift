@@ -43,7 +43,7 @@ class SignUpTableViewController: UITableViewController{
     private func calculateMaxLabelWidth(labels: [UILabel]) -> CGFloat {
         
     
-        return 74//reduce(map(labels, calculateLabelWidth), 0, max)
+        return 66//reduce(map(labels, calculateLabelWidth), 0, max)
     }
     
     private func updateWidthsForLabels(labels: [UILabel]) {
