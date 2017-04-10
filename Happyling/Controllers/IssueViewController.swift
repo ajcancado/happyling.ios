@@ -43,7 +43,7 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "New Complaint"
+        navigationItem.title = "New Complaint"
         
         setupNavigationBarButtomItems()
         

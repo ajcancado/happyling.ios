@@ -14,8 +14,6 @@ class CompanyCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
     
-    @IBOutlet weak var lblDescription: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

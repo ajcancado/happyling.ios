@@ -75,7 +75,7 @@ class CategoriesViewController: GenericViewController {
                 }
                 else if companyCategoriesResponse?.responseAttrs.errorMessage != nil {
                     
-                    print(companyCategoriesResponse?.responseAttrs.errorMessage!)
+                    print(companyCategoriesResponse!.responseAttrs.errorMessage!)
                     
                 }
                 
@@ -153,7 +153,7 @@ extension CategoriesViewController: UITableViewDelegate {
         
         var companyCategorie: CompanyCategorie
         
-        if searchController.isActive && searchController.searchBar.text != "" {
+        if searchController.isActive && !(searchController.searchBar.text?.isEmpty)! {
             companyCategorie = categoriesFiltered[row]
         } else {
             companyCategorie = companyCategories[row]

@@ -17,6 +17,7 @@ target 'Happyling' do
     pod 'MHTextField'
     pod 'TPKeyboardAvoiding' #objective-c
     pod 'EAIntroView' #objective-c
+    pod 'libPhoneNumber-iOS' #objective-c
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
     pod 'Firebase/Core'

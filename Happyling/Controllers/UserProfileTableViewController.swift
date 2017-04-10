@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MHTextField
 import Alamofire
 import ObjectMapper
 
@@ -16,11 +17,11 @@ class UserProfileTableViewController: GenericTableViewController {
 
     @IBOutlet var labels: [UILabel]!
     
-    @IBOutlet var txName: UITextField!
+    @IBOutlet var txName: MHTextField!
     @IBOutlet var txSurname: UITextField!
     @IBOutlet var txEmail: UITextField!
-    @IBOutlet var txDateOfBirth: UITextField!
-    @IBOutlet var txPhoneNumber: UITextField!
+    @IBOutlet var txDateOfBirth: MHTextField!
+    @IBOutlet var txPhoneNumber: MHTextField!
     @IBOutlet var txMobileNumber: UITextField!
     @IBOutlet var txGender: UITextField!
     @IBOutlet var txIdentificationNumber: UITextField!
@@ -48,38 +49,32 @@ class UserProfileTableViewController: GenericTableViewController {
     
     func setupTextFields(){
         
+        txEmail.isUserInteractionEnabled = false
         
-        
-        let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.frame.width, height: 240))
-        
-        let inputView = UIView(frame: rect)
-        
-        let rectPicker = CGRect(origin: CGPoint(x: 0,y :40), size: CGSize(width: 0, height: 0))
-        
-        let datePickerView  : UIDatePicker = UIDatePicker(frame: rectPicker)
+        let datePickerView  = UIDatePicker()
         datePickerView.datePickerMode = .date
-        inputView.addSubview(datePickerView) // add date picker to UIView
-        
-        let rectButton = CGRect(origin: CGPoint(x: (self.view.frame.size.width/2) - (100/2),y :0), size: CGSize(width: 100, height: 50))
-        
-        let doneButton = UIButton(frame: rectButton)
-        
-        doneButton.setTitle("Done", for: .normal)
-        doneButton.setTitle("Done", for: .highlighted)
-        doneButton.setTitleColor(UIColor.black, for: .normal)
-        doneButton.setTitleColor(UIColor.gray, for: .highlighted)
-        
-        inputView.addSubview(doneButton) // add Button to UIView
-        
-        doneButton.addTarget(self, action: #selector(doneButton(sender:)), for: .touchUpInside) // set button click event
-        
-        txDateOfBirth.inputView = inputView
         datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
         
-        handleDatePicker(sender: datePickerView) // Set the date on start.
+        txDateOfBirth.inputView = datePickerView
+        
+        txPhoneNumber.isPhoneField = true
+        
+//        let rectButton = CGRect(origin: CGPoint(x: (self.view.frame.size.width/2) - (100/2),y :0), size: CGSize(width: 100, height: 50))
+//        
+//        let doneButton = UIButton(frame: rectButton)
+//        
+//        doneButton.setTitle("Done", for: .normal)
+//        doneButton.setTitle("Done", for: .highlighted)
+//        doneButton.setTitleColor(UIColor.black, for: .normal)
+//        doneButton.setTitleColor(UIColor.gray, for: .highlighted)
+//        
+//        inputView.addSubview(doneButton) // add Button to UIView
+//        
+//        doneButton.addTarget(self, action: #selector(doneButton(sender:)), for: .touchUpInside) // set button click event
         
         
-        txEmail.isUserInteractionEnabled = false
+        
+        
         
         let pickerView = UIPickerView()
         

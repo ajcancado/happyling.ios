@@ -31,7 +31,7 @@ class SearchViewController: GenericViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Companies"
+        navigationItem.title = "Companies"
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "img_logo_navigation"))
         
@@ -179,10 +179,6 @@ extension SearchViewController: UITableViewDataSource {
         return companies.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
@@ -199,7 +195,6 @@ extension SearchViewController: UITableViewDataSource {
         
         cell.imgLogo.backgroundColor = Constants.Colors.oranage
         cell.lblName.text = company.name
-        cell.lblDescription.text = company.email
         
         
         cell.imgLogo.layer.cornerRadius = cell.imgLogo.frame.size.width / 2
@@ -212,6 +207,10 @@ extension SearchViewController: UITableViewDataSource {
 }
 
 extension SearchViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

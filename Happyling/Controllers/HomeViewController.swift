@@ -27,7 +27,6 @@ class HomeViewController: GenericViewController {
         setupIntroView()
         
         Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(moverParaProximoSlide), userInfo: nil, repeats: true)
-        
     }
     
     func setupIntroView(){
@@ -116,26 +115,26 @@ class HomeViewController: GenericViewController {
             
             let login = FBSDKLoginManager()
             
-            login.loginBehavior = FBSDKLoginBehavior.web
+            login.loginBehavior = FBSDKLoginBehavior.native
             
             login.logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: { result, error in
             
-                if error != nil {
+                if let e = error{
                     
-                    print("Process \(error?.localizedDescription)")
+                    print("Process \(e.localizedDescription)")
                 }
-                else if (result?.isCancelled)! {
+                else if let r = result  {
                     
-                    print("Cancelled")
-                }else {
-            
-                    self.getInfoFromFacebook()
+                    if r.isCancelled {
+                        
+                        print("Cancelled")
+                    }
+                    else{
+                         self.getInfoFromFacebook()
+                    }
                 }
-            
             })
-            
         }
-        
     }
 
     func getInfoFromFacebook(){
@@ -145,8 +144,6 @@ class HomeViewController: GenericViewController {
         FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email, picture"]).start(completionHandler: { connection, result, error in
             
                 if (error == nil){
-                    
-                    print(result)
                     
                     let facebookUser = Mapper<FacebookUser>().map(JSON: result as! [String: Any])
                     
@@ -192,7 +189,7 @@ class HomeViewController: GenericViewController {
                 }
                 else if signInResponse?.responseAttrs.errorMessage != nil {
                     
-                    print(signInResponse?.responseAttrs.errorMessage!)
+                    print(signInResponse!.responseAttrs.errorMessage!)
                     
                     self.signUpUserFacebook(facebookUser: facebookUser)
                     

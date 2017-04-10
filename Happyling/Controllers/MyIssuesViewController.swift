@@ -127,7 +127,7 @@ class MyIssuesViewController: GenericViewController {
                     
                     self.hideHUD()
                     
-                    print(issuesStatusResponse?.responseAttrs.errorMessage!)
+                    print(issuesStatusResponse!.responseAttrs.errorMessage!)
                 }
                 
                 

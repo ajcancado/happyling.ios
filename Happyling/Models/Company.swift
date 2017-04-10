@@ -24,6 +24,7 @@ class Company: NSObject , Mappable {
     var city: String!
     var state: String!
     var country: String!
+    var average: Double!
     var status: String!
     
     
@@ -46,6 +47,7 @@ class Company: NSObject , Mappable {
         phoneNumber                 <- map["phoneNumber"]
         postalCode                  <- map["postalCode"]
         state                       <- map["state"]
+        average                     <- map["average"]
         status                      <- map["status"]
         webSite                     <- map["webSite"]
     }

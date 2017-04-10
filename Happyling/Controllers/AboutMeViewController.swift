@@ -310,6 +310,18 @@ extension AboutMeViewController: UITableViewDelegate {
         }
         else if section == 2{
             
+//            if row == 0{
+//                
+//                UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/1225068773")!)
+//                
+//            }
+//            else if row == 1 {
+//                
+//                
+//                
+//            }
+//            else
+            
             if row == 2 {
                 
                 if userId != Constants.SessionKeys.guestUserId {
