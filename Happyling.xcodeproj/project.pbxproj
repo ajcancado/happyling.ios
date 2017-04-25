@@ -58,6 +58,9 @@
 		8EA72C7C1E8B34DD0086FA96 /* ComplaintTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA72C7B1E8B34DD0086FA96 /* ComplaintTypeViewController.swift */; };
 		8ECDED711DFC8E3F0001A02D /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDED701DFC8E3F0001A02D /* IssueViewController.swift */; };
 		8EF8F05A1DFA192D00AFF0AA /* CompanyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF8F0591DFA192D00AFF0AA /* CompanyProfileViewController.swift */; };
+		DC08E1091EA8536C0096D18C /* IssueDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08E1081EA8536C0096D18C /* IssueDescriptionViewController.swift */; };
+		DC08E10C1EA85F2B0096D18C /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08E10A1EA85F2B0096D18C /* RatingViewController.swift */; };
+		DC08E10D1EA85F2B0096D18C /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC08E10B1EA85F2B0096D18C /* RatingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +124,9 @@
 		8ECDED701DFC8E3F0001A02D /* IssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
 		8EF8F0591DFA192D00AFF0AA /* CompanyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyProfileViewController.swift; sourceTree = "<group>"; };
 		CC5CF2DAF012F706F9236D87 /* Pods-Happyling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Happyling.release.xcconfig"; path = "Pods/Target Support Files/Pods-Happyling/Pods-Happyling.release.xcconfig"; sourceTree = "<group>"; };
+		DC08E1081EA8536C0096D18C /* IssueDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDescriptionViewController.swift; sourceTree = "<group>"; };
+		DC08E10A1EA85F2B0096D18C /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
+		DC08E10B1EA85F2B0096D18C /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +208,7 @@
 				8ECDED701DFC8E3F0001A02D /* IssueViewController.swift */,
 				8EA72C7B1E8B34DD0086FA96 /* ComplaintTypeViewController.swift */,
 				8EA2B9EE1E3E964F001C9FDE /* MyIssuesViewController.swift */,
+				DC08E1081EA8536C0096D18C /* IssueDescriptionViewController.swift */,
 				8EA2B9E01E3E6289001C9FDE /* CategoriesViewController.swift */,
 				8E67BD9E1DF9F6D100F92EE5 /* UserProfileTableViewController.swift */,
 				8EA2B9F01E3EDC3C001C9FDE /* CompanyInfoTableViewController.swift */,
@@ -256,6 +263,8 @@
 			children = (
 				8EA2B9DC1E3E53FD001C9FDE /* CompanyCell.swift */,
 				8EA2B9DD1E3E53FD001C9FDE /* CompanyCell.xib */,
+				DC08E10A1EA85F2B0096D18C /* RatingViewController.swift */,
+				DC08E10B1EA85F2B0096D18C /* RatingViewController.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -366,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7DF8A11E76DA4E00A8C617 /* GoogleService-Info.plist in Resources */,
+				DC08E10D1EA85F2B0096D18C /* RatingViewController.xib in Resources */,
 				8E55F4091DEA024500911C05 /* Assets.xcassets in Resources */,
 				8E55F4071DEA024500911C05 /* SignIn.storyboard in Resources */,
 				8E68A4481E8EE32100FDF54B /* Main.storyboard in Resources */,
@@ -460,11 +470,13 @@
 				8EF8F05A1DFA192D00AFF0AA /* CompanyProfileViewController.swift in Sources */,
 				8E4FB02F1E887EAC00D9E0AE /* UITextField+Extension.swift in Sources */,
 				8EA2B9E91E3E92A4001C9FDE /* Issue.swift in Sources */,
+				DC08E1091EA8536C0096D18C /* IssueDescriptionViewController.swift in Sources */,
 				8EA2B9D31E3E4CEC001C9FDE /* CurrentInteraction.swift in Sources */,
 				8EA2B9EB1E3E9362001C9FDE /* Status.swift in Sources */,
 				8EA2B9D91E3E4EF1001C9FDE /* IssueReportTypeResponse.swift in Sources */,
 				8EA2B9E71E3E924C001C9FDE /* GetIssuesResponse.swift in Sources */,
 				8E55F41C1DEA05F100911C05 /* LoginViewController.swift in Sources */,
+				DC08E10C1EA85F2B0096D18C /* RatingViewController.swift in Sources */,
 				8E813C8D1DEA82FB0056C759 /* GenericViewController.swift in Sources */,
 				8E67BDAB1DFA181D00F92EE5 /* GetCompanyResponse.swift in Sources */,
 				8EA72C7C1E8B34DD0086FA96 /* ComplaintTypeViewController.swift in Sources */,

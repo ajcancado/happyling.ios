@@ -120,7 +120,6 @@ class SearchViewController: GenericViewController {
                 
                 print(error.localizedDescription)
             }
-            
         }
     }
     

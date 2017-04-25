@@ -53,7 +53,6 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
         imagePicker.allowsEditing = false
     }
     
-    
     func setupNavigationBarButtomItems(){
         
         let send = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(makeIssueReport))

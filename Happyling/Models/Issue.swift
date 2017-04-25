@@ -12,6 +12,7 @@ import ObjectMapper
 class Issue: NSObject, Mappable {
     
     var id: Int!
+    var subject: String!
     var descricao: String!
     var creationDate: Date!
     var updateDate: Date!
@@ -22,6 +23,7 @@ class Issue: NSObject, Mappable {
     var currentInteraction: CurrentInteraction!
     var interactions: [Interaction]!
     
+    
     required init?(map: Map) {
         
     }
@@ -30,6 +32,7 @@ class Issue: NSObject, Mappable {
     func mapping(map: Map) {
         
         id                      <- map["id"]
+        subject                 <- map["subject"]
         descricao               <- map["description"]
         creationDate            <- (map["creationDate"], DateTransform())
         updateDate              <- (map["updateDate"], DateTransform())

@@ -97,16 +97,12 @@ class LoginViewController: GenericTableViewController {
                         
                     }
 
-                    
                 case .failure(let error):
                     
                     print(error.localizedDescription)
                 }
-                
             }
-
         }
-        
     }
     
     @IBAction func showHidePassword(_ sender: Any) {

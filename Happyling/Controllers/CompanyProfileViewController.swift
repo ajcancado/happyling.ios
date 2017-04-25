@@ -50,6 +50,12 @@ class CompanyProfileViewController: GenericViewController {
         mLabelName.text = company.name
         mLabelReplyTime.text = company.status
         mLabelWebsite.text = company.webSite
+        
+        guard let blogName = company.city else {
+            print("I don't know the name of this blog, but it's a good one!")
+            return
+        }
+        
         mLabelAddress.text = "\(company.city) / \(company.country)"
     }
     
@@ -99,7 +105,7 @@ class CompanyProfileViewController: GenericViewController {
                 }
                 else if getIssueResponse?.responseAttrs.errorMessage != nil {
                     
-                    print(getIssueResponse?.responseAttrs.errorMessage!)
+                    print(getIssueResponse!.responseAttrs.errorMessage!)
                 }
                 
             case .failure(let error):
@@ -162,14 +168,14 @@ extension CompanyProfileViewController: UITableViewDataSource {
         
         let row = indexPath.row
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ID", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath)
         
         let issue = companyIssues[row]
         
         cell.textLabel?.text = issue.descricao
+        cell.detailTextLabel?.text = issue.status.name
         
         return cell
-        
     }
     
     
@@ -177,7 +183,10 @@ extension CompanyProfileViewController: UITableViewDataSource {
 
 extension CompanyProfileViewController: UITableViewDelegate {
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     
 }

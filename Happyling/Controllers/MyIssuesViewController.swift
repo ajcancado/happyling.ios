@@ -130,18 +130,13 @@ class MyIssuesViewController: GenericViewController {
                     print(issuesStatusResponse!.responseAttrs.errorMessage!)
                 }
                 
-                
-                
             case .failure(let error):
                 
                 self.hideHUD()
                 
                 print(error.localizedDescription)
             }
-            
         }
-
-        
     }
     
     func getIssuesFromUserAnd(status: Status?) {
@@ -209,6 +204,22 @@ class MyIssuesViewController: GenericViewController {
         }
     }
     
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segueToIssueDescription" {
+            
+            let row = (tableView.indexPathForSelectedRow?.row)!
+            
+            let issue = issues[row]
+            
+            let svc = segue.destination as! IssueDescriptionViewController
+            
+            svc.issue = issue
+        }
+        
+    }
+    
 }
 
 extension MyIssuesViewController: UITableViewDataSource {
@@ -248,6 +259,8 @@ extension MyIssuesViewController: UITableViewDataSource {
 extension MyIssuesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "segueToIssueDescription", sender: self)
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
