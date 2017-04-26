@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-class AboutMeViewController: GenericViewController {
+class AccountViewController: GenericViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,7 +20,7 @@ class AboutMeViewController: GenericViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Me"
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "img_logo_navigation"))
         
         userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
         isFromFacebook = SessionManager.getBoolForKey(key: Constants.SessionKeys.isFromFacebook)
@@ -156,46 +156,43 @@ class AboutMeViewController: GenericViewController {
 
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segueToIssues" {
+            
+            let svc = segue.destination as! ProblemsViewController
+            
+            let section = tableView.indexPathForSelectedRow?.section
+            
+            if section == 1 {
+                
+                svc.status = Status(id: 1, name: "In Analysis")
+            }
+            else if section == 2 {
+                svc.status = Status(id: 3, name: "Resolved")
+            }
+            else if section == 3{
+                svc.status = Status(id: 4, name: "Unresolved")
+            }
+        }
+    }
 
 }
 
-extension AboutMeViewController: UITableViewDataSource {
+extension AccountViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 8
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
-            return 2
-        }
-        else if section == 1 {
             return 3
         }
-        else if section == 2 {
-            return 3
-        }
-        else {
-            return 1
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        if section == 0 {
-            return "About me"
-        }
-        else if section == 1 {
-            return "My problems"
-        }
-        else if section == 2{
-            return "About Happyling"
-        }
-        else {
-            return ""
-        }
-        
+        return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -225,41 +222,48 @@ extension AboutMeViewController: UITableViewDataSource {
             
             if row == 0 {
                 
-                cell.imageView?.image = UIImage(named: "ic_user_profile")
-                cell.textLabel?.text = "My Profile"
+                cell.imageView?.image = UIImage(named: "ic_settings")
+                cell.textLabel?.text = "My Account"
+            }
+            else if row == 1{
+                cell.textLabel?.text = "Change Password"
             }
             else{
-                cell.textLabel?.text = "Change Password"
+                
+                cell.textLabel?.text = "Notifications"
             }
         }
         else if section == 1{
             
-            if row == 0 {
-                
-                cell.textLabel?.text = "Opened"
-            }
-            else if row == 1{
-                cell.textLabel?.text = "Solved"
-            }
-            else{
-                cell.textLabel?.text = "Not Solved"
-            }
+            cell.imageView?.image = UIImage(named: "ic_question")
+            cell.textLabel?.text = "Problems Opened"
         }
         else if section == 2 {
             
-            if row == 0 {
-                cell.imageView?.image = UIImage(named: "ic_rating_this_app")
-                cell.textLabel?.text = "Rating App"
-            }
-            else if row == 1{
-                
-                cell.imageView?.image = UIImage(named: "ic_termsconditions")
-                cell.textLabel?.text = "Terms of Use"
-            }
-            else{
-                cell.textLabel?.text = "Happyling for Business"
-            }
+            cell.textLabel?.text = "Problems Solved"
+            cell.imageView?.image = UIImage(named: "ic_happy")
             
+        }
+        else if section == 3 {
+            
+            cell.textLabel?.text = "Problems not Solved"
+            cell.imageView?.image = UIImage(named: "ic_sad")
+            
+        }
+        else if section == 4 {
+            
+            cell.imageView?.image = UIImage(named: "ic_rating_this_app")
+            cell.textLabel?.text = "Rating App"
+        }
+        else if section == 5{
+            
+            cell.imageView?.image = UIImage(named: "ic_termsconditions")
+            cell.textLabel?.text = "Terms of Use"
+        }
+        else if section == 6 {
+            
+            cell.imageView?.image = UIImage(named: "ic_termsconditions")
+            cell.textLabel?.text = "Happyling for Business"
         }
         else {
             
@@ -272,7 +276,7 @@ extension AboutMeViewController: UITableViewDataSource {
     
 }
 
-extension AboutMeViewController: UITableViewDelegate {
+extension AccountViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -297,7 +301,7 @@ extension AboutMeViewController: UITableViewDelegate {
                 self.changeUserPassword()
             }
         }
-        else if section == 1 {
+        else if section == 1 || section == 2 || section == 3  {
             
             if userId != Constants.SessionKeys.guestUserId {
                 
@@ -308,34 +312,26 @@ extension AboutMeViewController: UITableViewDelegate {
                 alertToSignUp()
             }
         }
-        else if section == 2{
+        else if section == 4{
             
-//            if row == 0{
-//                
-//                UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/1225068773")!)
-//                
-//            }
-//            else if row == 1 {
-//                
-//                
-//                
-//            }
-//            else
+//            UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/1225068773")!)
+        }
+        else if section == 5{
             
-            if row == 2 {
+        }
+        else if section == 6{
+            
+            if userId != Constants.SessionKeys.guestUserId {
                 
-                if userId != Constants.SessionKeys.guestUserId {
-                    
-                    performSegue(withIdentifier: "segueToCompanyInfo", sender: self)
-                }
-                else{
-                
-                    alertToSignUp()
-                }
+                performSegue(withIdentifier: "segueToCompanyInfo", sender: self)
+            }
+            else{
+            
+                alertToSignUp()
             }
             
         }
-        else if section == 3 {
+        else if section == 7 {
             
             SessionManager.removeObjectForKey(key: Constants.SessionKeys.userId)
             

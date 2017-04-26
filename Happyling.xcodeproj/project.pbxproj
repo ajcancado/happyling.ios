@@ -30,6 +30,8 @@
 		8E67BDA91DFA16DA00F92EE5 /* CompanyCategorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E67BDA81DFA16DA00F92EE5 /* CompanyCategorie.swift */; };
 		8E67BDAB1DFA181D00F92EE5 /* GetCompanyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E67BDAA1DFA181D00F92EE5 /* GetCompanyResponse.swift */; };
 		8E68A4481E8EE32100FDF54B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E68A44A1E8EE32100FDF54B /* Main.storyboard */; };
+		8E78BB711EB0174B000BD26F /* ProblemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E78BB6F1EB0174B000BD26F /* ProblemsTableViewCell.swift */; };
+		8E78BB721EB0174B000BD26F /* ProblemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E78BB701EB0174B000BD26F /* ProblemsTableViewCell.xib */; };
 		8E7DF8A11E76DA4E00A8C617 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E7DF8A01E76DA4E00A8C617 /* GoogleService-Info.plist */; };
 		8E813C871DEA7C410056C759 /* SignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C861DEA7C410056C759 /* SignInRouter.swift */; };
 		8E813C891DEA7EA90056C759 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E813C881DEA7EA90056C759 /* SignInResponse.swift */; };
@@ -50,15 +52,15 @@
 		8EA2B9E91E3E92A4001C9FDE /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9E81E3E92A4001C9FDE /* Issue.swift */; };
 		8EA2B9EB1E3E9362001C9FDE /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9EA1E3E9362001C9FDE /* Status.swift */; };
 		8EA2B9ED1E3E93CA001C9FDE /* Interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9EC1E3E93CA001C9FDE /* Interaction.swift */; };
-		8EA2B9EF1E3E964F001C9FDE /* MyIssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9EE1E3E964F001C9FDE /* MyIssuesViewController.swift */; };
+		8EA2B9EF1E3E964F001C9FDE /* ProblemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9EE1E3E964F001C9FDE /* ProblemsViewController.swift */; };
 		8EA2B9F11E3EDC3C001C9FDE /* CompanyInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9F01E3EDC3C001C9FDE /* CompanyInfoTableViewController.swift */; };
-		8EA2B9F41E3EDCF3001C9FDE /* AboutMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9F21E3EDCF3001C9FDE /* AboutMeViewController.swift */; };
+		8EA2B9F41E3EDCF3001C9FDE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9F21E3EDCF3001C9FDE /* AccountViewController.swift */; };
 		8EA2B9F51E3EDCF3001C9FDE /* EmptyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9F31E3EDCF3001C9FDE /* EmptyBackgroundView.swift */; };
 		8EA2B9F71E3EE30C001C9FDE /* GetIssueStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9F61E3EE30C001C9FDE /* GetIssueStatusResponse.swift */; };
 		8EA72C7C1E8B34DD0086FA96 /* ComplaintTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA72C7B1E8B34DD0086FA96 /* ComplaintTypeViewController.swift */; };
 		8ECDED711DFC8E3F0001A02D /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDED701DFC8E3F0001A02D /* IssueViewController.swift */; };
 		8EF8F05A1DFA192D00AFF0AA /* CompanyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF8F0591DFA192D00AFF0AA /* CompanyProfileViewController.swift */; };
-		DC08E1091EA8536C0096D18C /* IssueDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08E1081EA8536C0096D18C /* IssueDescriptionViewController.swift */; };
+		DC08E1091EA8536C0096D18C /* ProblemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08E1081EA8536C0096D18C /* ProblemDetailsViewController.swift */; };
 		DC08E10C1EA85F2B0096D18C /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08E10A1EA85F2B0096D18C /* RatingViewController.swift */; };
 		DC08E10D1EA85F2B0096D18C /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC08E10B1EA85F2B0096D18C /* RatingViewController.xib */; };
 /* End PBXBuildFile section */
@@ -95,6 +97,8 @@
 		8E68A44C1E8EE32D00FDF54B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		8E68A44D1E8EE33D00FDF54B /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/SignIn.strings"; sourceTree = "<group>"; };
 		8E68A44E1E8EE33D00FDF54B /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
+		8E78BB6F1EB0174B000BD26F /* ProblemsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemsTableViewCell.swift; sourceTree = "<group>"; };
+		8E78BB701EB0174B000BD26F /* ProblemsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProblemsTableViewCell.xib; sourceTree = "<group>"; };
 		8E7DF8A01E76DA4E00A8C617 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8E813C861DEA7C410056C759 /* SignInRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
 		8E813C881DEA7EA90056C759 /* SignInResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
@@ -115,16 +119,16 @@
 		8EA2B9E81E3E92A4001C9FDE /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		8EA2B9EA1E3E9362001C9FDE /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		8EA2B9EC1E3E93CA001C9FDE /* Interaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interaction.swift; sourceTree = "<group>"; };
-		8EA2B9EE1E3E964F001C9FDE /* MyIssuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyIssuesViewController.swift; sourceTree = "<group>"; };
+		8EA2B9EE1E3E964F001C9FDE /* ProblemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemsViewController.swift; sourceTree = "<group>"; };
 		8EA2B9F01E3EDC3C001C9FDE /* CompanyInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyInfoTableViewController.swift; sourceTree = "<group>"; };
-		8EA2B9F21E3EDCF3001C9FDE /* AboutMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutMeViewController.swift; sourceTree = "<group>"; };
+		8EA2B9F21E3EDCF3001C9FDE /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		8EA2B9F31E3EDCF3001C9FDE /* EmptyBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyBackgroundView.swift; sourceTree = "<group>"; };
 		8EA2B9F61E3EE30C001C9FDE /* GetIssueStatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetIssueStatusResponse.swift; sourceTree = "<group>"; };
 		8EA72C7B1E8B34DD0086FA96 /* ComplaintTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintTypeViewController.swift; sourceTree = "<group>"; };
 		8ECDED701DFC8E3F0001A02D /* IssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
 		8EF8F0591DFA192D00AFF0AA /* CompanyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyProfileViewController.swift; sourceTree = "<group>"; };
 		CC5CF2DAF012F706F9236D87 /* Pods-Happyling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Happyling.release.xcconfig"; path = "Pods/Target Support Files/Pods-Happyling/Pods-Happyling.release.xcconfig"; sourceTree = "<group>"; };
-		DC08E1081EA8536C0096D18C /* IssueDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDescriptionViewController.swift; sourceTree = "<group>"; };
+		DC08E1081EA8536C0096D18C /* ProblemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemDetailsViewController.swift; sourceTree = "<group>"; };
 		DC08E10A1EA85F2B0096D18C /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		DC08E10B1EA85F2B0096D18C /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,12 +211,12 @@
 				8EF8F0591DFA192D00AFF0AA /* CompanyProfileViewController.swift */,
 				8ECDED701DFC8E3F0001A02D /* IssueViewController.swift */,
 				8EA72C7B1E8B34DD0086FA96 /* ComplaintTypeViewController.swift */,
-				8EA2B9EE1E3E964F001C9FDE /* MyIssuesViewController.swift */,
-				DC08E1081EA8536C0096D18C /* IssueDescriptionViewController.swift */,
 				8EA2B9E01E3E6289001C9FDE /* CategoriesViewController.swift */,
 				8E67BD9E1DF9F6D100F92EE5 /* UserProfileTableViewController.swift */,
 				8EA2B9F01E3EDC3C001C9FDE /* CompanyInfoTableViewController.swift */,
-				8EA2B9F21E3EDCF3001C9FDE /* AboutMeViewController.swift */,
+				8EA2B9F21E3EDCF3001C9FDE /* AccountViewController.swift */,
+				8EA2B9EE1E3E964F001C9FDE /* ProblemsViewController.swift */,
+				DC08E1081EA8536C0096D18C /* ProblemDetailsViewController.swift */,
 				8EA2B9F31E3EDCF3001C9FDE /* EmptyBackgroundView.swift */,
 				8E55F4251DEA1A5F00911C05 /* SignUpTableViewController.swift */,
 				8E813C8C1DEA82FB0056C759 /* GenericViewController.swift */,
@@ -265,6 +269,8 @@
 				8EA2B9DD1E3E53FD001C9FDE /* CompanyCell.xib */,
 				DC08E10A1EA85F2B0096D18C /* RatingViewController.swift */,
 				DC08E10B1EA85F2B0096D18C /* RatingViewController.xib */,
+				8E78BB6F1EB0174B000BD26F /* ProblemsTableViewCell.swift */,
+				8E78BB701EB0174B000BD26F /* ProblemsTableViewCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -375,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7DF8A11E76DA4E00A8C617 /* GoogleService-Info.plist in Resources */,
+				8E78BB721EB0174B000BD26F /* ProblemsTableViewCell.xib in Resources */,
 				DC08E10D1EA85F2B0096D18C /* RatingViewController.xib in Resources */,
 				8E55F4091DEA024500911C05 /* Assets.xcassets in Resources */,
 				8E55F4071DEA024500911C05 /* SignIn.storyboard in Resources */,
@@ -441,7 +448,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -464,13 +471,14 @@
 				8E67BDA71DFA160800F92EE5 /* Company.swift in Sources */,
 				8EA2B9D11E3E4C79001C9FDE /* Attachment.swift in Sources */,
 				8E55F4261DEA1A5F00911C05 /* SignUpTableViewController.swift in Sources */,
+				8E78BB711EB0174B000BD26F /* ProblemsTableViewCell.swift in Sources */,
 				8E431AC71DFA24CE005CCD67 /* FacebookUser.swift in Sources */,
 				8E67BDA51DFA0E0A00F92EE5 /* SearchViewController.swift in Sources */,
 				8EA2B9F51E3EDCF3001C9FDE /* EmptyBackgroundView.swift in Sources */,
 				8EF8F05A1DFA192D00AFF0AA /* CompanyProfileViewController.swift in Sources */,
 				8E4FB02F1E887EAC00D9E0AE /* UITextField+Extension.swift in Sources */,
 				8EA2B9E91E3E92A4001C9FDE /* Issue.swift in Sources */,
-				DC08E1091EA8536C0096D18C /* IssueDescriptionViewController.swift in Sources */,
+				DC08E1091EA8536C0096D18C /* ProblemDetailsViewController.swift in Sources */,
 				8EA2B9D31E3E4CEC001C9FDE /* CurrentInteraction.swift in Sources */,
 				8EA2B9EB1E3E9362001C9FDE /* Status.swift in Sources */,
 				8EA2B9D91E3E4EF1001C9FDE /* IssueReportTypeResponse.swift in Sources */,
@@ -480,7 +488,7 @@
 				8E813C8D1DEA82FB0056C759 /* GenericViewController.swift in Sources */,
 				8E67BDAB1DFA181D00F92EE5 /* GetCompanyResponse.swift in Sources */,
 				8EA72C7C1E8B34DD0086FA96 /* ComplaintTypeViewController.swift in Sources */,
-				8EA2B9F41E3EDCF3001C9FDE /* AboutMeViewController.swift in Sources */,
+				8EA2B9F41E3EDCF3001C9FDE /* AccountViewController.swift in Sources */,
 				8E67BDA31DF9FF1A00F92EE5 /* GetUserResponse.swift in Sources */,
 				8E67BD9F1DF9F6D100F92EE5 /* UserProfileTableViewController.swift in Sources */,
 				8EA2B9E51E3E890E001C9FDE /* UIImage+Extension.swift in Sources */,
@@ -489,7 +497,7 @@
 				8EA2B9E11E3E6289001C9FDE /* CategoriesViewController.swift in Sources */,
 				8E813C891DEA7EA90056C759 /* SignInResponse.swift in Sources */,
 				8E5841AF1DEA49930026A293 /* Environment.swift in Sources */,
-				8EA2B9EF1E3E964F001C9FDE /* MyIssuesViewController.swift in Sources */,
+				8EA2B9EF1E3E964F001C9FDE /* ProblemsViewController.swift in Sources */,
 				8E55F4201DEA0A1000911C05 /* CompanyRouter.swift in Sources */,
 				8E813C871DEA7C410056C759 /* SignInRouter.swift in Sources */,
 				8E55F4021DEA024500911C05 /* AppDelegate.swift in Sources */,
@@ -654,7 +662,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_ENTITLEMENTS = Happyling/Happyling.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = CFU6825MEZ;
 				INFOPLIST_FILE = Happyling/Info.plist;

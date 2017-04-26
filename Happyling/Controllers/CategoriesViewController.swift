@@ -22,7 +22,7 @@ class CategoriesViewController: GenericViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Categories"
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "img_logo_navigation"))
         
         setupTableView()
         

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-class IssueDescriptionViewController: GenericViewController {
+class ProblemDetailsViewController: GenericViewController {
 
     var issue: Issue!
     
@@ -18,6 +18,8 @@ class IssueDescriptionViewController: GenericViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = Constants.Colors.gray
 
         setupTableView()
         
@@ -29,8 +31,15 @@ class IssueDescriptionViewController: GenericViewController {
 
     func setupTableView(){
         
+        tableView.backgroundColor = Constants.Colors.gray
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.register(UINib(nibName: "ProblemsTableViewCell", bundle: nil), forCellReuseIdentifier: "ProblemCellID")
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
         
         tableView.tableFooterView = UIView(frame: .zero)
     }
@@ -96,37 +105,58 @@ class IssueDescriptionViewController: GenericViewController {
     
 }
 
-extension IssueDescriptionViewController: UITableViewDataSource {
+// MARK: - UITableViewDataSource
+
+extension ProblemDetailsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return issue.interactions.count
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return issue.interactions.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
+        let section = indexPath.section
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath)
+        let issueInteraction = issue.interactions[section]
         
-        let issueInteraction = issue.interactions[row]
-        
-        cell.textLabel?.text = issueInteraction.owner
-        cell.detailTextLabel?.text = issueInteraction.descricao
-        
-        if row % 2 == 0 {
-            cell.backgroundColor = UIColor.groupTableViewBackground
+        if row == 0 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProblemCellID", for: indexPath) as! ProblemsTableViewCell
+            
+            cell.companyLogo.backgroundColor = Constants.Colors.oranage
+            cell.companyLogo.layer.cornerRadius = cell.companyLogo.frame.size.width / 2
+            cell.companyLogo.clipsToBounds = true
+            
+            cell.companyName.text = issue.company.name
+            //        cell.problemDate.text =
+            
+            cell.problemSubject.text = issue.subject
+            cell.problemStatus.text = issue.status.name
+            
+            
+            return cell
+            
         }
-        else {
-            cell.backgroundColor = UIColor.white
+        else{
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath)
+            
+            cell.textLabel?.text = issueInteraction.descricao
+            
+            return cell
+        
         }
-        
-        return cell
-        
     }
 }
 
-extension IssueDescriptionViewController: UITableViewDelegate {
+// MARK: - UITableViewDelegate
+
+extension ProblemDetailsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
