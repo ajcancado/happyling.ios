@@ -51,11 +51,6 @@ class CompanyProfileViewController: GenericViewController {
         mLabelReplyTime.text = company.status
         mLabelWebsite.text = company.webSite
         
-        guard let blogName = company.city else {
-            print("I don't know the name of this blog, but it's a good one!")
-            return
-        }
-        
         mLabelAddress.text = "\(company.city) / \(company.country)"
     }
     
@@ -114,37 +109,100 @@ class CompanyProfileViewController: GenericViewController {
             }
             
         }
+    }
+    
+    
+}
 
+
+extension CompanyProfileViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        return 4
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let row = indexPath.row
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellID", for: indexPath)
+        
+        let imageView = cell.viewWithTag(1) as! UIImageView
+        
+        if row == 0 {
+            
+            imageView.image = UIImage(named: "ic_question")
+        }
+        else if row == 1 {
+            
+            imageView.image = UIImage(named: "ic_sad")
+        }
+        else if row == 2 {
+            
+            imageView.image = UIImage(named: "ic_sad")
+        }
+        else if row == 3 {
+            
+            imageView.image = UIImage(named: "ic_sad")
+        }
+        
+        return cell
         
     }
     
-    @IBAction func changeSegmentedControl(_ segment: UISegmentedControl) {
+}
+
+extension CompanyProfileViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
         
-        if segment.selectedSegmentIndex == 0 {
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let cellWidth = flowLayout.itemSize.width + flowLayout.minimumInteritemSpacing
+        
+        //15.00 was just extra spacing I wanted to add to my cell.
+        let totalCellWidth = cellWidth*4 + 15.00 * (4-1)
+        let contentWidth = collectionView.frame.size.width - collectionView.contentInset.left - collectionView.contentInset.right
+        
+        if (totalCellWidth < contentWidth) {
+            //If the number of cells that exist take up less room than the
+            // collection view width... then there is an actual point to centering the.
+            
+            //Calculate the right amount of padding to center the cells.
+            let padding = (contentWidth - totalCellWidth) / 2.0
+            return UIEdgeInsetsMake(0, padding, 0, padding)
+        } else {
+            //Pretty much if the number of cells that exist take up
+            // more room than the actual collectionView width there is no
+            // point in trying to center them. So we leave the default behavior.
+            return UIEdgeInsetsMake(0, 40, 0, 40)
+        }
+
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let row = indexPath.row
+        
+        if row == 0 {
             issueStatus = 3
         }
-        else if segment.selectedSegmentIndex == 1 {
+        else if row == 1 {
             issueStatus = 4
         }
-        else if segment.selectedSegmentIndex == 2 {
+        else if row == 2 {
             issueStatus = 5
         }
-        else if segment.selectedSegmentIndex == 3 {
+        else if row == 3 {
             issueStatus = 6
         }
         
         getIssuesReport()
-        
     }
-
-    // MARK: - Navigation
- 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   
-    }
-
+    
 }
+
 
 extension CompanyProfileViewController: UITableViewDataSource {
     

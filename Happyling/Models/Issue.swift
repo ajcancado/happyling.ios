@@ -14,8 +14,8 @@ class Issue: NSObject, Mappable {
     var id: Int!
     var subject: String!
     var descricao: String!
-    var creationDate: Date!
-    var updateDate: Date!
+    var creationDate: Double!
+    var updateDate: Double!
     var status: Status!
     var user: User!
     var company: Company!
@@ -34,8 +34,8 @@ class Issue: NSObject, Mappable {
         id                      <- map["id"]
         subject                 <- map["subject"]
         descricao               <- map["description"]
-        creationDate            <- (map["creationDate"], DateTransform())
-        updateDate              <- (map["updateDate"], DateTransform())
+        creationDate            <- map["creationDate"]
+        updateDate              <- map["updateDate"]
         status                  <- map["status"]
         user                    <- map["user"]
         company                 <- map["company"]

@@ -123,30 +123,51 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJv-me-jSg">
                                 <rect key="frame" x="0.0" y="160" width="375" height="56"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="32e-Lu-9ZL">
-                                        <rect key="frame" x="8" y="8" width="359" height="29"/>
-                                        <segments>
-                                            <segment title="Solved"/>
-                                            <segment title="Unsolved"/>
-                                            <segment title="Answered"/>
-                                            <segment title="Unanswered"/>
-                                        </segments>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rGw-Rm-BlQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8ha-gF-HaM">
+                                            <size key="itemSize" width="48" height="48"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellID" id="z4H-b0-llO">
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YsA-2a-DJN">
+                                                            <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
                                         <connections>
-                                            <action selector="changeSegmentedControl:" destination="rpa-cH-IWK" eventType="valueChanged" id="cRr-PE-t6w"/>
+                                            <outlet property="dataSource" destination="rpa-cH-IWK" id="7Pf-Mp-A1c"/>
+                                            <outlet property="delegate" destination="rpa-cH-IWK" id="SJN-Sk-CFX"/>
                                         </connections>
-                                    </segmentedControl>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="32e-Lu-9ZL" secondAttribute="bottom" constant="20" id="6Vv-py-HoE"/>
-                                    <constraint firstItem="32e-Lu-9ZL" firstAttribute="top" secondItem="fJv-me-jSg" secondAttribute="topMargin" id="N7e-KY-WNt"/>
-                                    <constraint firstItem="32e-Lu-9ZL" firstAttribute="trailing" secondItem="fJv-me-jSg" secondAttribute="trailingMargin" id="PHt-cq-5Hu"/>
-                                    <constraint firstItem="32e-Lu-9ZL" firstAttribute="leading" secondItem="fJv-me-jSg" secondAttribute="leadingMargin" id="bQ8-ls-C2Y"/>
+                                    <constraint firstItem="rGw-Rm-BlQ" firstAttribute="top" secondItem="fJv-me-jSg" secondAttribute="top" id="Raj-Wd-htw"/>
+                                    <constraint firstAttribute="trailing" secondItem="rGw-Rm-BlQ" secondAttribute="trailing" id="TMz-qW-89P"/>
+                                    <constraint firstAttribute="bottom" secondItem="rGw-Rm-BlQ" secondAttribute="bottom" id="atW-mq-Wty"/>
+                                    <constraint firstItem="rGw-Rm-BlQ" firstAttribute="leading" secondItem="fJv-me-jSg" secondAttribute="leading" id="rJd-ua-ene"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n74-qK-fmW">
                                 <rect key="frame" x="0.0" y="216" width="375" height="402"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="402" id="Dp1-AG-xYA"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellID" textLabel="43p-mg-Tam" detailTextLabel="dK8-Ot-4fi" style="IBUITableViewCellStyleSubtitle" id="3Ur-XH-inh">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -195,13 +216,12 @@
                         <outlet property="mLabelName" destination="alS-DV-MVc" id="s42-4E-CPf"/>
                         <outlet property="mLabelReplyTime" destination="u0I-h3-tOJ" id="Mpf-bD-XRd"/>
                         <outlet property="mLabelWebsite" destination="bLC-DI-h2Z" id="x9l-LT-D2X"/>
-                        <outlet property="segmentedControl" destination="32e-Lu-9ZL" id="dwu-h6-Xia"/>
                         <outlet property="tableView" destination="n74-qK-fmW" id="oKW-hZ-ucR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XIY-KM-7bC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2894" y="170"/>
+            <point key="canvasLocation" x="2893.5999999999999" y="169.56521739130437"/>
         </scene>
         <!--Search-->
         <scene sceneID="4wJ-L2-RBM">
@@ -1245,7 +1265,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellID" textLabel="mxl-zy-5Wk" style="IBUITableViewCellStyleDefault" id="cbV-93-Hd4">
-                                        <rect key="frame" x="0.0" y="56" width="343" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cbV-93-Hd4" id="fSw-W0-h2E">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>

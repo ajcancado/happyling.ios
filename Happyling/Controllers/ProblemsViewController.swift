@@ -164,7 +164,22 @@ extension ProblemsViewController: UITableViewDataSource {
         cell.companyLogo.clipsToBounds = true
         
         cell.companyName.text = issue.company.name
-//        cell.problemDate.text =
+        
+        let date = NSDate(timeIntervalSince1970: issue.creationDate)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = NSTimeZone.local //Edit
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateStyle = DateFormatter.Style.full
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        
+        let strDateSelect = dateFormatter.string(from: date as Date)
+        print(strDateSelect) //Local time
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.timeZone = NSTimeZone.local
+        dateFormatter2.dateFormat = "yyyy-MM-dd"
+        
+        cell.problemDate.text = strDateSelect
         
         cell.problemSubject.text = issue.subject
         cell.problemStatus.text = issue.status.name

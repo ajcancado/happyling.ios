@@ -105,6 +105,45 @@ class LoginViewController: GenericTableViewController {
         }
     }
     
+    func forgottenPassword(){
+        
+        let alertController = UIAlertController(title: "Forgotten Password ?", message: "", preferredStyle: .alert)
+        
+        let changeAction = UIAlertAction(title: "Recover", style: .default, handler: {
+            alert -> Void in
+            
+            let firstTextField = alertController.textFields?.first
+        
+            var params: [String: Any] = [:]
+            
+            params["email"] = firstTextField?.text
+            
+            self.recoverPassword(params: params)
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter your email"
+            textField.keyboardType = .emailAddress
+        }
+        
+        alertController.addAction(changeAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func recoverPassword(params: [String: Any]){
+        
+        
+        
+    }
+    
     @IBAction func showHidePassword(_ sender: Any) {
         
         let button = sender as! UIButton
@@ -130,15 +169,19 @@ class LoginViewController: GenericTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let row = indexPath.row
         let section = indexPath.section
         
-        if section == 0 {
-            segueForSignUp()
-        }
-        else if section == 2 {
+        
+        if section == 1 {
             makeLogin()
         }
+        else if section == 2 {
+            forgottenPassword()
+        }
+        else if section == 3 {
+            segueForSignUp()
+        }
+        
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

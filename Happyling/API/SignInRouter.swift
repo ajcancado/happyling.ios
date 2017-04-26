@@ -13,12 +13,15 @@ enum SignInRouter: URLRequestConvertible{
     
     case MakeLoginEmail([String: Any])
     case MakeLoginFacebook([String: Any])
+    case ForgottenPassword()
     
     var method: Alamofire.HTTPMethod {
         switch self {
         case .MakeLoginEmail:
             return .post
         case .MakeLoginFacebook:
+            return .post
+        case .ForgottenPassword:
             return .post
         }
     }
@@ -29,6 +32,8 @@ enum SignInRouter: URLRequestConvertible{
             return "login/authenticate"
         case .MakeLoginFacebook:
             return "login/face-authenticate"
+        case .ForgottenPassword:
+            return ""
         }
     }
     
@@ -42,6 +47,9 @@ enum SignInRouter: URLRequestConvertible{
                 return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
             case .MakeLoginFacebook(let parameters):
                 return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
+            default:
+                return urlRequest
+            
         }
     }
 }
