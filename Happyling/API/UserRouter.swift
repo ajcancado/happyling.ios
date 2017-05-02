@@ -62,8 +62,9 @@ enum UserRouter: URLRequestConvertible{
         let url = URL(string: Constants.API.baseURL)!
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
-    
         
+//        urlRequest.setValue(LanguageHelper.getLanguage(), forHTTPHeaderField: "Language")
+    
         switch self {
         case .CreateUser(let parameters):
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)

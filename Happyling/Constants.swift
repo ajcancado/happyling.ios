@@ -33,27 +33,6 @@ struct Constants {
         static let guestUserId = -1
     }
     
-    struct Messages {
-        
-        static let offline = "Você não está conectado a internet. Verifique seus dados ou conecte-se a uma rede Wifi"
-        
-        static let success = "Operação realizada com sucesso"
-        
-        static let registerSuccess = "Cadastro realizado com sucesso"
-        
-        static let roleExlcusive = "Somente um corretor pode atender o mesmo cliente como interessado e proprietário"
-        
-        static let roleOwner = "Somente um corretor pode atender o mesmo cliente como interessado e vários podem atender como proprietário"
-        
-        static let roleInteresed = "Somente um corretor pode atender o mesmo cliente como proprietário e vários podem atender como interessado"
-        
-        static let minMaxValueMessageRent = "Valor de aluguel mínimo não pode ser maior que máximo"
-        
-        static let minMaxValueMessageSell = "Valor de venda mínimo não pode ser maior que máximo"
-        
-        static let profileAttention = "Algumas informações estão faltando, o radar poderá ficar inativo. Deseja continuar?"
-    }
-    
     struct Colors {
         
         static let purple = UIColor(red: 102.0/255.0, green: 45.0/255.0, blue: 145.0/255.0, alpha: 1.0)

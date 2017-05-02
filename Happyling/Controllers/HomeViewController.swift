@@ -27,8 +27,6 @@ class HomeViewController: GenericViewController {
         setupIntroView()
         
         Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(moverParaProximoSlide), userInfo: nil, repeats: true)
-        
-        var teste = getLanguage()
     }
     
     func setupIntroView(){
@@ -97,6 +95,7 @@ class HomeViewController: GenericViewController {
     }
 
     @IBAction func segueWithoutAuthentication(_ sender: Any) {
+        
         
         SessionManager.setInteger(int: Constants.SessionKeys.guestUserId, forKey: Constants.SessionKeys.userId)
         

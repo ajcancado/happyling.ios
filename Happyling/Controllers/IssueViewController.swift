@@ -20,7 +20,7 @@ protocol SelectComplaintTypeProtocol{
     func selectedComplaintType(company: IssueType)
 }
 
-class IssueViewController: GenericTableViewController, SelectCompanyProtocol, SelectComplaintTypeProtocol,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class IssueViewController: GenericTableViewController, SelectCompanyProtocol, SelectComplaintTypeProtocol,UINavigationControllerDelegate {
     
     @IBOutlet weak var companyName: UILabel!
 
@@ -30,7 +30,7 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
     
     @IBOutlet weak var complaintDescription: UITextField!
     
-    @IBOutlet weak var imageAttachment: UIImageView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     let imagePicker = UIImagePickerController()
 
@@ -39,6 +39,8 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
     
     let topMessage = "Ops.."
     let bottomMessage = "Você precisa se cadastrar para poder criar uma reclamação"
+    
+    var images: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -179,25 +181,7 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
-            imageAttachment.contentMode = .scaleAspectFit
-            imageAttachment.image = pickedImage
-            
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
 
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
     func validate() -> Bool{
         
         var flag = true
@@ -271,19 +255,14 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
                     
                     if signInResponse?.data != nil {
                         
+                        self.segueToThanksViewController()
+                        
                         self.clearInputs()
-                        
-                        let alertController = UIAlertController(title: "Happyling", message: "Congratulations!", preferredStyle: .alert)
-                        
-                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        alertController.addAction(defaultAction)
-                        
-                        self.present(alertController, animated: true, completion: nil)
                         
                     }
                     else if signInResponse?.responseAttrs.errorMessage != nil {
                         
-                        print(signInResponse?.responseAttrs.errorMessage!)
+                        print(signInResponse!.responseAttrs.errorMessage!)
                         
                     }
                     
@@ -291,10 +270,16 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
                     
                     print(error.localizedDescription)
                 }
-                
             }
-            
         }
+    }
+    
+    func segueToThanksViewController(){
+        
+        let svc = ThanksViewController()
+        svc.modalTransitionStyle = .coverVertical
+        
+        self.present(svc, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -304,37 +289,61 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
             let svc = segue.destination as! ComplaintTypeViewController
             
             svc.delegate = self
-            
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    
-//        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
-//        
-//        if userId != Constants.SessionKeys.guestUserId {
-//            
-//            tableView.separatorStyle = .singleLine
-//            
-//            tableView.backgroundView?.isHidden = true
-//            
-//            if section == 0 {
-//                return 1
-//            }
-//            else{
-//                return 6
-//            }
-//        }
-//        else{
-//            
-//            tableView.separatorStyle = .none
-//            
-//            tableView.backgroundView?.isHidden = false
-//            
-//            return 0
-//        }
-//    }
+
 }
+
+// MARK: - UIImagePickerControllerDelegate 
+
+extension IssueViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            self.images.append(pickedImage)
+        }
+        
+        collectionView.reloadData()
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension IssueViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return images.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let row = indexPath.row
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellID", for: indexPath)
+        
+        let imageView = cell.viewWithTag(1) as! UIImageView
+        
+        imageView.image = images[row]
+    
+        return cell
+        
+    }
+}
+
+// MARK: - UITextFieldDelegate
 
 extension IssueViewController: UITextFieldDelegate {
     

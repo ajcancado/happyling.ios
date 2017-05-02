@@ -136,7 +136,7 @@ class AccountViewController: GenericViewController {
     
     func alertToSignUp(){
         
-        let alertController = UIAlertController(title: "Happyling", message: "Querido usuário, faça seu cadastro para poder acessar os dados.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Happyling", message: NSLocalizedString("MUST_BE_REGISTERED", comment: ""), preferredStyle: .alert)
         
         let makeSignUpAction = UIAlertAction(title: "Ok, fazer agora", style: .default, handler: {
             alert -> Void in

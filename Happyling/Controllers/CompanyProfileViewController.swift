@@ -127,6 +127,8 @@ class CompanyProfileViewController: GenericViewController {
     }
 }
 
+// MARK: - UICollectionViewDataSource
+
 extension CompanyProfileViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -164,6 +166,8 @@ extension CompanyProfileViewController: UICollectionViewDataSource {
         
     }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension CompanyProfileViewController: UICollectionViewDelegateFlowLayout {
     
@@ -213,6 +217,8 @@ extension CompanyProfileViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension CompanyProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -244,9 +250,9 @@ extension CompanyProfileViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
+
+// MARK: - UITableViewDelegate
 
 extension CompanyProfileViewController: UITableViewDelegate {
     

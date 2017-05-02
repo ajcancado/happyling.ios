@@ -5,3 +5,16 @@
   Created by Arthur Junqueira Cançado on 28/04/17.
   Copyright © 2017 Happyling. All rights reserved.
 */
+
+"NO_INTERNET_CONNECTION" = "Es besteht keine Internetverbindung. Bitte überprüfe die Einstellungen deiner mobilen Daten oder verbinde dich mit einem WLAN-Netzwerk.";
+
+"SUCCESSFUL_REGISTRATION" = "Registrierung erfolgreich";
+
+"NO_COMPANIES_FOUND_LIKE_ADD" = "Kein Unternehmen gefunden. Möchtest du das Unternehmen hinzufügen?";
+
+"NO_COMPLAINTS_FOUND" = "Kein Anliegen oder Beschwerde gefunden.";
+
+"COMPLAINT_DONE" = "Gesendet. Wir werden uns in Kürze bei dir wieder melden. :)";
+
+"MUST_BE_REGISTERED" = "Bitte melde dich vorher an.";
+

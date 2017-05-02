@@ -6,4 +6,14 @@
   Copyright © 2017 Happyling. All rights reserved.
 */
 
-"HELLO_WORLD" = "Hello World !";
+"NO_INTERNET_CONNECTION" = "You\'re not connected on internet, verify your data mobile or conect to Wifi";
+
+"SUCCESSFUL_REGISTRATION" = "Successful registration";
+
+"NO_COMPANIES_FOUND_LIKE_ADD" = "No companies with this name were found. Would you like to add a business?";
+
+"NO_COMPLAINTS_FOUND" = "No complaints were found.";
+
+"COMPLAINT_DONE" = "Done, they\'ll will reply you soon as possible :)";
+
+"MUST_BE_REGISTERED" = "You must be registered to perform this operation";
