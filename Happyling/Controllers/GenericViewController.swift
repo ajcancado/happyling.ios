@@ -33,6 +33,13 @@ class GenericViewController: UIViewController {
         self.present(viewController, animated: true, completion: nil)
     }
     
+    func getLanguage() -> String {
+        
+       let pre = NSLocale.preferredLanguages.first
+        
+        return pre!
+    }
+    
     func encodeBase64(image: UIImage) -> String{
         
         return (UIImagePNGRepresentation(image)?.base64EncodedString(options: .endLineWithLineFeed))!

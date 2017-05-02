@@ -27,6 +27,8 @@ class HomeViewController: GenericViewController {
         setupIntroView()
         
         Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(moverParaProximoSlide), userInfo: nil, repeats: true)
+        
+        var teste = getLanguage()
     }
     
     func setupIntroView(){

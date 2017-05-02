@@ -15,6 +15,10 @@ class SearchViewController: GenericViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var start: Int = 0
+    var pageSize: Int = 10
+    var recordsTotal: Int!
+    
     var companies: [Company] = []
     var filteredCompanies: [Company] = []
     
@@ -73,12 +77,38 @@ class SearchViewController: GenericViewController {
         tableView.addSubview(refreshControl)
     }
     
+    func showInfiniteScrollViewInFooter() {
+        
+        let bounds = UIScreen.main.bounds
+        let width = bounds.size.width
+//        let height = bounds.size.height
+        
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 44))
+        footerView.backgroundColor = UIColor.clear
+        
+        let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+
+        actInd.center = CGPoint(x: width/2, y: 22)
+        actInd.color = UIColor(red: 0.0/255.0, green: 162.0/255.0, blue: 194.0/255.0, alpha: 1.0)
+        
+        actInd.startAnimating()
+        
+        footerView.addSubview(actInd)
+        
+        self.tableView.tableFooterView = footerView;
+        
+    }
+    
+    func removedInfiniteScrollViewInFooter(){
+        self.tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
     func getCompanies(){
         
         if params.keys.count == 0 {
             
-            params["start"] = 0
-            params["pageSize"] = 10
+            params["start"] = start
+            params["pageSize"] = pageSize
 //              params["sortBy"] = ""
 //              params["direction"] = ""
 //              params["name"] = ""
@@ -87,6 +117,7 @@ class SearchViewController: GenericViewController {
         Alamofire.request(CompanyRouter.GetCompany(params)).responseJSON { response in
             
             self.hideHUD()
+            self.removedInfiniteScrollViewInFooter()
             
             if self.refreshControl.isRefreshing {
                 
@@ -103,7 +134,8 @@ class SearchViewController: GenericViewController {
                 
                 if getCompanyResponse?.data != nil {
                     
-                   self.companies = (getCompanyResponse?.data)!
+                    self.companies = getCompanyResponse!.data
+                    self.recordsTotal = getCompanyResponse?.responseAttrs.recordsTotal
                     
                     self.tableView.dataSource = self
                     self.tableView.delegate = self
@@ -111,9 +143,9 @@ class SearchViewController: GenericViewController {
                     self.tableView.reloadData()
                     
                 }
-                else if getCompanyResponse?.responseAttrs.errorMessage != nil {
+                else if getCompanyResponse!.responseAttrs.errorMessage != nil {
                     
-                    print(getCompanyResponse?.responseAttrs.errorMessage!)
+                    print(getCompanyResponse!.responseAttrs.errorMessage)
                 }
                 
             case .failure(let error):
@@ -206,6 +238,20 @@ extension SearchViewController: UITableViewDataSource {
 }
 
 extension SearchViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let row = indexPath.row
+        
+        if row == self.companies.count - 1 && self.recordsTotal != self.companies.count {
+            
+            self.start += pageSize
+            
+            showInfiniteScrollViewInFooter()
+            
+            getCompanies()
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60

@@ -1,132 +1,126 @@
 
-/* Class = "UISegmentedControl"; 32e-Lu-9ZL.segmentTitles[0] = "Solved"; ObjectID = "32e-Lu-9ZL"; */
-"32e-Lu-9ZL.segmentTitles[0]" = "Resolvido";
-
-/* Class = "UISegmentedControl"; 32e-Lu-9ZL.segmentTitles[1] = "Unsolved"; ObjectID = "32e-Lu-9ZL"; */
-"32e-Lu-9ZL.segmentTitles[1]" = "Não resolvidos";
-
-/* Class = "UISegmentedControl"; 32e-Lu-9ZL.segmentTitles[2] = "Answered"; ObjectID = "32e-Lu-9ZL"; */
-"32e-Lu-9ZL.segmentTitles[2]" = "Answered";
-
-/* Class = "UISegmentedControl"; 32e-Lu-9ZL.segmentTitles[3] = "Unanswered"; ObjectID = "32e-Lu-9ZL"; */
-"32e-Lu-9ZL.segmentTitles[3]" = "Unanswered";
-
 /* Class = "UILabel"; text = "Gender"; ObjectID = "3Od-X1-Cvw"; */
-"3Od-X1-Cvw.text" = "Sexo";
+"3Od-X1-Cvw.text" = "Gender";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "43p-mg-Tam"; */
+"43p-mg-Tam.text" = "Title";
 
 /* Class = "UILabel"; text = "Identification Number"; ObjectID = "4hI-uo-pMK"; */
-"4hI-uo-pMK.text" = "CPF:";
+"4hI-uo-pMK.text" = "Identification Number";
 
 /* Class = "UILabel"; text = "Surname"; ObjectID = "8fe-1J-g9B"; */
-"8fe-1J-g9B.text" = "Sobrenome";
+"8fe-1J-g9B.text" = "Surname";
 
 /* Class = "UILabel"; text = "Save"; ObjectID = "997-tp-Jqu"; */
-"997-tp-Jqu.text" = "Salvar";
+"997-tp-Jqu.text" = "Save";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "9Ei-Ch-AZ9"; */
-"9Ei-Ch-AZ9.text" = "Nome";
+"9Ei-Ch-AZ9.text" = "Name";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "9bt-9T-M49"; */
 "9bt-9T-M49.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "CiX-1X-eJM"; */
-"CiX-1X-eJM.normalTitle" = "Salvar";
+"CiX-1X-eJM.normalTitle" = "Save";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "CtC-b1-R5y"; */
-"CtC-b1-R5y.text" = "Titulo";
+"CtC-b1-R5y.text" = "Title";
 
 /* Class = "UITabBarItem"; title = "Search"; ObjectID = "ECd-uL-pnn"; */
-"ECd-uL-pnn.title" = "Procurar";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "IHT-VR-Oxc"; */
-"IHT-VR-Oxc.text" = "Titulo";
+"ECd-uL-pnn.title" = "Search";
 
 /* Class = "UILabel"; text = "Identification"; ObjectID = "Jg5-BM-vEH"; */
-"Jg5-BM-vEH.text" = "Identidade";
+"Jg5-BM-vEH.text" = "Identification";
 
 /* Class = "UILabel"; text = "Email Notifications"; ObjectID = "K8o-Xw-G60"; */
-"K8o-Xw-G60.text" = "Email para notificações";
+"K8o-Xw-G60.text" = "Email Notifications";
 
 /* Class = "UILabel"; text = "Country"; ObjectID = "KTL-4s-Tn5"; */
-"KTL-4s-Tn5.text" = "País";
+"KTL-4s-Tn5.text" = "Country";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "LWO-95-s1f"; */
-"LWO-95-s1f.text" = "Nome";
+"LWO-95-s1f.text" = "Name";
 
 /* Class = "UILabel"; text = "Attachment:"; ObjectID = "MTj-SM-xli"; */
-"MTj-SM-xli.text" = "Anexo:";
+"MTj-SM-xli.text" = "Attachment:";
 
-/* Class = "UITabBarItem"; title = "Me"; ObjectID = "MVn-sN-1xb"; */
-"MVn-sN-1xb.title" = "Conta";
+/* Class = "UITabBarItem"; title = "Account"; ObjectID = "MVn-sN-1xb"; */
+"MVn-sN-1xb.title" = "Account";
 
 /* Class = "UILabel"; text = "Web Site"; ObjectID = "Mn8-qe-GOL"; */
-"Mn8-qe-GOL.text" = "Site";
+"Mn8-qe-GOL.text" = "Web Site";
 
 /* Class = "UILabel"; text = "Phone Number"; ObjectID = "Pmj-GO-nb7"; */
-"Pmj-GO-nb7.text" = "Telefone";
+"Pmj-GO-nb7.text" = "Phone Number";
 
 /* Class = "UILabel"; text = "Company:"; ObjectID = "Pp4-tN-xm7"; */
-"Pp4-tN-xm7.text" = "Empresa:";
+"Pp4-tN-xm7.text" = "Company:";
 
 /* Class = "UILabel"; text = "Email"; ObjectID = "QRT-JZ-5cR"; */
 "QRT-JZ-5cR.text" = "Email";
 
 /* Class = "UILabel"; text = "Country"; ObjectID = "WJF-lL-WeT"; */
-"WJF-lL-WeT.text" = "País";
+"WJF-lL-WeT.text" = "Country";
 
 /* Class = "UILabel"; text = "Phone Number"; ObjectID = "WaI-T8-BgX"; */
-"WaI-T8-BgX.text" = "Celular";
+"WaI-T8-BgX.text" = "Phone Number";
 
 /* Class = "UILabel"; text = "State"; ObjectID = "adM-7Y-yZj"; */
-"adM-7Y-yZj.text" = "Estado";
+"adM-7Y-yZj.text" = "State";
 
 /* Class = "UILabel"; text = "Mobile Number"; ObjectID = "ajx-YT-C7u"; */
-"ajx-YT-C7u.text" = "Celular";
+"ajx-YT-C7u.text" = "Mobile Number";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "alS-DV-MVc"; */
 "alS-DV-MVc.text" = "Label";
 
 /* Class = "UILabel"; text = "State"; ObjectID = "bI5-8U-Mwu"; */
-"bI5-8U-Mwu.text" = "Situação";
+"bI5-8U-Mwu.text" = "State";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bLC-DI-h2Z"; */
 "bLC-DI-h2Z.text" = "Label";
 
 /* Class = "UILabel"; text = "Type:"; ObjectID = "cci-CQ-yeg"; */
-"cci-CQ-yeg.text" = "Tipo:";
+"cci-CQ-yeg.text" = "Type:";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "d3v-c9-1Lv"; */
-"d3v-c9-1Lv.text" = "Titulo";
+"d3v-c9-1Lv.text" = "Title";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "dK8-Ot-4fi"; */
+"dK8-Ot-4fi.text" = "Subtitle";
 
 /* Class = "UILabel"; text = "Date of birth"; ObjectID = "e70-tE-dZx"; */
-"e70-tE-dZx.text" = "Data de nascimento";
+"e70-tE-dZx.text" = "Date of birth";
 
 /* Class = "UILabel"; text = "Postal Code"; ObjectID = "f3h-NR-D0Q"; */
-"f3h-NR-D0Q.text" = "CEP";
+"f3h-NR-D0Q.text" = "Postal Code";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "fAM-LT-yAm"; */
-"fAM-LT-yAm.text" = "Titulo";
+"fAM-LT-yAm.text" = "Title";
 
 /* Class = "UILabel"; text = "Postal code"; ObjectID = "fZg-N4-JEo"; */
-"fZg-N4-JEo.text" = "CEP";
+"fZg-N4-JEo.text" = "Postal code";
 
 /* Class = "UITextField"; placeholder = "Description"; ObjectID = "hOd-LM-zPK"; */
-"hOd-LM-zPK.placeholder" = "Descrição";
+"hOd-LM-zPK.placeholder" = "Description";
 
 /* Class = "UILabel"; text = "Clear"; ObjectID = "j1U-fg-7gy"; */
-"j1U-fg-7gy.text" = "Limpar";
+"j1U-fg-7gy.text" = "Clear";
 
 /* Class = "UITextField"; placeholder = "Subject"; ObjectID = "jfm-sc-Ed8"; */
-"jfm-sc-Ed8.placeholder" = "Assunto";
+"jfm-sc-Ed8.placeholder" = "Subject";
 
 /* Class = "UITableViewSection"; headerTitle = "Tell us about what happened"; ObjectID = "jqN-l6-5Bo"; */
-"jqN-l6-5Bo.headerTitle" = "Diga-nos o que está acontecentendo...";
+"jqN-l6-5Bo.headerTitle" = "Tell us about what happened";
 
 /* Class = "UILabel"; text = "City"; ObjectID = "koB-79-s4v"; */
-"koB-79-s4v.text" = "Cidade";
+"koB-79-s4v.text" = "City";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "mxl-zy-5Wk"; */
+"mxl-zy-5Wk.text" = "Title";
 
 /* Class = "UILabel"; text = "City"; ObjectID = "nL6-vU-W6d"; */
-"nL6-vU-W6d.text" = "Cidade";
+"nL6-vU-W6d.text" = "City";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "u0I-h3-tOJ"; */
 "u0I-h3-tOJ.text" = "Label";
@@ -134,11 +128,8 @@
 /* Class = "UILabel"; text = "Email"; ObjectID = "uJ9-0Y-Ko0"; */
 "uJ9-0Y-Ko0.text" = "Email";
 
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "x8p-l8-Cdq"; */
-"x8p-l8-Cdq.text" = "Subtitulo";
-
 /* Class = "UITabBarItem"; title = "Categories"; ObjectID = "yQQ-Hd-ZWa"; */
-"yQQ-Hd-ZWa.title" = "Categorias";
+"yQQ-Hd-ZWa.title" = "Categories";
 
-/* Class = "UITabBarItem"; title = "Issue"; ObjectID = "zTg-ZT-j37"; */
-"zTg-ZT-j37.title" = "Reclamar";
+/* Class = "UITabBarItem"; title = "Fix a problem"; ObjectID = "zTg-ZT-j37"; */
+"zTg-ZT-j37.title" = "Fix a problem";
