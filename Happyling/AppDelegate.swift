@@ -61,10 +61,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-    
+        //TODO: - BEFORE PUBLISH CHANGE ENVIROMENTS TYPE
+        
         switch Environment.current {
         case .Development:
-            FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .prod)
+            FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .sandbox)
         case .Production:
             FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .sandbox)
         }

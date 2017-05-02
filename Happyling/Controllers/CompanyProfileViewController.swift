@@ -51,7 +51,23 @@ class CompanyProfileViewController: GenericViewController {
         mLabelReplyTime.text = company.status
         mLabelWebsite.text = company.webSite
         
-        mLabelAddress.text = "\(company.city) / \(company.country)"
+        if company.city != nil && !company.city.isEmpty {
+            
+            if company.country != nil && !company.country.isEmpty {
+                
+                mLabelAddress.text = company.city + "/" + company.country
+            }
+            else{
+                mLabelAddress.text = company.city
+            }
+        }
+        else if company.country != nil && !company.country.isEmpty {
+            mLabelAddress.text = company.country
+        }
+        else{
+            
+            mLabelAddress.text = ""
+        }
     }
     
     func setupTableView(){
@@ -107,13 +123,9 @@ class CompanyProfileViewController: GenericViewController {
                 
                 print(error.localizedDescription)
             }
-            
         }
     }
-    
-    
 }
-
 
 extension CompanyProfileViewController: UICollectionViewDataSource {
 
@@ -151,7 +163,6 @@ extension CompanyProfileViewController: UICollectionViewDataSource {
         return cell
         
     }
-    
 }
 
 extension CompanyProfileViewController: UICollectionViewDelegateFlowLayout {
@@ -200,9 +211,7 @@ extension CompanyProfileViewController: UICollectionViewDelegateFlowLayout {
         
         getIssuesReport()
     }
-    
 }
-
 
 extension CompanyProfileViewController: UITableViewDataSource {
     

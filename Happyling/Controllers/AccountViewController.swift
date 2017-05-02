@@ -167,7 +167,7 @@ class AccountViewController: GenericViewController {
             
             if section == 1 {
                 
-                svc.status = Status(id: 1, name: "In Analysis")
+                svc.status = Status(id: 3, name: "In Analysis")
             }
             else if section == 2 {
                 svc.status = Status(id: 3, name: "Resolved")

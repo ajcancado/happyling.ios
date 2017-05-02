@@ -140,7 +140,24 @@ class LoginViewController: GenericTableViewController {
     
     func recoverPassword(params: [String: Any]){
         
+        showHUD()
         
+        Alamofire.request(SignInRouter.ForgottenPassword(params)).responseJSON { response in
+            
+            self.hideHUD()
+            
+            switch response.result {
+                
+            case .success(let json):
+                
+                print(json)
+                
+            case .failure(let error):
+                
+                print(error.localizedDescription)
+            }
+        }
+
         
     }
     

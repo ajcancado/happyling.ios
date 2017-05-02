@@ -66,7 +66,9 @@ class ProblemsViewController: GenericViewController {
         
         params["userId"] = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
         
-        params["statusId"] = status.id
+        params["statusId"] = "1"
+        params["statusId"] = "2"
+        params["statusId"] = "5"
         
         Alamofire.request(IssueRouter.GetIssues(params)).responseJSON { response in
             
