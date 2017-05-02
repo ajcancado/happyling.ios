@@ -50,6 +50,8 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
         setupNavigationBarButtomItems()
         
         setupTableView()
+        
+        setupCollectionView()
     
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
@@ -79,7 +81,13 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
         
         tableView.backgroundView = emptyBackgroundView
         tableView.backgroundView?.isHidden = true
+    }
     
+    func setupCollectionView(){
+        
+        let emptyBackgroundView = EmptyBackgroundView(image: UIImage(), top: topMessage, bottom: bottomMessage)
+        
+        collectionView.backgroundView = emptyBackgroundView
     }
     
     
@@ -323,6 +331,15 @@ extension IssueViewController: UIImagePickerControllerDelegate {
 extension IssueViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if self.images.count == 0 {
+            
+            self.collectionView.backgroundView?.isHidden = false
+            
+        } else {
+            
+            self.collectionView.backgroundView?.isHidden = true
+        }
         
         return images.count
     }
