@@ -26,7 +26,7 @@ class CompanyProfileViewController: GenericViewController {
     
     var company: Company!
     
-    var issueStatus = 3
+    var statusIds: [Int] = []
     
     var companyIssues: [Issue] = []
     
@@ -41,6 +41,8 @@ class CompanyProfileViewController: GenericViewController {
         setupCompanyInfo()
         
         setupTableView()
+        
+        statusIds.append(3)
         
         getIssuesReport()
     }
@@ -94,12 +96,9 @@ class CompanyProfileViewController: GenericViewController {
         
         showHUD()
         
-        var params : [String: Any] = [:]
-    
-        params["companyId"] = company.id
-        params["statusId"] = issueStatus
+        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
         
-        Alamofire.request(IssueRouter.GetIssueReport(params)).responseJSON { response in
+        Alamofire.request(IssueRouter.GetIssues(userId, statusIds)).responseJSON { response in
             
             self.hideHUD()
             
@@ -213,16 +212,21 @@ extension CompanyProfileViewController: UICollectionViewDelegateFlowLayout {
         let row = indexPath.row
         
         if row == 0 {
-            issueStatus = 3
+            
+            statusIds.removeAll()
+            statusIds.append(3)
         }
         else if row == 1 {
-            issueStatus = 4
+            statusIds.removeAll()
+            statusIds.append(4)
         }
         else if row == 2 {
-            issueStatus = 5
+            statusIds.removeAll()
+            statusIds.append(5)
         }
         else if row == 3 {
-            issueStatus = 6
+            statusIds.removeAll()
+            statusIds.append(6)
         }
         
         getIssuesReport()

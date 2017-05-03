@@ -11,11 +11,10 @@ import Alamofire
 
 enum IssueRouter: URLRequestConvertible{
     
-    case GetIssues([String: Any])
+    case GetIssues(Int, [Int])
     case GetIssueDescription(Int)
     case GetIssueTypes
     case GetIssueStatus
-    case GetIssueReport([String: Any])
     case MakeIssueReport([String: Any])
     case MakeIssueInteraction([String: Any])
     case MakeIsseuReportRating([String: Any])
@@ -30,8 +29,6 @@ enum IssueRouter: URLRequestConvertible{
             return .get
         case .GetIssueStatus:
             return .get
-        case .GetIssueReport:
-            return .get
         case .MakeIssueReport:
             return .post
         case .MakeIssueInteraction:
@@ -44,16 +41,23 @@ enum IssueRouter: URLRequestConvertible{
     var path: String {
         switch self {
             
-        case .GetIssues:
-            return "issue-report"
+        case .GetIssues(let userId, let statusIds):
+            
+            var string = "issue-report?userId=\(userId)"
+            
+            for statusId in statusIds{
+                
+                string = string + "&statusId=\(statusId)"
+            }
+            
+            return string
+            
         case .GetIssueDescription(let issueID):
             return "issue-report/\(issueID)"
         case .GetIssueTypes:
             return "issue-report/types"
         case .GetIssueStatus:
             return "issue-report/status"
-        case .GetIssueReport:
-            return "issue-report"
         case .MakeIssueReport:
             return "issue-report"
         case .MakeIssueInteraction:
@@ -64,23 +68,33 @@ enum IssueRouter: URLRequestConvertible{
     }
     
     func asURLRequest() throws -> URLRequest {
+    
+        let fullUrl = Constants.API.baseURL + "/" + path
         
-        let url = URL(string: Constants.API.baseURL)!
-        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        var urlRequest = URLRequest(url: URL(string: fullUrl)!)
         urlRequest.httpMethod = method.rawValue
         
+        urlRequest.setValue(LanguageHelper.getLanguage(), forHTTPHeaderField: "x-user-lang")
+        
+        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
+        
+        if userId != Constants.SessionKeys.guestUserId {
+            urlRequest.setValue("\(userId)", forHTTPHeaderField: "x-user-id")
+        }
         
         switch self {
-        case .GetIssues(let parameters):
-            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
-        case .GetIssueReport(let parameters):
-            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+            
+        case .GetIssues(_, _):
+
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: nil)
+            
         case .MakeIssueReport(let parameters):
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
         case .MakeIssueInteraction(let parameters):
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
         case .MakeIsseuReportRating(let parameters):
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
+        
         default:
             return urlRequest
         }

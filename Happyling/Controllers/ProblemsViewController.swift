@@ -16,7 +16,9 @@ class ProblemsViewController: GenericViewController {
     
     var issues: [Issue] = []
 
-    var status: Status!
+    var statusIds: [Int] = []
+    
+    var problemType: String!
     
 //    let image = UIImage(named: "ic_empty_search_radar")!
     let topMessage = "Eba..."
@@ -27,7 +29,7 @@ class ProblemsViewController: GenericViewController {
 
         self.view.backgroundColor = Constants.Colors.gray
         
-        navigationItem.title = status.name
+        navigationItem.title = problemType
     
         setupTableView()
         
@@ -52,20 +54,14 @@ class ProblemsViewController: GenericViewController {
         
         showHUD()
         
-        getIssuesFromUserAnd(status: status)
+        getIssuesFromUserAndStatus()
     }
     
-    func getIssuesFromUserAnd(status: Status!) {
+    func getIssuesFromUserAndStatus() {
         
-        var params: [String: Any] = [:]
+        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
         
-        params["userId"] = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
-        
-        params["statusId"] = "1"
-        params["statusId"] = "2"
-        params["statusId"] = "5"
-        
-        Alamofire.request(IssueRouter.GetIssues(params)).responseJSON { response in
+        Alamofire.request(IssueRouter.GetIssues(userId, statusIds)).responseJSON { response in
             
             self.hideHUD()
             

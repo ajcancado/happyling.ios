@@ -6,6 +6,26 @@
   Copyright © 2017 Happyling. All rights reserved.
 */
 
+"MY_ACCOUNT" = "Meus dados";
+
+"CHANGE_PASSWORD" = "Mudar minha senha";
+
+"NOTIFICATIONS" = "Notificações";
+
+"PROBLEMS_OPENED" = "Problemas abertos";
+
+"PROBLEMS_SOLVED" = "Problemas resolvidos";
+
+"PROBLEMS_NOT_SOLVED" = "Problemas não resolvidos";
+
+"RATING_APP" = "Avaliar App";
+
+"TERMS_OF_USE" = "Termos de uso";
+
+"HAPPYLING_FOR_BUSINESS" = "Happyling para empresas";
+
+"SIGN_OUT" = "Sair";
+
 "NO_INTERNET_CONNECTION" = "Você não está conectado a internet. Verifique seus dados ou conecte-se a uma rede Wifi";
 
 "SUCCESSFUL_REGISTRATION" = "Conta criada com sucesso";

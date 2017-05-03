@@ -74,8 +74,14 @@ enum UserRouter: URLRequestConvertible{
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         
-//        urlRequest.setValue(LanguageHelper.getLanguage(), forHTTPHeaderField: "Language")
-    
+        urlRequest.setValue(LanguageHelper.getLanguage(), forHTTPHeaderField: "x-user-lang")
+        
+        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
+        
+        if userId != Constants.SessionKeys.guestUserId {
+            urlRequest.setValue("\(userId)", forHTTPHeaderField: "x-user-id")
+        }
+        
         switch self {
         case .CreateUser(let parameters):
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)

@@ -214,16 +214,30 @@ class AccountViewController: GenericViewController {
             
             let section = tableView.indexPathForSelectedRow?.section
             
+            var statusIds: [Int] = []
+            
             if section == 1 {
                 
-                svc.status = Status(id: 3, name: "In Analysis")
+                statusIds.append(1)
+                statusIds.append(2)
+                statusIds.append(5)
+                
+                svc.problemType = "In Analysis"
             }
             else if section == 2 {
-                svc.status = Status(id: 3, name: "Resolved")
+                
+                svc.problemType = "Resolved"
+                
+                statusIds.append(3)
             }
             else if section == 3{
-                svc.status = Status(id: 4, name: "Unresolved")
+                
+                svc.problemType = "Unresolved"
+                
+                statusIds.append(4)
             }
+            
+            svc.statusIds = statusIds
         }
     }
 }
@@ -275,14 +289,14 @@ extension AccountViewController: UITableViewDataSource {
             if row == 0 {
                 
                 cell.imageView?.image = UIImage(named: "ic_settings")
-                cell.textLabel?.text = "My Account"
+                cell.textLabel?.text = NSLocalizedString("MY_ACCOUNT", comment: "")
             }
             else if row == 1{
-                cell.textLabel?.text = "Change Password"
+                cell.textLabel?.text = NSLocalizedString("CHANGE_PASSWORD", comment: "")
             }
             else{
                 
-                cell.textLabel?.text = "Notifications"
+                cell.textLabel?.text = NSLocalizedString("NOTIFICATIONS", comment: "")
                 
                 let switchView = UISwitch(frame: .zero)
                 
@@ -298,39 +312,39 @@ extension AccountViewController: UITableViewDataSource {
         }
         else if section == 1{
             
+            cell.textLabel?.text = NSLocalizedString("PROBLEMS_OPENED", comment: "")
             cell.imageView?.image = UIImage(named: "ic_question")
-            cell.textLabel?.text = "Problems Opened"
         }
         else if section == 2 {
             
-            cell.textLabel?.text = "Problems Solved"
+            cell.textLabel?.text = NSLocalizedString("PROBLEMS_SOLVED", comment: "")
             cell.imageView?.image = UIImage(named: "ic_happy")
             
         }
         else if section == 3 {
             
-            cell.textLabel?.text = "Problems not Solved"
+            cell.textLabel?.text = NSLocalizedString("PROBLEMS_NOT_SOLVED", comment: "")
             cell.imageView?.image = UIImage(named: "ic_sad")
             
         }
         else if section == 4 {
             
+            cell.textLabel?.text = NSLocalizedString("RATING_APP", comment: "")
             cell.imageView?.image = UIImage(named: "ic_rating_this_app")
-            cell.textLabel?.text = "Rating App"
         }
         else if section == 5{
             
+            cell.textLabel?.text = NSLocalizedString("TERMS_OF_USE", comment: "")
             cell.imageView?.image = UIImage(named: "ic_termsconditions")
-            cell.textLabel?.text = "Terms of Use"
         }
         else if section == 6 {
             
+            cell.textLabel?.text = NSLocalizedString("HAPPYLING_FOR_BUSINESS", comment: "")
             cell.imageView?.image = UIImage(named: "ic_termsconditions")
-            cell.textLabel?.text = "Happyling for Business"
         }
         else {
             
-           cell.textLabel?.text = "Sign out"
+           cell.textLabel?.text = NSLocalizedString("SIGN_OUT", comment: "")
         }
         
 
