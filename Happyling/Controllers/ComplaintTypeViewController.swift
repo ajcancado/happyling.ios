@@ -20,8 +20,6 @@ class ComplaintTypeViewController: GenericViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
         getIssueTypes()
         
         tableView.tableFooterView = UIView(frame: .zero)
@@ -52,7 +50,7 @@ class ComplaintTypeViewController: GenericViewController {
                 }
                 else if issueTypeResponse?.responseAttrs.errorMessage != nil {
                     
-                    print(issueTypeResponse?.responseAttrs.errorMessage!)
+                    print(issueTypeResponse!.responseAttrs.errorMessage!)
                 }
                 
             case .failure(let error):
@@ -62,8 +60,9 @@ class ComplaintTypeViewController: GenericViewController {
             
         }
     }
-
 }
+
+// MARK: - UITableViewDataSource
 
 extension ComplaintTypeViewController: UITableViewDataSource {
     
@@ -86,9 +85,9 @@ extension ComplaintTypeViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
+
+// MARK: - UITableViewDelegate
 
 extension ComplaintTypeViewController: UITableViewDelegate {
     

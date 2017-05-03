@@ -107,8 +107,7 @@ class CompanyInfoTableViewController: GenericTableViewController {
                     }
                     else if signInResponse?.responseAttrs.errorMessage != nil {
                         
-                        print(signInResponse?.responseAttrs.errorMessage!)
-                        
+                        print(signInResponse!.responseAttrs.errorMessage!)
                     }
                     
                 case .failure(let error):

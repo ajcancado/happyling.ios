@@ -17,8 +17,6 @@ class ThanksViewController: GenericViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(back), userInfo: nil, repeats: false)
     }
 

@@ -99,12 +99,16 @@ class CategoriesViewController: GenericViewController {
     
 }
 
+// MARK: - UISearchResultsUpdating
+
 extension CategoriesViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension CategoriesViewController: UITableViewDataSource {
     
@@ -141,9 +145,9 @@ extension CategoriesViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
+
+// MARK: - UITableViewDelegate
 
 extension CategoriesViewController: UITableViewDelegate {
     

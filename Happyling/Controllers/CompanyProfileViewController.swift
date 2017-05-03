@@ -12,10 +12,10 @@ import ObjectMapper
 
 class CompanyProfileViewController: GenericViewController {
 
+    @IBOutlet weak var statusImage: UIImageView!
+    
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
+        
     @IBOutlet weak var mLabelName: UILabel!
     
     @IBOutlet weak var mLabelReplyTime: UILabel!
@@ -47,8 +47,13 @@ class CompanyProfileViewController: GenericViewController {
     
     func setupCompanyInfo(){
         
+        statusImage.backgroundColor = Constants.Colors.oranage
+        statusImage.layer.cornerRadius = statusImage.frame.size.width / 2
+        statusImage.clipsToBounds = true
+        
         mLabelName.text = company.name
         mLabelReplyTime.text = company.status
+        mLabelReplyTime.isHidden = true
         mLabelWebsite.text = company.webSite
         
         if company.city != nil && !company.city.isEmpty {
@@ -75,6 +80,8 @@ class CompanyProfileViewController: GenericViewController {
         tableView.backgroundColor = Constants.Colors.gray
         
         tableView.tableFooterView = UIView(frame: .zero)
+        
+        tableView.register(UINib(nibName: "ProblemsTableViewCell", bundle: nil), forCellReuseIdentifier: "CellID")
         
         let emptyBackgroundView = EmptyBackgroundView(image: UIImage(), top: topMessage, bottom: bottomMessage)
         
@@ -144,22 +151,27 @@ extension CompanyProfileViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellID", for: indexPath)
         
         let imageView = cell.viewWithTag(1) as! UIImageView
+        let label = cell.viewWithTag(2) as! UILabel
         
         if row == 0 {
             
-            imageView.image = UIImage(named: "ic_question")
+            imageView.image = UIImage(named: "ic_handshake")
+            label.text = "Solved"
         }
         else if row == 1 {
             
             imageView.image = UIImage(named: "ic_sad")
+            label.text = "Unsolved"
         }
         else if row == 2 {
             
-            imageView.image = UIImage(named: "ic_sad")
+            imageView.image = UIImage(named: "ic_happy")
+            label.text = "Answered"
         }
         else if row == 3 {
             
-            imageView.image = UIImage(named: "ic_sad")
+            imageView.image = UIImage(named: "ic_question")
+            label.text = "Unanswered"
         }
         
         return cell
@@ -241,12 +253,36 @@ extension CompanyProfileViewController: UITableViewDataSource {
         
         let row = indexPath.row
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath) as! ProblemsTableViewCell
         
         let issue = companyIssues[row]
         
-        cell.textLabel?.text = issue.descricao
-        cell.detailTextLabel?.text = issue.status.name
+        cell.companyLogo.backgroundColor = Constants.Colors.oranage
+        cell.companyLogo.layer.cornerRadius = cell.companyLogo.frame.size.width / 2
+        cell.companyLogo.clipsToBounds = true
+        
+        cell.companyName.text = issue.company.name
+        
+        let date = NSDate(timeIntervalSince1970: issue.creationDate)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = NSTimeZone.local //Edit
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateStyle = DateFormatter.Style.full
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        
+        let strDateSelect = dateFormatter.string(from: date as Date)
+        print(strDateSelect) //Local time
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.timeZone = NSTimeZone.local
+        dateFormatter2.dateFormat = "yyyy-MM-dd"
+        
+        cell.problemDate.text = strDateSelect
+        
+        cell.problemSubject.text = issue.subject
+        cell.problemStatus.text = issue.status.name
+
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -255,6 +291,10 @@ extension CompanyProfileViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension CompanyProfileViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

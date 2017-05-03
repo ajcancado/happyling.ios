@@ -158,10 +158,10 @@ class SignUpTableViewController: UITableViewController{
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
-    
 }
+
+// MARK: - UITableViewDelegate
 
 extension SignUpTableViewController: UITextFieldDelegate {
     

@@ -68,13 +68,9 @@ class AccountViewController: GenericViewController {
             params["confirmNewPass"] = thirdTextField.text
             
             self.changePass(params: params)
-        
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            (action : UIAlertAction!) -> Void in
-            
-        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter current password"
@@ -93,7 +89,6 @@ class AccountViewController: GenericViewController {
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
-    
     }
     
     func changePass(params: [String:Any]) {
@@ -121,8 +116,7 @@ class AccountViewController: GenericViewController {
                 }
                 else if signInResponse?.responseAttrs.errorMessage != nil {
                     
-                    print(signInResponse?.responseAttrs.errorMessage!)
-                    
+                    print(signInResponse!.responseAttrs.errorMessage!)
                 }
                 
                 
@@ -153,8 +147,63 @@ class AccountViewController: GenericViewController {
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
-
+    }
+    
+    func switchValueChanged(sender: Any){
         
+        let switchObject = sender as! UISwitch
+        
+        if switchObject.isOn {
+            updateDeviceToken()
+        }
+        else{
+            deleteDeviceToken()
+        }
+    }
+    
+    func updateDeviceToken(){
+        
+        if let token = SessionManager.getObjectForKey(key: Constants.SessionKeys.deviceToken) {
+            
+            showHUD()
+        
+            Alamofire.request(UserRouter.UpdateToken(userId, token as! String)).responseJSON { response in
+                
+                self.hideHUD()
+                
+                switch response.result {
+                    
+                case .success(let json):
+                    
+                    print(json)
+                    
+                case .failure(let error):
+                    
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func deleteDeviceToken(){
+        
+        showHUD()
+        
+        Alamofire.request(UserRouter.DeleteToken(userId)).responseString { response in
+            
+            self.hideHUD()
+            
+            switch response.result {
+                
+            case .success(let json):
+                
+                print(json)
+                
+            case .failure(let error):
+                
+                print(error.localizedDescription)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -177,8 +226,9 @@ class AccountViewController: GenericViewController {
             }
         }
     }
-
 }
+
+// MARK: - UITableViewDataSource
 
 extension AccountViewController: UITableViewDataSource {
     
@@ -218,6 +268,8 @@ extension AccountViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
        
+        cell.accessoryView = UIView(frame: .zero)
+        
         if section == 0{
             
             if row == 0 {
@@ -231,6 +283,17 @@ extension AccountViewController: UITableViewDataSource {
             else{
                 
                 cell.textLabel?.text = "Notifications"
+                
+                let switchView = UISwitch(frame: .zero)
+                
+                cell.accessoryView = switchView
+                
+                let haveToken = SessionManager.containsObjectForKey(key: Constants.SessionKeys.deviceToken)
+                
+                switchView.setOn(haveToken, animated: true)
+                switchView.onTintColor = Constants.Colors.oranage
+                switchView.addTarget(self, action: #selector(self.switchValueChanged(sender:)), for: .valueChanged)
+            
             }
         }
         else if section == 1{
@@ -273,8 +336,9 @@ extension AccountViewController: UITableViewDataSource {
 
         return cell
     }
-    
 }
+
+// MARK: - UITableViewDelegate
 
 extension AccountViewController: UITableViewDelegate {
     

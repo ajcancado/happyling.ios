@@ -19,5 +19,13 @@ extension String {
         return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
         
     }
+    
+    func toImage() -> UIImage {
+        
+        let imageData = Data(base64Encoded: self, options: .ignoreUnknownCharacters)!
+        
+        return UIImage(data: imageData)!
+        
+    }
 
 }

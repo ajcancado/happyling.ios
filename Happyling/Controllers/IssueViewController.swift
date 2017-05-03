@@ -40,7 +40,7 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
     let topMessage = "Ops.."
     let bottomMessage = "Você precisa se cadastrar para poder criar uma reclamação"
     
-    var images: [UIImage] = []
+    var attachments: [Attachment] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,7 +160,11 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
         complaintSubject.text = ""
         complaintDescription.text = ""
         
+        attachments.removeAll()
+        
+        collectionView.reloadData()
         tableView.reloadData()
+        
         
     }
 
@@ -232,22 +236,11 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
     
             let currentInteraction = CurrentInteraction()
     
-            var attachments: [Attachment] = []
-            
-//            let attachment = Attachment()
-            
-//            attachment.name = "teste.jpg"
-//            attachment.encodingData = imageAttachment.image?.encodeToBase64String()
-            
-//            attachments.append(attachment)
-            
             currentInteraction.attachments = attachments
             
             issueReportDTO.currentInteraction = currentInteraction
             
             self.showHUD()
-            
-            print(issueReportDTO.toJSON())
 
             Alamofire.request(IssueRouter.MakeIssueReport(issueReportDTO.toJSON())).responseJSON { response in
             
@@ -299,7 +292,6 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
             svc.delegate = self
         }
     }
-
 }
 
 // MARK: - UIImagePickerControllerDelegate 
@@ -310,7 +302,13 @@ extension IssueViewController: UIImagePickerControllerDelegate {
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            self.images.append(pickedImage)
+            let attachment = Attachment()
+            
+            attachment.name = "img_" + NSDate().timeIntervalSince1970.toString() + ".jpg"
+            attachment.encodingData = pickedImage.encodeToBase64String()
+            
+            
+            self.attachments.append(attachment)
         }
         
         collectionView.reloadData()
@@ -332,7 +330,7 @@ extension IssueViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if self.images.count == 0 {
+        if self.attachments.count == 0 {
             
             self.collectionView.backgroundView?.isHidden = false
             
@@ -341,7 +339,7 @@ extension IssueViewController: UICollectionViewDataSource {
             self.collectionView.backgroundView?.isHidden = true
         }
         
-        return images.count
+        return attachments.count
     }
     
     
@@ -353,7 +351,9 @@ extension IssueViewController: UICollectionViewDataSource {
         
         let imageView = cell.viewWithTag(1) as! UIImageView
         
-        imageView.image = images[row]
+        let attachment = attachments[row]
+        
+        imageView.image = attachment.encodingData.toImage()
     
         return cell
         

@@ -18,7 +18,6 @@ class ProblemsViewController: GenericViewController {
 
     var status: Status!
     
-    
 //    let image = UIImage(named: "ic_empty_search_radar")!
     let topMessage = "Eba..."
     let bottomMessage = "Nenhum problema"
@@ -47,17 +46,13 @@ class ProblemsViewController: GenericViewController {
         
         tableView.backgroundView = emptyBackgroundView
         tableView.backgroundView?.isHidden = true
-        
     }
-    
-    
     
     func startServiceCalls(){
         
         showHUD()
         
         getIssuesFromUserAnd(status: status)
-        
     }
     
     func getIssuesFromUserAnd(status: Status!) {
@@ -96,7 +91,7 @@ class ProblemsViewController: GenericViewController {
                     
                     self.hideHUD()
                     
-                    print(issuesResponse?.responseAttrs.errorMessage!)
+                    print(issuesResponse!.responseAttrs.errorMessage!)
                 }
                 
             case .failure(let error):
@@ -124,9 +119,7 @@ class ProblemsViewController: GenericViewController {
             
             svc.issue = issue
         }
-        
     }
-    
 }
 
 // MARK: - UITableViewDataSource

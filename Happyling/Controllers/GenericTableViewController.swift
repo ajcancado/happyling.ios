@@ -32,11 +32,6 @@ class GenericTableViewController: UITableViewController {
         
         self.present(viewController, animated: true, completion: nil)
     }
-    
-    func encodeBase64(image: UIImage) -> String{
-        
-        return (UIImagePNGRepresentation(image)?.base64EncodedString(options: .endLineWithLineFeed))!
-    }
-    
+
 }
 

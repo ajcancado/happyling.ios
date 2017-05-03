@@ -188,12 +188,16 @@ class SearchViewController: GenericViewController {
     
 }
 
+// MARK: - UISearchResultsUpdating
+
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension SearchViewController: UITableViewDataSource {
     
@@ -233,9 +237,9 @@ extension SearchViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
+
+// MARK: - UITableViewDelegate
 
 extension SearchViewController: UITableViewDelegate {
     

@@ -12,12 +12,9 @@ extension UIImage {
     
     func encodeToBase64String() -> String{
         
-        let imageData:NSData = UIImagePNGRepresentation(self)! as NSData
+        let imageData = UIImageJPEGRepresentation(self, 0.6)
         
-        
-        return imageData.base64EncodedString(options: .endLineWithLineFeed)
-        
-//        return (UIImagePNGRepresentation(self)?.base64EncodedString(options: .endLineWithLineFeed))!
+        return imageData!.base64EncodedString(options: .endLineWithLineFeed)
     }
     
 }

@@ -253,6 +253,8 @@ extension UserProfileTableViewController: UIPickerViewDataSource {
     }
 }
 
+// MARK: - UIPickerViewDelegate
+
 extension UserProfileTableViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

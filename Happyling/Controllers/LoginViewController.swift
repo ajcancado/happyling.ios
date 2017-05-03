@@ -93,7 +93,7 @@ class LoginViewController: GenericTableViewController {
                     }
                     else if signInResponse?.responseAttrs.errorMessage != nil {
                         
-                        print(signInResponse?.responseAttrs.errorMessage!)
+                        print(signInResponse!.responseAttrs.errorMessage!)
                         
                     }
 
@@ -157,8 +157,6 @@ class LoginViewController: GenericTableViewController {
                 print(error.localizedDescription)
             }
         }
-
-        
     }
     
     @IBAction func showHidePassword(_ sender: Any) {
@@ -203,6 +201,8 @@ class LoginViewController: GenericTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {
     

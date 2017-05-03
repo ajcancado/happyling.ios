@@ -18,6 +18,8 @@ enum UserRouter: URLRequestConvertible{
     case ReadUser(String)
     case UpdateUser([String: Any])
     case UpdatePass([String: Any])
+    case UpdateToken(Int,String)
+    case DeleteToken(Int)
     
     var method: Alamofire.HTTPMethod {
         switch self {
@@ -35,6 +37,10 @@ enum UserRouter: URLRequestConvertible{
             return .put
         case .UpdatePass:
             return .put
+        case .UpdateToken:
+            return .put
+        case .DeleteToken:
+            return .delete
         }
     }
     
@@ -54,7 +60,12 @@ enum UserRouter: URLRequestConvertible{
         case .UpdateUser:
             return "user"
         case .UpdatePass:
-            return "/user/change-pass"
+            return "user/change-pass"
+        case .UpdateToken(let id, let token):
+            return "user/change-device-token/\(id)/\(token)"
+        case .DeleteToken(let id):
+            return "user/remove-device-token/\(id)"
+            
         }
     }    
     
