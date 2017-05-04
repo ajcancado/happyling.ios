@@ -28,8 +28,6 @@ class SearchViewController: GenericViewController {
     
     var delegate: SelectCompanyProtocol!
     
-    var refreshControl: UIRefreshControl!
-    
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
@@ -45,8 +43,6 @@ class SearchViewController: GenericViewController {
         
         getCompanies()
         
-        setupPullToRefresh()
-        
         setupTableView()
     }
     
@@ -58,13 +54,6 @@ class SearchViewController: GenericViewController {
         tableView.tableHeaderView = searchController.searchBar
         
     }
-    
-    func setupPullToRefresh(){
-        
-        refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(getCompanies), for: .valueChanged)
-    }
 
     func setupTableView(){
         
@@ -73,8 +62,6 @@ class SearchViewController: GenericViewController {
         tableView.register(UINib(nibName: "CompanyCell", bundle: nil), forCellReuseIdentifier: "CompanyCellID")
         
         tableView.tableFooterView = UIView(frame: .zero)
-        
-        tableView.addSubview(refreshControl)
     }
     
     func showInfiniteScrollViewInFooter() {
@@ -89,7 +76,7 @@ class SearchViewController: GenericViewController {
         let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
 
         actInd.center = CGPoint(x: width/2, y: 22)
-        actInd.color = UIColor(red: 0.0/255.0, green: 162.0/255.0, blue: 194.0/255.0, alpha: 1.0)
+        actInd.color = Constants.Colors.oranage
         
         actInd.startAnimating()
         
@@ -105,24 +92,16 @@ class SearchViewController: GenericViewController {
     
     func getCompanies(){
         
-        if params.keys.count == 0 {
-            
-            params["start"] = start
-            params["pageSize"] = pageSize
-//              params["sortBy"] = ""
-//              params["direction"] = ""
-//              params["name"] = ""
-        }
+        params["start"] = start
+        params["pageSize"] = pageSize
+//        params["sortBy"] = ""
+//        params["direction"] = ""
+//        params["name"] = ""
         
         Alamofire.request(CompanyRouter.GetCompany(params)).responseJSON { response in
             
             self.hideHUD()
             self.removedInfiniteScrollViewInFooter()
-            
-            if self.refreshControl.isRefreshing {
-                
-                self.refreshControl.endRefreshing()
-            }
             
             switch response.result {
                 
@@ -134,7 +113,7 @@ class SearchViewController: GenericViewController {
                 
                 if getCompanyResponse?.data != nil {
                     
-                    self.companies = getCompanyResponse!.data
+                    self.companies.append(contentsOf: getCompanyResponse!.data)
                     self.recordsTotal = getCompanyResponse?.responseAttrs.recordsTotal
                     
                     self.tableView.dataSource = self

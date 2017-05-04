@@ -163,13 +163,11 @@ extension CategoriesViewController: UITableViewDelegate {
             companyCategorie = companyCategories[row]
         }
         
-        var params: [String: Any] = [:]
-        
-        params["categoryId"] = companyCategorie.id
-        
+
         let viewController = storyboard?.instantiateViewController(withIdentifier: "SearchViewControllerID") as!SearchViewController
         
-        viewController.params = params
+        viewController.params["categoryId"] = companyCategorie.id
+
         
         self.navigationController?.pushViewController(viewController, animated: true)
         
