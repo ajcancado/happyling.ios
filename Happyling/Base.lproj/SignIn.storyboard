@@ -387,6 +387,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMA-Zn-a7Z">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="pIw-Nc-A3n"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Sign in with email">
                                     <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -399,7 +402,8 @@
                                 <rect key="frame" x="0.0" y="567" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.054901960784313725" green="0.41176470588235292" blue="0.68627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Nv6-xe-fQZ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="NVS-gp-4EW"/>
+                                    <constraint firstAttribute="height" constant="50" id="eEy-3c-yO1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Sign in with facebook">
@@ -413,7 +417,7 @@
                                 <rect key="frame" x="0.0" y="517" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="gSo-1h-fCN"/>
+                                    <constraint firstAttribute="height" constant="50" id="an2-iE-XFF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Skip">
@@ -423,31 +427,44 @@
                                     <action selector="segueWithoutAuthentication:" destination="qQs-k0-Wdd" eventType="touchUpInside" id="bYx-2v-gWU"/>
                                 </connections>
                             </button>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsD-pq-eLX" customClass="EAIntroView">
-                                <rect key="frame" x="0.0" y="233" width="375" height="200"/>
-                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIL-fE-Vrf">
+                                <rect key="frame" x="0.0" y="183" width="375" height="300"/>
+                                <connections>
+                                    <outlet property="delegate" destination="qQs-k0-Wdd" id="yVj-tE-2SS"/>
+                                </connections>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t20-IH-NgE">
+                                <rect key="frame" x="16" y="72" width="343" height="103"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wsD-pq-eLX" firstAttribute="centerY" secondItem="OXh-0W-Bi2" secondAttribute="centerY" id="19V-bz-U8i"/>
-                            <constraint firstItem="bMA-Zn-a7Z" firstAttribute="bottom" secondItem="Zi1-ym-F4Z" secondAttribute="top" id="4SZ-0H-KQF"/>
-                            <constraint firstItem="wsD-pq-eLX" firstAttribute="leading" secondItem="Epf-FM-wzB" secondAttribute="leading" id="5sk-r2-ZFB"/>
-                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="trailing" secondItem="bMA-Zn-a7Z" secondAttribute="trailing" id="EOr-Ab-uhc"/>
-                            <constraint firstItem="wsD-pq-eLX" firstAttribute="leading" secondItem="OXh-0W-Bi2" secondAttribute="leading" id="GD9-o3-QZ8"/>
-                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="leading" secondItem="bMA-Zn-a7Z" secondAttribute="leading" id="MSY-UG-z9u"/>
-                            <constraint firstItem="wsD-pq-eLX" firstAttribute="trailing" secondItem="Epf-FM-wzB" secondAttribute="trailing" id="SHM-M1-IEJ"/>
-                            <constraint firstItem="Epf-FM-wzB" firstAttribute="top" secondItem="wsD-pq-eLX" secondAttribute="bottom" constant="84" id="Tc2-eC-6Hc"/>
-                            <constraint firstItem="Epf-FM-wzB" firstAttribute="trailing" secondItem="3ln-Zi-qYF" secondAttribute="trailing" id="Wi9-Mc-prB"/>
-                            <constraint firstItem="bMA-Zn-a7Z" firstAttribute="top" secondItem="3ln-Zi-qYF" secondAttribute="bottom" id="dNg-ye-w7X"/>
-                            <constraint firstAttribute="trailing" secondItem="wsD-pq-eLX" secondAttribute="trailing" id="jdm-LS-zpg"/>
-                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="top" secondItem="Epf-FM-wzB" secondAttribute="bottom" id="lY5-uS-Kq3"/>
-                            <constraint firstItem="Epf-FM-wzB" firstAttribute="leading" secondItem="3ln-Zi-qYF" secondAttribute="leading" id="pfz-4J-kCx"/>
-                            <constraint firstItem="wsD-pq-eLX" firstAttribute="top" secondItem="7vb-Fk-PSH" secondAttribute="bottom" constant="169" id="zN9-Tn-Ty5"/>
+                            <constraint firstItem="Epf-FM-wzB" firstAttribute="top" secondItem="PIL-fE-Vrf" secondAttribute="bottom" constant="34" id="2Wz-Ze-SOI"/>
+                            <constraint firstItem="Epf-FM-wzB" firstAttribute="trailing" secondItem="3ln-Zi-qYF" secondAttribute="trailing" id="38k-tq-Ap2"/>
+                            <constraint firstItem="bMA-Zn-a7Z" firstAttribute="top" secondItem="3ln-Zi-qYF" secondAttribute="bottom" id="4lX-Qv-RZ1"/>
+                            <constraint firstItem="bMA-Zn-a7Z" firstAttribute="bottom" secondItem="Zi1-ym-F4Z" secondAttribute="top" id="6yC-eY-fU3"/>
+                            <constraint firstItem="PIL-fE-Vrf" firstAttribute="trailing" secondItem="Epf-FM-wzB" secondAttribute="trailing" id="8wA-6e-1MM"/>
+                            <constraint firstItem="PIL-fE-Vrf" firstAttribute="top" secondItem="7vb-Fk-PSH" secondAttribute="bottom" constant="119" id="BXB-IY-MzL"/>
+                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="trailing" secondItem="bMA-Zn-a7Z" secondAttribute="trailing" id="HiJ-nQ-umP"/>
+                            <constraint firstItem="PIL-fE-Vrf" firstAttribute="leading" secondItem="OXh-0W-Bi2" secondAttribute="leading" id="IfJ-gL-2fU"/>
+                            <constraint firstItem="Epf-FM-wzB" firstAttribute="leading" secondItem="3ln-Zi-qYF" secondAttribute="leading" id="Ld3-X1-F3w"/>
+                            <constraint firstItem="PIL-fE-Vrf" firstAttribute="centerY" secondItem="OXh-0W-Bi2" secondAttribute="centerY" id="OCl-5m-uXu"/>
+                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="leading" secondItem="bMA-Zn-a7Z" secondAttribute="leading" id="R3M-xu-7KP"/>
+                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="top" secondItem="Epf-FM-wzB" secondAttribute="bottom" id="YVS-uJ-lFY"/>
+                            <constraint firstAttribute="trailing" secondItem="PIL-fE-Vrf" secondAttribute="trailing" id="qPP-Tc-QcT"/>
+                            <constraint firstItem="bMA-Zn-a7Z" firstAttribute="height" secondItem="3ln-Zi-qYF" secondAttribute="height" id="rBg-UL-CJL"/>
+                            <constraint firstItem="PIL-fE-Vrf" firstAttribute="leading" secondItem="Epf-FM-wzB" secondAttribute="leading" id="rSy-zh-NS8"/>
+                            <constraint firstItem="3ln-Zi-qYF" firstAttribute="height" secondItem="Epf-FM-wzB" secondAttribute="height" id="scB-kS-x2X"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="s9C-L3-pyU"/>
                     <connections>
-                        <outlet property="introView" destination="wsD-pq-eLX" id="ACw-TS-642"/>
+                        <outlet property="infoLabel" destination="t20-IH-NgE" id="Ax2-kO-Ofm"/>
+                        <outlet property="scrollView" destination="PIL-fE-Vrf" id="HUh-Tg-BR4"/>
                         <segue destination="d3p-UK-jGg" kind="show" identifier="showSignUpView" id="dhz-Iv-blO"/>
                         <segue destination="UeI-PI-I3M" kind="show" identifier="showLoginView" id="cMs-jZ-zgL"/>
                     </connections>
@@ -461,6 +478,6 @@
         <image name="ic_eye_onbright_off" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8gW-gy-Dd6"/>
+        <segue reference="dhz-Iv-blO"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -96,9 +96,22 @@ class CompanyProfileViewController: GenericViewController {
         
         showHUD()
         
-        let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
+        var params: [String: Any] = [:]
         
-        Alamofire.request(IssueRouter.GetIssues(userId, statusIds)).responseJSON { response in
+        params["companyId"] = company.id
+        
+        var statusIdString: String = ""
+        
+        for statusId in statusIds {
+            
+            statusIdString = statusIdString + "\(statusId),"
+        }
+        
+        statusIdString = statusIdString.substring(to: statusIdString.index(before: statusIdString.endIndex))
+        
+        params["statusId"] = statusIdString
+        
+        Alamofire.request(IssueRouter.GetIssues(params)).responseJSON { response in
             
             self.hideHUD()
             

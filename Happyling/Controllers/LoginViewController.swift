@@ -93,11 +93,15 @@ class LoginViewController: GenericTableViewController {
                     }
                     else if signInResponse?.responseAttrs.errorMessage != nil {
                         
+                        self.showAlertWithMessage(message: signInResponse!.responseAttrs.errorMessage!)
+                        
                         print(signInResponse!.responseAttrs.errorMessage!)
                         
                     }
 
                 case .failure(let error):
+                    
+                    self.showAlertWithMessage(message: error.localizedDescription)
                     
                     print(error.localizedDescription)
                 }
@@ -153,6 +157,8 @@ class LoginViewController: GenericTableViewController {
                 print(json)
                 
             case .failure(let error):
+                
+                self.showAlertWithMessage(message: error.localizedDescription)
                 
                 print(error.localizedDescription)
             }

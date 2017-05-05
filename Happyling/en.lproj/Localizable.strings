@@ -26,6 +26,10 @@
 
 "SIGN_OUT" = "Sign out";
 
+"SHARE_SOLVE" = "Share your disappoitment. Solve a problem";
+
+"WE_CARE" = "We care about customer.";
+
 "NO_INTERNET_CONNECTION" = "You\'re not connected on internet, verify your data mobile or conect to Wifi";
 
 "SUCCESSFUL_REGISTRATION" = "Successful registration";

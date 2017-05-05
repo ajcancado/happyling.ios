@@ -26,6 +26,10 @@
 
 "SIGN_OUT" = "Sair";
 
+"SHARE_SOLVE" = "Compartilha seus sentimentos. Resolva um problema";
+
+"WE_CARE" = "Nos preocupamos com os consumidores.";
+
 "NO_INTERNET_CONNECTION" = "Você não está conectado a internet. Verifique seus dados ou conecte-se a uma rede Wifi";
 
 "SUCCESSFUL_REGISTRATION" = "Conta criada com sucesso";

@@ -6,17 +6,16 @@
 //  Copyright © 2016 Happyling. All rights reserved.
 //
 
+import Auk
 import UIKit
 import Alamofire
 import ObjectMapper
 import FBSDKLoginKit
-import EAIntroView
 
 class HomeViewController: GenericViewController {
 
-    @IBOutlet weak var introView: EAIntroView!
-    
-    var eaIntroView: EAIntroView!
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,51 +23,19 @@ class HomeViewController: GenericViewController {
         self.navigationItem.title = ""
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "img_logo_navigation"))
         
-        setupIntroView()
+        infoLabel.text = NSLocalizedString("SHARE_SOLVE", comment: "")
         
-        Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(moverParaProximoSlide), userInfo: nil, repeats: true)
+        setupIntroView()
     }
     
     func setupIntroView(){
         
-        let page1 = EAIntroPage()
+        scrollView.auk.show(image: UIImage(named: "img_solve_problem")!)
+        scrollView.auk.show(image: UIImage(named: "img_we_care_about_customers")!)
         
-        page1.title = "Hello world"
-        page1.titleColor = UIColor.gray
-        page1.desc = "Sample description 1"
-        page1.descColor = UIColor.gray
-        
-        let page2 = EAIntroPage()
-        
-        page2.title = "Hello world 2"
-        page2.titleColor = UIColor.gray
-        page2.desc = "Sample description 2"
-        page2.descColor = UIColor.gray
-        
-        eaIntroView = EAIntroView(frame: introView.bounds, andPages: [page1,page2])
-        
-        eaIntroView.skipButton = .none
-        eaIntroView.pageControl.pageIndicatorTintColor = UIColor.gray
-        eaIntroView.pageControl.currentPageIndicatorTintColor = UIColor.darkGray
-        
-        eaIntroView.show(in: introView, animateDuration: 0.3)
+        scrollView.auk.startAutoScroll(delaySeconds: 3)
         
     }
-
-    func moverParaProximoSlide() {
-        
-        let nextSlide = eaIntroView.currentPageIndex + 1
-        
-        if Int(nextSlide) >= eaIntroView.pages.count {
-            
-            eaIntroView.scrollToPage(for: 0, animated: true)
-        }
-        else {
-            
-            eaIntroView.scrollToPage(for: nextSlide , animated: true)
-        }
-    }
-
     
     // MARK: - Navigation
 
@@ -250,6 +217,19 @@ class HomeViewController: GenericViewController {
                 print(error.localizedDescription)
             }
             
+        }
+    }
+}
+
+extension HomeViewController: UIScrollViewDelegate{
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.auk.currentPageIndex == 0 {
+            infoLabel.text = NSLocalizedString("SHARE_SOLVE", comment: "")
+        }
+        else{
+            infoLabel.text = NSLocalizedString("WE_CARE", comment: "")
         }
     }
 }

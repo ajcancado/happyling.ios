@@ -7,6 +7,8 @@ target 'Happyling' do
 
     use_frameworks!
 
+    pod 'moa', '~> 8.0'
+    pod 'Auk', '~> 7.0'
     pod 'PKHUD', '~> 4.0'
     pod 'Fabric' #objective-c
     pod 'Alamofire', '~> 4.0'
@@ -16,7 +18,6 @@ target 'Happyling' do
     pod 'ObjectMapper'
     pod 'MHTextField'
     pod 'TPKeyboardAvoiding' #objective-c
-    pod 'EAIntroView' #objective-c
     pod 'libPhoneNumber-iOS' #objective-c
     pod 'AARatingBar'
     pod 'FBSDKCoreKit'

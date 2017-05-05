@@ -72,6 +72,8 @@ class ProblemsViewController: GenericViewController {
             statusIdString = statusIdString + "\(statusId),"
         }
         
+        statusIdString = statusIdString.substring(to: statusIdString.index(before: statusIdString.endIndex))
+        
         params["statusId"] = statusIdString
         
         

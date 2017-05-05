@@ -32,6 +32,17 @@ class GenericTableViewController: UITableViewController {
         
         self.present(viewController, animated: true, completion: nil)
     }
+    
+    func showAlertWithMessage(message: String) {
+        
+        let alertController = UIAlertController(title: "Happyling", message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        
+        alertController.addAction(action)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
 
 }
 
