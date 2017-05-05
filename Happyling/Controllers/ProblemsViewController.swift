@@ -61,7 +61,21 @@ class ProblemsViewController: GenericViewController {
         
         let userId = SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId)
         
-        Alamofire.request(IssueRouter.GetIssues(userId, statusIds)).responseJSON { response in
+        var params: [String: Any] = [:]
+        
+        params["userId"] = userId
+        
+        var statusIdString: String = ""
+        
+        for statusId in statusIds {
+            
+            statusIdString = statusIdString + "\(statusId),"
+        }
+        
+        params["statusId"] = statusIdString
+        
+        
+        Alamofire.request(IssueRouter.GetIssues(params)).responseJSON { response in
             
             self.hideHUD()
             
