@@ -157,7 +157,7 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
         
         
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let section = indexPath.section

@@ -63,7 +63,4 @@ struct Constants {
         static let bundlePath = Bundle.main.bundlePath
         static let bundle = Bundle.main
     }
-    
-    
-    
 }
