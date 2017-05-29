@@ -33,7 +33,7 @@ class HomeViewController: GenericViewController {
         scrollView.auk.show(image: UIImage(named: "img_solve_problem")!)
         scrollView.auk.show(image: UIImage(named: "img_we_care_about_customers")!)
         
-        scrollView.auk.startAutoScroll(delaySeconds: 3)
+        scrollView.auk.startAutoScroll(delaySeconds: 6)
         
     }
     
@@ -43,7 +43,7 @@ class HomeViewController: GenericViewController {
         
         if segue.identifier == "showLoginView" {
             
-            let _ = segue.destination as! LoginViewController
+//            let _ = segue.destination as! LoginViewController
             
         }
     }
@@ -208,7 +208,7 @@ class HomeViewController: GenericViewController {
                 }
                 else if signInResponse?.responseAttrs.errorMessage != nil {
                     
-                    print(signInResponse?.responseAttrs.errorMessage!)
+                    print(signInResponse!.responseAttrs.errorMessage!)
                 }
                 
                 

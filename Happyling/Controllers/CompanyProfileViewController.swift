@@ -18,8 +18,6 @@ class CompanyProfileViewController: GenericViewController {
         
     @IBOutlet weak var mLabelName: UILabel!
     
-    @IBOutlet weak var mLabelReplyTime: UILabel!
-    
     @IBOutlet weak var mLabelWebsite: UILabel!
     
     @IBOutlet weak var mLabelAddress: UILabel!
@@ -49,13 +47,30 @@ class CompanyProfileViewController: GenericViewController {
     
     func setupCompanyInfo(){
         
-        statusImage.backgroundColor = Constants.Colors.oranage
-        statusImage.layer.cornerRadius = statusImage.frame.size.width / 2
-        statusImage.clipsToBounds = true
+        if company.average != nil {
+        
+            if company.average > 4 {
+                statusImage.image = UIImage(named: "ic_orange")
+            }
+            else if company.average > 3 {
+                statusImage.image = UIImage(named: "ic_yellow_dark")
+            }
+            else if company.average > 2 {
+                statusImage.image = UIImage(named: "ic_yellow")
+            }
+            else if company.average > 1 {
+                statusImage.image = UIImage(named: "ic_blue")
+            }
+            else {
+                statusImage.image = UIImage(named: "ic_purple")
+            }
+        }
+        else{
+         
+            statusImage.image = UIImage(named: "ic_orange")
+        }
         
         mLabelName.text = company.name
-        mLabelReplyTime.text = company.status
-        mLabelReplyTime.isHidden = true
         mLabelWebsite.text = company.webSite
         
         if company.city != nil && !company.city.isEmpty {
@@ -274,27 +289,15 @@ extension CompanyProfileViewController: UITableViewDataSource {
         
         let issue = companyIssues[row]
         
-        cell.companyLogo.backgroundColor = Constants.Colors.oranage
-        cell.companyLogo.layer.cornerRadius = cell.companyLogo.frame.size.width / 2
-        cell.companyLogo.clipsToBounds = true
+        cell.companyLogo.isHidden = true
         
         cell.companyName.text = issue.company.name
         
-        let date = NSDate(timeIntervalSince1970: issue.creationDate)
+        let date = issue.creationDate.toDate()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = NSTimeZone.local //Edit
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.dateStyle = DateFormatter.Style.full
-        dateFormatter.timeStyle = DateFormatter.Style.short
+        let format = NSLocalizedString("DATE_FORMAT", comment: "")
         
-        let strDateSelect = dateFormatter.string(from: date as Date)
-        print(strDateSelect) //Local time
-        let dateFormatter2 = DateFormatter()
-        dateFormatter2.timeZone = NSTimeZone.local
-        dateFormatter2.dateFormat = "yyyy-MM-dd"
-        
-        cell.problemDate.text = strDateSelect
+        cell.problemDate.text = DateHelper.formatDate(date: date, withFormat: format)
         
         cell.problemSubject.text = issue.subject
         cell.problemStatus.text = issue.status.name
@@ -310,7 +313,7 @@ extension CompanyProfileViewController: UITableViewDataSource {
 extension CompanyProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 120
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

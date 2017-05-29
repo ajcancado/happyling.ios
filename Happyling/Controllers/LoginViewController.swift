@@ -24,7 +24,6 @@ class LoginViewController: GenericTableViewController {
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "img_logo_navigation"))
         
         setupTextFields()
-        
     }
     
     func setupTextFields() {

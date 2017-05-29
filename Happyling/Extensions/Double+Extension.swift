@@ -13,5 +13,10 @@ extension Double {
     func toString() -> String {
         return String(format: "%.1f",self)
     }
+    
+    func toDate() -> Date {
+        
+        return NSDate(timeIntervalSince1970: self/1000.0) as Date!
+    }
 }
 

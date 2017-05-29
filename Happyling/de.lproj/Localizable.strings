@@ -6,6 +6,8 @@
   Copyright © 2017 Happyling. All rights reserved.
 */
 
+"DATE_FORMAT" = "yyyy-MM-dd";
+
 "MY_ACCOUNT" = "My Account";
 
 "CHANGE_PASSWORD" = "Change Password";

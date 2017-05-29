@@ -43,6 +43,7 @@ class ProblemsViewController: GenericViewController {
         tableView.register(UINib(nibName: "ProblemsTableViewCell", bundle: nil), forCellReuseIdentifier: "CellID")
         
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.separatorStyle = .none
         
         let emptyBackgroundView = EmptyBackgroundView(image: UIImage(), top: topMessage, bottom: bottomMessage)
         
@@ -141,13 +142,9 @@ extension ProblemsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
     
         if self.issues.count == 0 {
-            
-            self.tableView.separatorStyle = .none
             self.tableView.backgroundView?.isHidden = false
-            
-        } else {
-            
-            self.tableView.separatorStyle = .singleLine
+        }
+        else {
             self.tableView.backgroundView?.isHidden = true
         }
         
@@ -172,24 +169,19 @@ extension ProblemsViewController: UITableViewDataSource {
         
         cell.companyName.text = issue.company.name
         
-        let date = NSDate(timeIntervalSince1970: issue.creationDate)
+        let date = issue.creationDate.toDate()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = NSTimeZone.local //Edit
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.dateStyle = DateFormatter.Style.full
-        dateFormatter.timeStyle = DateFormatter.Style.short
+        let format = NSLocalizedString("DATE_FORMAT", comment: "")
         
-        let strDateSelect = dateFormatter.string(from: date as Date)
-        print(strDateSelect) //Local time
-        let dateFormatter2 = DateFormatter()
-        dateFormatter2.timeZone = NSTimeZone.local
-        dateFormatter2.dateFormat = "yyyy-MM-dd"
-        
-        cell.problemDate.text = strDateSelect
+        cell.problemDate.text = DateHelper.formatDate(date: date, withFormat: format)
         
         cell.problemSubject.text = issue.subject
         cell.problemStatus.text = issue.status.name
+        
+        cell.contentView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        cell.contentView.layer.borderWidth = 1.0
+        
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -200,12 +192,18 @@ extension ProblemsViewController: UITableViewDataSource {
 extension ProblemsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 120
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "segueToIssueDescription", sender: self)
+        let section = indexPath.section
+        
+        let issue = issues[section]
+        
+        if issue.status.id != 1  {
+            performSegue(withIdentifier: "segueToIssueDescription", sender: self)
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

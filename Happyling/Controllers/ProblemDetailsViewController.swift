@@ -23,6 +23,8 @@ class ProblemDetailsViewController: GenericViewController {
 
         setupTableView()
         
+        setupTableFooterView()
+        
         let send = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(makeInteraction))
         
         navigationItem.rightBarButtonItem = send
@@ -38,10 +40,24 @@ class ProblemDetailsViewController: GenericViewController {
         
         tableView.register(UINib(nibName: "ProblemsTableViewCell", bundle: nil), forCellReuseIdentifier: "ProblemCellID")
         
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
         
         tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
+    func setupTableFooterView(){
+        
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        customView.backgroundColor = UIColor.red
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        button.setTitle("Submit", for: .normal)
+        button.addTarget(self, action: #selector(makeInteraction), for: .touchUpInside)
+        customView.addSubview(button)
+        
+        tableView.tableFooterView = customView
+        
     }
     
     func makeInteraction(){
@@ -110,11 +126,16 @@ class ProblemDetailsViewController: GenericViewController {
 extension ProblemDetailsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return issue.interactions.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        
+        if section == 0 {
+            return 1
+        }
+        
+        return issue.interactions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -122,9 +143,7 @@ extension ProblemDetailsViewController: UITableViewDataSource {
         let row = indexPath.row
         let section = indexPath.section
         
-        let issueInteraction = issue.interactions[section]
-        
-        if row == 0 {
+        if section == 0 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProblemCellID", for: indexPath) as! ProblemsTableViewCell
             
@@ -133,20 +152,35 @@ extension ProblemDetailsViewController: UITableViewDataSource {
             cell.companyLogo.clipsToBounds = true
             
             cell.companyName.text = issue.company.name
-            //        cell.problemDate.text =
+            
+            let date = issue.creationDate.toDate()
+            
+            let format = NSLocalizedString("DATE_FORMAT", comment: "")
+            
+            cell.problemDate.text = DateHelper.formatDate(date: date, withFormat: format)
             
             cell.problemSubject.text = issue.subject
             cell.problemStatus.text = issue.status.name
             
+            cell.selectionStyle = .none
+            
+            cell.contentView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+            cell.contentView.layer.borderWidth = 1.0
             
             return cell
-            
         }
         else{
+            
+            let issueInteraction = issue.interactions[row]
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath)
             
             cell.textLabel?.text = issueInteraction.descricao
+            
+            cell.selectionStyle = .none
+            
+            cell.contentView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+            cell.contentView.layer.borderWidth = 1.0
             
             return cell
         
@@ -157,6 +191,17 @@ extension ProblemDetailsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension ProblemDetailsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let section = indexPath.section
+        
+        if section == 0 {
+            return 120
+        }
+        
+        return 44
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

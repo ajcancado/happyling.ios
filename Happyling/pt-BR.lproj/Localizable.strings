@@ -6,6 +6,8 @@
   Copyright © 2017 Happyling. All rights reserved.
 */
 
+"DATE_FORMAT" = "dd/MM/yyyy";
+
 "MY_ACCOUNT" = "Meus dados";
 
 "CHANGE_PASSWORD" = "Mudar minha senha";
@@ -26,7 +28,7 @@
 
 "SIGN_OUT" = "Sair";
 
-"SHARE_SOLVE" = "Compartilha seus sentimentos. Resolva um problema";
+"SHARE_SOLVE" = "Compartilhe seus sentimentos. Resolva um problema";
 
 "WE_CARE" = "Nos preocupamos com os consumidores.";
 

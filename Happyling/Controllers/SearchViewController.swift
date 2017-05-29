@@ -187,6 +187,8 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searchController.isActive && searchController.searchBar.text != "" {
+            
+            
             return filteredCompanies.count
         }
         
@@ -207,12 +209,31 @@ extension SearchViewController: UITableViewDataSource {
             company = companies[row]
         }
         
-        cell.imgLogo.backgroundColor = Constants.Colors.oranage
         cell.lblName.text = company.name
         
+        if company.average != nil {
         
-        cell.imgLogo.layer.cornerRadius = cell.imgLogo.frame.size.width / 2
-        cell.imgLogo.clipsToBounds = true
+            if company.average > 4 {
+                cell.imgLogo.image = UIImage(named: "ic_orange")
+            }
+            else if company.average > 3 {
+                cell.imgLogo.image = UIImage(named: "ic_yellow_dark")
+            }
+            else if company.average > 2 {
+                cell.imgLogo.image = UIImage(named: "ic_yellow")
+            }
+            else if company.average > 1 {
+                cell.imgLogo.image = UIImage(named: "ic_blue")
+            }
+            else {
+                cell.imgLogo.image = UIImage(named: "ic_purple")
+            }
+        }
+        else {
+            
+            cell.imgLogo.image = UIImage(named: "ic_orange")
+            
+        }
         
         return cell
     }
@@ -237,7 +258,7 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 80
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

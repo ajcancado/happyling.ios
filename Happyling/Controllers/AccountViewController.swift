@@ -222,22 +222,22 @@ class AccountViewController: GenericViewController {
                 statusIds.append(2)
                 statusIds.append(5)
                 
-                svc.problemType = "In Analysis"
+                svc.problemType = NSLocalizedString("PROBLEMS_OPENED", comment: "")
             }
             else if section == 2 {
                 
-                svc.problemType = "Resolved"
+                svc.problemType = NSLocalizedString("PROBLEMS_SOLVED", comment: "")
                 
                 statusIds.append(3)
             }
             else if section == 3{
                 
-                svc.problemType = "Unresolved"
+                svc.problemType = NSLocalizedString("PROBLEMS_NOT_SOLVED", comment: "")
                 
                 statusIds.append(4)
             }
             
-            svc.statusIds = statusIds
+           svc.statusIds = statusIds
         }
     }
 }
