@@ -18,6 +18,7 @@ enum IssueRouter: URLRequestConvertible{
     case MakeIssueReport([String: Any])
     case MakeIssueInteraction([String: Any])
     case MakeIsseuReportRating([String: Any])
+    case CanBeEvaluated(Int)
     
     var method: Alamofire.HTTPMethod {
         switch self {
@@ -35,6 +36,8 @@ enum IssueRouter: URLRequestConvertible{
                 return .post
             case .MakeIsseuReportRating:
                 return .post
+            case .CanBeEvaluated:
+                return .get
         }
     }
     
@@ -55,6 +58,8 @@ enum IssueRouter: URLRequestConvertible{
                 return "issue-report-interaction/user"
             case .MakeIsseuReportRating:
                 return "issue-report-rating"
+            case .CanBeEvaluated(let issueID):
+                return "issue-report/can-be-evaluated/\(issueID)"
         }
     }
     

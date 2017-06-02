@@ -191,7 +191,6 @@ class LoginViewController: GenericTableViewController {
         
         let section = indexPath.section
         
-        
         if section == 1 {
             makeLogin()
         }

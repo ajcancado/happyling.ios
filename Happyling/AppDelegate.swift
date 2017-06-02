@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = viewController
         
-        window?.tintColor = Constants.Colors.oranage
+        window?.tintColor = Constants.Colors.orange
         
         window?.makeKeyAndVisible()
         

@@ -14,6 +14,8 @@ class ProblemDetailsViewController: GenericViewController {
 
     var issue: Issue!
     
+    var canEvaluate = false
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -28,6 +30,8 @@ class ProblemDetailsViewController: GenericViewController {
         let send = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(makeInteraction))
         
         navigationItem.rightBarButtonItem = send
+        
+        validateIssueCanBeEvaluated()
 
     }
 
@@ -49,75 +53,117 @@ class ProblemDetailsViewController: GenericViewController {
     
     func setupTableFooterView(){
         
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        customView.backgroundColor = UIColor.red
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        button.setTitle("Submit", for: .normal)
-        button.addTarget(self, action: #selector(makeInteraction), for: .touchUpInside)
-        customView.addSubview(button)
+        if canEvaluate != true {
         
-        tableView.tableFooterView = customView
+            let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+            customView.backgroundColor = Constants.Colors.orange
+            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+            button.setTitle("Evaluate", for: .normal)
+            button.titleLabel?.textAlignment = .center
+            button.contentHorizontalAlignment = .center
+            button.addTarget(self, action: #selector(makeEvaluate), for: .touchUpInside)
+            customView.addSubview(button)
+            
+            customView.layer.cornerRadius = 10
+            customView.clipsToBounds = true
+            
+            tableView.tableFooterView = customView
+            
+        }
+        
+    }
+    
+    func validateIssueCanBeEvaluated(){
+        
+        showHUD()
+        
+        Alamofire.request(IssueRouter.CanBeEvaluated(issue.id)).responseJSON { response in
+            
+            self.hideHUD()
+            
+            switch response.result {
+                
+            case .success(let json):
+                
+                print(json)
+                
+                let canEvaluateResponse = Mapper<CanEvaluateResponse>().map(JSON: json as! [String: Any])
+                
+                if canEvaluateResponse?.data != nil {
+                    
+                    self.canEvaluate = canEvaluateResponse!.data
+                    
+                    self.setupTableFooterView()
+                    
+                }
+                
+            case .failure(let error):
+                
+                
+                print(error.localizedDescription)
+            }
+        }
+
+    }
+    
+    func makeEvaluate(){
+        
+        let svc = RatingViewController()
+        svc.modalTransitionStyle = .coverVertical
+        
+        svc.issue = issue
+        
+        present(svc, animated: true, completion: nil)
         
     }
     
     func makeInteraction(){
         
-        if issue.status.id == 3 {
-            
-            let svc = RatingViewController()
-            svc.modalTransitionStyle = .coverVertical
-            
-            svc.issue = issue
-
-            present(svc, animated: true, completion: nil)
-            
-        }
-        else{
         
-            let alertController = UIAlertController(title: "Make Interaction", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Make Interaction", message: "", preferredStyle: .alert)
+        
+        let changeAction = UIAlertAction(title: "Send", style: .default, handler: {
+            alert -> Void in
             
-            let changeAction = UIAlertAction(title: "Send", style: .default, handler: {
-                alert -> Void in
+            self.showHUD()
+            
+            let firstTextField = alertController.textFields![0] as UITextField
+            
+            var params: [String: Any] = [:]
+            
+            params["description"] = firstTextField.text
+            params["issueReport"] = self.issue.id
+            
+            Alamofire.request(IssueRouter.MakeIssueInteraction(params)).responseJSON { response in
                 
-                self.showHUD()
+                self.hideHUD()
                 
-                let firstTextField = alertController.textFields![0] as UITextField
-                
-                var params: [String: Any] = [:]
-                
-                params["description"] = firstTextField.text
-                params["issueReport"] = self.issue.id
-                
-                Alamofire.request(IssueRouter.MakeIssueInteraction(params)).responseJSON { response in
+                switch response.result {
                     
-                    self.hideHUD()
+                case .success(let json):
                     
-                    switch response.result {
-                        
-                    case .success(let json):
-                        
-                        print("Sucesso !!! \(json)")
-                        
-                    case .failure(let error):
-                        
-                        print(error.localizedDescription)
-                    }
+                    print("Sucesso !!! \(json)")
+                    
+                case .failure(let error):
+                    
+                    print(error.localizedDescription)
                 }
-            })
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alertController.addTextField { (textField : UITextField!) -> Void in
-                textField.placeholder = "Enter your interaction"
             }
-            
-            alertController.addAction(changeAction)
-            alertController.addAction(cancelAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter your interaction"
         }
+        
+        alertController.addAction(changeAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
+    
     
 }
 
@@ -147,7 +193,7 @@ extension ProblemDetailsViewController: UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProblemCellID", for: indexPath) as! ProblemsTableViewCell
             
-            cell.companyLogo.backgroundColor = Constants.Colors.oranage
+            cell.companyLogo.backgroundColor = Constants.Colors.orange
             cell.companyLogo.layer.cornerRadius = cell.companyLogo.frame.size.width / 2
             cell.companyLogo.clipsToBounds = true
             
@@ -192,16 +238,16 @@ extension ProblemDetailsViewController: UITableViewDataSource {
 
 extension ProblemDetailsViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        let section = indexPath.section
-        
-        if section == 0 {
-            return 120
-        }
-        
-        return 44
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        let section = indexPath.section
+//        
+//        if section == 0 {
+//            return 120
+//        }
+//        
+//        return 44
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

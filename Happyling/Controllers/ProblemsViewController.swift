@@ -163,7 +163,7 @@ extension ProblemsViewController: UITableViewDataSource {
         
         let issue = issues[section]
         
-        cell.companyLogo.backgroundColor = Constants.Colors.oranage
+        cell.companyLogo.backgroundColor = Constants.Colors.orange
         cell.companyLogo.layer.cornerRadius = cell.companyLogo.frame.size.width / 2
         cell.companyLogo.clipsToBounds = true
         

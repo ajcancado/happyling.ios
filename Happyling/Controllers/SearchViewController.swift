@@ -76,7 +76,7 @@ class SearchViewController: GenericViewController {
         let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
 
         actInd.center = CGPoint(x: width/2, y: 22)
-        actInd.color = Constants.Colors.oranage
+        actInd.color = Constants.Colors.orange
         
         actInd.startAnimating()
         

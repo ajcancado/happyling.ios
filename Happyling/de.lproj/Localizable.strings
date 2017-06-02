@@ -1,4 +1,4 @@
-/* 
+﻿/* 
   Localizable.strings
   Happyling
 
@@ -8,29 +8,29 @@
 
 "DATE_FORMAT" = "yyyy-MM-dd";
 
-"MY_ACCOUNT" = "My Account";
+"MY_ACCOUNT" = "Mein Account";
 
-"CHANGE_PASSWORD" = "Change Password";
+"CHANGE_PASSWORD" = "Passwort ändern";
 
-"NOTIFICATIONS" = "Notifications";
+"NOTIFICATIONS" = "Mitteilungen";
 
-"PROBLEMS_OPENED" = "Problems Opened";
+"PROBLEMS_OPENED" = "Offene Probleme";
 
-"PROBLEMS_SOLVED" = "Problems Solved";
+"PROBLEMS_SOLVED" = "Gelöste Probleme";
 
-"PROBLEMS_NOT_SOLVED" = "Problems not opened";
+"PROBLEMS_NOT_SOLVED" = "Ungeöffnete Probleme";
 
-"RATING_APP" = "Rating App";
+"RATING_APP" = "App bewerten";
 
-"TERMS_OF_USE" = "Terms of Use";
+"TERMS_OF_USE" = "Nutzungsbedingungen";
 
 "HAPPYLING_FOR_BUSINESS" = "Happyling for Business";
 
-"SIGN_OUT" = "Sign out";
+"SIGN_OUT" = "Abmelden";
 
-"SHARE_SOLVE" = "Share your disappoitment. Solve a problem";
+"SHARE_SOLVE" = "Teile deine Unzufriedenheit. Löse deine Probleme.";
 
-"WE_CARE" = "We care about customer.";
+"WE_CARE" = "We kümmern uns um Kunden.";
 
 "NO_INTERNET_CONNECTION" = "Es besteht keine Internetverbindung. Bitte überprüfe die Einstellungen deiner mobilen Daten oder verbinde dich mit einem WLAN-Netzwerk.";
 

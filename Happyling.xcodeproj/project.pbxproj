@@ -66,6 +66,7 @@
 		DC08E10C1EA85F2B0096D18C /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08E10A1EA85F2B0096D18C /* RatingViewController.swift */; };
 		DC08E10D1EA85F2B0096D18C /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC08E10B1EA85F2B0096D18C /* RatingViewController.xib */; };
 		DC664B351EB936AE00D7BA28 /* ThanksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC664B341EB936AE00D7BA28 /* ThanksViewController.xib */; };
+		DC8698C01EDFCB0E0045453C /* CanEvaluateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8698BF1EDFCB0E0045453C /* CanEvaluateResponse.swift */; };
 		DCC2667C1EB8F92C001D3C4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCC2667E1EB8F92C001D3C4C /* Localizable.strings */; };
 		DCC266831EB8FA34001D3C4C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC266821EB8FA34001D3C4C /* String+Extension.swift */; };
 		DCC266871EB926EE001D3C4C /* LanguageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC266861EB926EE001D3C4C /* LanguageHelper.swift */; };
@@ -141,6 +142,7 @@
 		DC08E10A1EA85F2B0096D18C /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		DC08E10B1EA85F2B0096D18C /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
 		DC664B341EB936AE00D7BA28 /* ThanksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThanksViewController.xib; sourceTree = "<group>"; };
+		DC8698BF1EDFCB0E0045453C /* CanEvaluateResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanEvaluateResponse.swift; sourceTree = "<group>"; };
 		DCC2667B1EB8F753001D3C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		DCC2667F1EB8F935001D3C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCC266801EB8F939001D3C4C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				8E67BDA21DF9FF1A00F92EE5 /* GetUserResponse.swift */,
 				8EA2B9E61E3E924C001C9FDE /* GetIssuesResponse.swift */,
 				8EA2B9F61E3EE30C001C9FDE /* GetIssueStatusResponse.swift */,
+				DC8698BF1EDFCB0E0045453C /* CanEvaluateResponse.swift */,
 				8E813C8A1DEA7EF10056C759 /* ResponseAttrs.swift */,
 				8EA2B9E81E3E92A4001C9FDE /* Issue.swift */,
 				8E67BDAA1DFA181D00F92EE5 /* GetCompanyResponse.swift */,
@@ -519,6 +522,7 @@
 				8EA2B9E91E3E92A4001C9FDE /* Issue.swift in Sources */,
 				DC08E1091EA8536C0096D18C /* ProblemDetailsViewController.swift in Sources */,
 				8EA2B9D31E3E4CEC001C9FDE /* CurrentInteraction.swift in Sources */,
+				DC8698C01EDFCB0E0045453C /* CanEvaluateResponse.swift in Sources */,
 				8EA2B9EB1E3E9362001C9FDE /* Status.swift in Sources */,
 				8EA2B9D91E3E4EF1001C9FDE /* IssueReportTypeResponse.swift in Sources */,
 				8EA2B9E71E3E924C001C9FDE /* GetIssuesResponse.swift in Sources */,

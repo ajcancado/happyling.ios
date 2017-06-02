@@ -1,17 +1,17 @@
 //
-//  GetIssueStatusResponse.swift
+//  CanEvaluateResponse.swift
 //  Happyling
 //
-//  Created by Arthur Junqueira Cançado on 30/01/17.
+//  Created by Arthur Junqueira Cançado on 01/06/17.
 //  Copyright © 2017 Happyling. All rights reserved.
 //
 
 import UIKit
 import ObjectMapper
 
-class GetIssueStatusResponse: Mappable {
+class CanEvaluateResponse: Mappable {
     
-    var data: [Status]!
+    var data: Bool!
     var responseAttrs: ResponseAttrs!
     
     required init?(map: Map) {
