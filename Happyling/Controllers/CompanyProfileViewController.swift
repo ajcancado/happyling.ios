@@ -28,8 +28,8 @@ class CompanyProfileViewController: GenericViewController {
     
     var companyIssues: [Issue] = []
     
-    let topMessage = "Eba..."
-    let bottomMessage = "Nenhum problema"
+    let topMessage = "Happyling"
+    let bottomMessage = "No problems found"
     
     override func viewDidLoad() {
         super.viewDidLoad()

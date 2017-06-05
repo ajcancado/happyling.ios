@@ -10,10 +10,18 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
+protocol CreateCompanyProtocol{
+ 
+    func createCompany()
+}
 
 class SearchViewController: GenericViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    lazy var searchBar:UISearchBar = UISearchBar()
+    
+    var searchActive: Bool = false
     
     var start: Int = 0
     var pageSize: Int = 10
@@ -22,13 +30,11 @@ class SearchViewController: GenericViewController {
     var companies: [Company] = []
     var filteredCompanies: [Company] = []
     
-    var params: [String: Any] = [:]
+    var mParams: [String: Any] = [:]
     
     var isFromIssues : Bool = false
     
     var delegate: SelectCompanyProtocol!
-    
-    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,26 +45,28 @@ class SearchViewController: GenericViewController {
         
         setupSearchController()
         
+        setupTableView()
+        
         showHUD()
         
         getCompanies()
-        
-        setupTableView()
     }
     
     func setupSearchController(){
+
+        searchBar.searchBarStyle = .prominent
+        searchBar.placeholder = " Search..."
+        searchBar.sizeToFit()
+        searchBar.delegate = self
         
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
-        
+        tableView.tableHeaderView = searchBar
     }
 
     func setupTableView(){
         
         tableView.backgroundColor = Constants.Colors.gray
         
+        tableView.register(UINib(nibName: "CellNotFoundCell", bundle: nil), forCellReuseIdentifier: "CellNotFoundCellID")
         tableView.register(UINib(nibName: "CompanyCell", bundle: nil), forCellReuseIdentifier: "CompanyCellID")
         
         tableView.tableFooterView = UIView(frame: .zero)
@@ -92,11 +100,53 @@ class SearchViewController: GenericViewController {
     
     func getCompanies(){
         
-        params["start"] = start
-        params["pageSize"] = pageSize
-//        params["sortBy"] = ""
-//        params["direction"] = ""
-//        params["name"] = ""
+        mParams["start"] = start
+        mParams["pageSize"] = pageSize
+        //        mParams["sortBy"] = ""
+        //        mParams["direction"] = ""
+        //        mParams["name"] = ""
+        
+        Alamofire.request(CompanyRouter.GetCompany(mParams)).responseJSON { response in
+            
+            self.hideHUD()
+            self.removedInfiniteScrollViewInFooter()
+            
+            switch response.result {
+                
+            case .success(let json):
+                
+                print(json)
+                
+                let getCompanyResponse = Mapper<GetCompanyResponse>().map(JSON: json as! [String: Any])
+                
+                if getCompanyResponse?.data != nil {
+                    
+                    self.companies.append(contentsOf: getCompanyResponse!.data)
+                    self.recordsTotal = getCompanyResponse?.responseAttrs.recordsTotal
+                    
+                    self.tableView.dataSource = self
+                    self.tableView.delegate = self
+                    
+                    self.tableView.reloadData()
+                    
+                }
+                else if getCompanyResponse!.responseAttrs.errorMessage != nil {
+                    
+                    print(getCompanyResponse!.responseAttrs.errorMessage)
+                }
+                
+            case .failure(let error):
+                
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getCompaniesByName(name: String){
+        
+        var params: [String: Any] = [:]
+        
+        params["name"] = name
         
         Alamofire.request(CompanyRouter.GetCompany(params)).responseJSON { response in
             
@@ -143,7 +193,7 @@ class SearchViewController: GenericViewController {
             
             let company: Company
             
-            if searchController.isActive && searchController.searchBar.text != "" {
+            if searchActive {
                 company = filteredCompanies[row]
             } else {
                 company = companies[row]
@@ -153,41 +203,81 @@ class SearchViewController: GenericViewController {
                 
             svc.company = company
         }
+        else if segue.identifier == "segueToCompanySimple" {
+            
+            let svc = segue.destination as! CreateSimpleCompanyViewController
+            
+            svc.delegate = self
+        }
+    }
+}
+
+extension SearchViewController: CreateCompanyProtocol{
+    
+    func createCompany() {
         
+        searchBar.text = ""
+        searchActive = false
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.resignFirstResponder()
+        
+        companies.removeAll()
+        filteredCompanies.removeAll()
+        
+        showHUD()
+        getCompanies()
+    }
+}
+
+// MARK: - UISearchControllerDelegate
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+        searchBar.setShowsCancelButton(true, animated: true)
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        
+        searchActive = false;
+        self.tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         filteredCompanies = companies.filter { company in
             return company.name.lowercased().contains(searchText.lowercased())
         }
         
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
-}
-
-// MARK: - UISearchResultsUpdating
-
-extension SearchViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchText: searchController.searchBar.text!)
-    }
 }
 
 // MARK: - UITableViewDataSource
 
 extension SearchViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if searchController.isActive && searchController.searchBar.text != "" {
-            
+        if searchActive {
+        
+            if ( filteredCompanies.count == 0) {
+                return 1
+            }
             
             return filteredCompanies.count
         }
@@ -197,13 +287,23 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        if searchActive && filteredCompanies.count == 0 {
+                
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellNotFoundCellID", for: indexPath)
+            
+            cell.textLabel?.text = "You can't find the company ? Click here"
+            
+            return cell
+            
+        }
+        
         let row = indexPath.row
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CompanyCellID", for: indexPath) as! CompanyCell
         
         let company: Company
         
-        if searchController.isActive && searchController.searchBar.text != "" {
+        if searchActive {            
             company = filteredCompanies[row]
         } else {
             company = companies[row]
@@ -272,7 +372,15 @@ extension SearchViewController: UITableViewDelegate {
             self.navigationController?.popViewController(animated: true)
         }
         else{
-            performSegue(withIdentifier: "segueToCompanyProfile", sender: self)
+            
+            if searchActive && filteredCompanies.count == 0 {
+            
+                performSegue(withIdentifier: "segueToCompanySimple", sender: self)
+                
+            }
+            else{
+                performSegue(withIdentifier: "segueToCompanyProfile", sender: self)
+            }
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

@@ -27,6 +27,9 @@ class Company: NSObject , Mappable {
     var average: Double!
     var status: String!
     
+    override init() {
+    
+    }
     
     required init?(map: Map) {
         

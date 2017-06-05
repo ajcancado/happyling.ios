@@ -304,7 +304,7 @@ extension AccountViewController: UITableViewDataSource {
                 
                 let haveToken = SessionManager.containsObjectForKey(key: Constants.SessionKeys.deviceToken)
                 
-                switchView.setOn(haveToken, animated: true)
+                switchView.setOn(haveToken, animated: false)
                 switchView.onTintColor = Constants.Colors.orange
                 switchView.addTarget(self, action: #selector(self.switchValueChanged(sender:)), for: .valueChanged)
             

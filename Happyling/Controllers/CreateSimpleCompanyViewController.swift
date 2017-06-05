@@ -1,28 +1,29 @@
 //
-//  SignUpViewController.swift
+//  CreateSimpleCompanyViewController.swift
 //  Happyling
 //
-//  Created by Arthur Junqueira Cançado on 26/11/16.
-//  Copyright © 2016 Happyling. All rights reserved.
+//  Created by Arthur Junqueira Cançado on 05/06/17.
+//  Copyright © 2017 Happyling. All rights reserved.
 //
 
 import UIKit
 import Alamofire
 import ObjectMapper
 
-class SignUpTableViewController: GenericTableViewController{
+class CreateSimpleCompanyViewController: GenericTableViewController {
 
     @IBOutlet var labels: [UILabel]!
     
     @IBOutlet var txName: UITextField!
     @IBOutlet var txEmail: UITextField!
-    @IBOutlet var txPassword: UITextField!
+    @IBOutlet var txWebsite: UITextField!
     
+    var delegate: CreateCompanyProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "SignUp"
+        self.title = "Create Simple Company"
         
         updateWidthsForLabels(labels: labels)
         
@@ -42,7 +43,7 @@ class SignUpTableViewController: GenericTableViewController{
     
     private func calculateMaxLabelWidth(labels: [UILabel]) -> CGFloat {
         
-    
+        
         return 66//reduce(map(labels, calculateLabelWidth), 0, max)
     }
     
@@ -60,64 +61,6 @@ class SignUpTableViewController: GenericTableViewController{
         }
     }
     
-    func makeSignUp() {
-        
-        if validate() {
-            
-            var params: [String: Any] = [:]
-            
-            params["name"] = txName.text
-            params["email"] = txEmail.text
-            params["password"] = txPassword.text
-            params["confirmPassword"]  = txPassword.text
-            
-            if SessionManager.containsObjectForKey(key: Constants.SessionKeys.deviceToken) { 
-                params["deviceToken"] = SessionManager.getObjectForKey(key: Constants.SessionKeys.deviceToken)
-            }
-            
-            print(params)
-            
-            showHUD()
-            
-            Alamofire.request(UserRouter.CreateUserSimple(params)).responseJSON { response in
-                
-                self.hideHUD()
-                
-                switch response.result {
-                    
-                case .success(let json):
-                    
-                    print(json)
-                    
-                    
-                    let signInResponse = Mapper<SignInResponse>().map(JSON: json as! [String: Any])
-                    
-                    if signInResponse?.data != nil {
-                        
-                        SessionManager.setInteger(int: (signInResponse?.data)!, forKey: Constants.SessionKeys.userId)
-                        
-                        SessionManager.setBool(bool: false, forKey: Constants.SessionKeys.isFromFacebook)
-                        
-                        self.segueToMainStoryboard()
-                        
-                    }
-                    else if signInResponse?.responseAttrs.errorMessage != nil {
-                        
-                        print(signInResponse?.responseAttrs.errorMessage!)
-                        
-                    }
-                    
-                case .failure(let error):
-                    
-                    print(error.localizedDescription)
-                }
-                
-            }
-            
-        }
-        
-    }
-    
     func validate() -> Bool {
         
         var flag = true
@@ -132,12 +75,50 @@ class SignUpTableViewController: GenericTableViewController{
             flag = false
         }
         
-        if (txPassword.text?.isEmpty)! {
-            txPassword.addError()
+        if (txWebsite.text?.isEmpty)! {
+            txWebsite.addError()
             flag = false
         }
         
         return flag
+    }
+    
+    func makeCompanySimple() {
+        
+        if validate() {
+            
+            var params: [String: Any] = [:]
+            
+            params["name"] = txName.text
+            params["email"] = txEmail.text
+            params["webSite"] = txWebsite.text
+            params["status"]  = "ACTIVE"
+            params["category"] = 2
+         
+            showHUD()
+            
+            Alamofire.request(CompanyRouter.MakeCompanySimple(params)).responseJSON { response in
+                
+                self.hideHUD()
+                
+                switch response.result {
+                    
+                case .success(let json):
+                    
+                    print(json)
+                    
+                    self.delegate.createCompany()
+                    
+                    self.navigationController?.popViewController(animated: true)
+                    
+                case .failure(let error):
+                    
+                    print(error.localizedDescription)
+                }
+                
+            }
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -147,21 +128,10 @@ class SignUpTableViewController: GenericTableViewController{
         
         if section == 1 && row == 0{
             
-            makeSignUp()
+            makeCompanySimple()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}
-
-// MARK: - UITableViewDelegate
-
-extension SignUpTableViewController: UITextFieldDelegate {
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        
-        textField.removeError()
-        
-        return true
-    }
 }

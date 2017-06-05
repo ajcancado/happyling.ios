@@ -60,6 +60,9 @@
 		8EA2B9F71E3EE30C001C9FDE /* GetIssueStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2B9F61E3EE30C001C9FDE /* GetIssueStatusResponse.swift */; };
 		8EA72C7C1E8B34DD0086FA96 /* ComplaintTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA72C7B1E8B34DD0086FA96 /* ComplaintTypeViewController.swift */; };
 		8ECDED711DFC8E3F0001A02D /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDED701DFC8E3F0001A02D /* IssueViewController.swift */; };
+		8EEBBAED1EE4F39900A7C346 /* CellNotFoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEBBAEB1EE4F39900A7C346 /* CellNotFoundCell.swift */; };
+		8EEBBAEE1EE4F39900A7C346 /* CellNotFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEBBAEC1EE4F39900A7C346 /* CellNotFoundCell.xib */; };
+		8EEBBAF01EE5043600A7C346 /* CreateSimpleCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEBBAEF1EE5043600A7C346 /* CreateSimpleCompanyViewController.swift */; };
 		8EEDB9881EB97972001D4A92 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEDB9871EB97972001D4A92 /* Double+Extension.swift */; };
 		8EF8F05A1DFA192D00AFF0AA /* CompanyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF8F0591DFA192D00AFF0AA /* CompanyProfileViewController.swift */; };
 		DC08E1091EA8536C0096D18C /* ProblemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08E1081EA8536C0096D18C /* ProblemDetailsViewController.swift */; };
@@ -135,6 +138,9 @@
 		8EA2B9F61E3EE30C001C9FDE /* GetIssueStatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetIssueStatusResponse.swift; sourceTree = "<group>"; };
 		8EA72C7B1E8B34DD0086FA96 /* ComplaintTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplaintTypeViewController.swift; sourceTree = "<group>"; };
 		8ECDED701DFC8E3F0001A02D /* IssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
+		8EEBBAEB1EE4F39900A7C346 /* CellNotFoundCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellNotFoundCell.swift; sourceTree = "<group>"; };
+		8EEBBAEC1EE4F39900A7C346 /* CellNotFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellNotFoundCell.xib; sourceTree = "<group>"; };
+		8EEBBAEF1EE5043600A7C346 /* CreateSimpleCompanyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSimpleCompanyViewController.swift; sourceTree = "<group>"; };
 		8EEDB9871EB97972001D4A92 /* Double+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		8EF8F0591DFA192D00AFF0AA /* CompanyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyProfileViewController.swift; sourceTree = "<group>"; };
 		CC5CF2DAF012F706F9236D87 /* Pods-Happyling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Happyling.release.xcconfig"; path = "Pods/Target Support Files/Pods-Happyling/Pods-Happyling.release.xcconfig"; sourceTree = "<group>"; };
@@ -230,6 +236,7 @@
 				8E55F4231DEA131300911C05 /* HomeViewController.swift */,
 				8E55F41B1DEA05F100911C05 /* LoginViewController.swift */,
 				8E67BDA41DFA0E0A00F92EE5 /* SearchViewController.swift */,
+				8EEBBAEF1EE5043600A7C346 /* CreateSimpleCompanyViewController.swift */,
 				8EF8F0591DFA192D00AFF0AA /* CompanyProfileViewController.swift */,
 				8ECDED701DFC8E3F0001A02D /* IssueViewController.swift */,
 				DCC266881EB930EE001D3C4C /* ThanksViewController.swift */,
@@ -295,6 +302,8 @@
 				DC08E10B1EA85F2B0096D18C /* RatingViewController.xib */,
 				8E78BB6F1EB0174B000BD26F /* ProblemsTableViewCell.swift */,
 				8E78BB701EB0174B000BD26F /* ProblemsTableViewCell.xib */,
+				8EEBBAEB1EE4F39900A7C346 /* CellNotFoundCell.swift */,
+				8EEBBAEC1EE4F39900A7C346 /* CellNotFoundCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -418,6 +427,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EEBBAEE1EE4F39900A7C346 /* CellNotFoundCell.xib in Resources */,
 				8E7DF8A11E76DA4E00A8C617 /* GoogleService-Info.plist in Resources */,
 				8E78BB721EB0174B000BD26F /* ProblemsTableViewCell.xib in Resources */,
 				DC08E10D1EA85F2B0096D18C /* RatingViewController.xib in Resources */,
@@ -500,9 +510,11 @@
 			files = (
 				8ECDED711DFC8E3F0001A02D /* IssueViewController.swift in Sources */,
 				8E813C8B1DEA7EF10056C759 /* ResponseAttrs.swift in Sources */,
+				8EEBBAED1EE4F39900A7C346 /* CellNotFoundCell.swift in Sources */,
 				8EA2B9DE1E3E53FD001C9FDE /* CompanyCell.swift in Sources */,
 				8EA2B9D51E3E4D4E001C9FDE /* IssueReportDTO.swift in Sources */,
 				8E494A721EDBB1570063069B /* DateHelper.swift in Sources */,
+				8EEBBAF01EE5043600A7C346 /* CreateSimpleCompanyViewController.swift in Sources */,
 				8EEDB9881EB97972001D4A92 /* Double+Extension.swift in Sources */,
 				8EA2B9F71E3EE30C001C9FDE /* GetIssueStatusResponse.swift in Sources */,
 				8E67BDA91DFA16DA00F92EE5 /* CompanyCategorie.swift in Sources */,

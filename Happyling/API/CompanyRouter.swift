@@ -14,6 +14,7 @@ enum CompanyRouter: URLRequestConvertible{
     case GetCompany([String: Any])
     case GetCompanyCategories()
     case MakeCompany([String: Any])
+    case MakeCompanySimple([String: Any])
     
     var method: Alamofire.HTTPMethod {
         switch self {
@@ -22,6 +23,8 @@ enum CompanyRouter: URLRequestConvertible{
         case .GetCompanyCategories:
             return .get
         case .MakeCompany:
+            return .post
+        case .MakeCompanySimple:
             return .post
         }
     }
@@ -35,6 +38,8 @@ enum CompanyRouter: URLRequestConvertible{
             return "company-categories/all"
         case .MakeCompany:
             return "company"
+        case .MakeCompanySimple:
+            return "company/simple"
         }
     }
     
@@ -56,6 +61,8 @@ enum CompanyRouter: URLRequestConvertible{
             case .GetCompany(let parameters):
                 return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
             case .MakeCompany(let parameters):
+                return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
+            case .MakeCompanySimple(let parameters):
                 return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
             default:
                 return urlRequest

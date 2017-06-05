@@ -158,6 +158,29 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
         
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        if section == 2 && row == 1 {
+            return 100
+        }
+        else if section == 3 && row == 1 {
+            
+            if attachments.count == 0 {
+                return 0
+            }
+            else {
+                return 80
+            }
+        }
+        
+        return 44
+        
+        
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let section = indexPath.section
@@ -301,7 +324,9 @@ extension IssueViewController: UIImagePickerControllerDelegate {
             self.attachments.append(attachment)
         }
         
+        tableView.reloadData()
         collectionView.reloadData()
+        
         
         dismiss(animated: true, completion: nil)
     }

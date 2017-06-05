@@ -20,9 +20,8 @@ class ProblemsViewController: GenericViewController {
     
     var problemType: String!
     
-//    let image = UIImage(named: "ic_empty_search_radar")!
-    let topMessage = "Eba..."
-    let bottomMessage = "Nenhum problema"
+    let topMessage = "Happyling"
+    let bottomMessage = "No problems found"
     
     override func viewDidLoad() {
         super.viewDidLoad()
