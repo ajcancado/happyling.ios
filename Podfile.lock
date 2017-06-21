@@ -1,6 +1,6 @@
 PODS:
   - AARatingBar (0.1.0)
-  - Alamofire (4.4.0)
+  - Alamofire (4.5.0)
   - Auk (7.0.1):
     - moa
   - Bolts (1.8.4):
@@ -12,16 +12,15 @@ PODS:
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
-  - FBSDKCoreKit (4.20.1):
+  - FBSDKCoreKit (4.23.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.20.1):
+  - FBSDKLoginKit (4.23.0):
     - FBSDKCoreKit
+  - Firebase (3.14.0):
+    - Firebase/Core (= 3.14.0)
   - Firebase/Core (3.14.0):
     - FirebaseAnalytics (= 3.7.0)
     - FirebaseCore (= 3.5.1)
-  - Firebase/Messaging (3.14.0):
-    - Firebase/Core
-    - FirebaseMessaging (= 1.2.2)
   - FirebaseAnalytics (3.7.0):
     - FirebaseCore (~> 3.5)
     - FirebaseInstanceID (~> 1.0)
@@ -39,13 +38,13 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
-  - Kingfisher (3.5.2)
-  - libPhoneNumber-iOS (0.9.4)
+  - Kingfisher (3.10.2)
+  - libPhoneNumber-iOS (0.9.10)
   - MHTextField (0.6)
-  - moa (8.0.2)
-  - ObjectMapper (2.2.5)
-  - PKHUD (4.2.0)
-  - Protobuf (3.2.0)
+  - moa (8.0.4)
+  - ObjectMapper (2.2.7)
+  - PKHUD (4.2.3)
+  - Protobuf (3.3.0)
   - PureLayout (3.0.2)
   - TPKeyboardAvoiding (1.3.1)
 
@@ -57,8 +56,11 @@ DEPENDENCIES:
   - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
-  - Firebase/Core
-  - Firebase/Messaging
+  - Firebase (= 3.14.0)
+  - FirebaseAnalytics (= 3.7.0)
+  - FirebaseCore (= 3.5.1)
+  - FirebaseInstanceID (= 1.0.9)
+  - FirebaseMessaging (= 1.2.2)
   - Kingfisher
   - libPhoneNumber-iOS
   - MHTextField
@@ -70,29 +72,29 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AARatingBar: dd2f4b489478f5206930bb5f8f67b4db476265c8
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Auk: 6f8c4e93427d0d02641263776dd3b66ae4050903
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBSDKCoreKit: 39a3569652983bf8666620dd334804c9057ae9b2
-  FBSDKLoginKit: 17092ff61a18c54ca423aebc18c5acc2e5a4a728
+  FBSDKCoreKit: d7829f5a69901cd7296105328e4c3c3fc7da6518
+  FBSDKLoginKit: 6b92bd65f319d669d2b0730e49db495ef1660566
   Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
   FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   FirebaseMessaging: df8267f378580a24174ce7861233aa11d5c90109
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  Kingfisher: 9950e382c500b6834ce004c7c4131c444e90c3a1
-  libPhoneNumber-iOS: 63bab980d1fc9783d82d955800ac9d7c1d81fde3
+  Kingfisher: 7297492bf8cec9b2e2dee3519f2219948580d98e
+  libPhoneNumber-iOS: f721ae4d5854bce60934f9fb9b0b28e8e68913cb
   MHTextField: c13dad029b2a3da5e6a1c7adc7fa499ca8a976e5
-  moa: 73d2dd56fe838a31e255c64b7873d2c2fbc71076
-  ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
-  PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
-  Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
+  moa: 954e2ad962886626d02c3486dd3a7bb5f0052d14
+  ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
+  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
+  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: 1a7e348ee8becf221ee6f02f16f0f12965d953b0
+PODFILE CHECKSUM: 93011e06cd4734d627f62c98adca58dba5626ac8
 
 COCOAPODS: 1.2.1

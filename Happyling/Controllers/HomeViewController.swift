@@ -83,7 +83,7 @@ class HomeViewController: GenericViewController {
             
             let login = FBSDKLoginManager()
             
-            login.loginBehavior = FBSDKLoginBehavior.native
+            login.loginBehavior = FBSDKLoginBehavior.web
             
             login.logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: { result, error in
             

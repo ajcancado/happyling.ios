@@ -22,7 +22,17 @@ target 'Happyling' do
     pod 'AARatingBar'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
-    pod 'Firebase/Core'
-    pod 'Firebase/Messaging'
+    
+    pod 'Firebase', '3.14.0'
+    pod 'FirebaseAnalytics', '3.7.0'
+    pod 'FirebaseCore', '3.5.1'
+    pod 'FirebaseInstanceID', '1.0.9'
+    pod 'FirebaseMessaging', '1.2.2'
+    
+#    Installing Firebase 4.0.2 (was 3.14.0)
+#    Installing FirebaseAnalytics 4.0.1 (was 3.7.0)
+#    Installing FirebaseCore 4.0.2 (was 3.5.1)
+#    Installing FirebaseInstanceID 2.0.0 (was 1.0.9)
+#    Installing FirebaseMessaging 2.0.0 (was 1.2.2)
 
 end
