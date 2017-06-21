@@ -173,13 +173,13 @@ class AccountViewController: GenericViewController {
                 
                 switch response.result {
                     
-                case .success(let json):
-                    
-                    print(json)
-                    
-                case .failure(let error):
-                    
-                    print(error.localizedDescription)
+                    case .success(let json):
+                        
+                        print(json)
+                        
+                    case .failure(let error):
+                        
+                        print(error.localizedDescription)
                 }
             }
         }
