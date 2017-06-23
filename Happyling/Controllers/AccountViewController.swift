@@ -392,7 +392,7 @@ extension AccountViewController: UITableViewDelegate {
         }
         else if section == 4{
             
-//            UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/1225068773")!)
+            UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/1225068773")!)
         }
         else if section == 5{
             

@@ -20,7 +20,7 @@ class CanEvaluateResponse: Mappable {
     
     // Mappable
     func mapping(map: Map) {
-        data                <- map["data"]
+        data                <- map["data.isEvaluable"]
         responseAttrs       <- map["responseAttrs"]
         
     }

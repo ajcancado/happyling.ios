@@ -117,12 +117,15 @@ class LoginViewController: GenericTableViewController {
             
             let firstTextField = alertController.textFields?.first
         
-            var params: [String: Any] = [:]
+            if !(firstTextField?.text?.isEmpty)! {
             
-            params["email"] = firstTextField?.text
-            
-            self.recoverPassword(params: params)
-            
+                var params: [String: Any] = [:]
+                
+                params["email"] = firstTextField?.text
+                
+                self.recoverPassword(params: params)
+
+            }
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -154,6 +157,10 @@ class LoginViewController: GenericTableViewController {
             case .success(let json):
                 
                 print(json)
+                
+                let email = params["email"]
+                
+                self.showAlertWithMessage(message: "Sua nova senha foi enviada para o email:\n\n \(String(describing: email)) com sucesso!")
                 
             case .failure(let error):
                 

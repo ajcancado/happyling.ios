@@ -10,23 +10,24 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-class CompanyProfileViewController: GenericViewController {
+let companyCellID = "CompanyCellID"
+let cellID = "CellID"
+let collectionTableViewCellID = "CollectionTableViewCellID"
+let problemsTableViewCellID = "ProblemsTableViewCellID"
 
-    @IBOutlet weak var statusImage: UIImageView!
+class CompanyProfileViewController: GenericViewController {
     
     @IBOutlet weak var tableView: UITableView!
-        
-    @IBOutlet weak var mLabelName: UILabel!
     
-    @IBOutlet weak var mLabelWebsite: UILabel!
-    
-    @IBOutlet weak var mLabelAddress: UILabel!
+    var problemsTableView: UITableView!
     
     var company: Company!
     
     var statusIds: [Int] = []
     
     var companyIssues: [Issue] = []
+    
+    var issueTypeSearch = 0
     
     let topMessage = "Happyling"
     let bottomMessage = "No problems found"
@@ -36,74 +37,47 @@ class CompanyProfileViewController: GenericViewController {
 
         self.title = company.name
         
-        setupCompanyInfo()
-        
         setupTableView()
         
         statusIds.append(3)
         
         getIssuesReport()
     }
-    
-    func setupCompanyInfo(){
-        
-        if company.average != nil {
-        
-            if company.average > 4 {
-                statusImage.image = UIImage(named: "ic_orange")
-            }
-            else if company.average > 3 {
-                statusImage.image = UIImage(named: "ic_yellow_dark")
-            }
-            else if company.average > 2 {
-                statusImage.image = UIImage(named: "ic_yellow")
-            }
-            else if company.average > 1 {
-                statusImage.image = UIImage(named: "ic_blue")
-            }
-            else {
-                statusImage.image = UIImage(named: "ic_purple")
-            }
-        }
-        else{
-         
-            statusImage.image = UIImage(named: "ic_orange")
-        }
-        
-        mLabelName.text = company.name
-        mLabelWebsite.text = company.webSite
-        
-        if company.city != nil && !company.city.isEmpty {
-            
-            if company.country != nil && !company.country.isEmpty {
-                
-                mLabelAddress.text = company.city + "/" + company.country
-            }
-            else{
-                mLabelAddress.text = company.city
-            }
-        }
-        else if company.country != nil && !company.country.isEmpty {
-            mLabelAddress.text = company.country
-        }
-        else{
-            
-            mLabelAddress.text = ""
-        }
-    }
+
     
     func setupTableView(){
         
         tableView.backgroundColor = Constants.Colors.gray
         
-        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.register(UINib(nibName: "CompanyCell", bundle: nil), forCellReuseIdentifier: companyCellID)
+        tableView.register(UINib(nibName: "CollectionTableViewCell", bundle: nil), forCellReuseIdentifier: collectionTableViewCellID)
         
-        tableView.register(UINib(nibName: "ProblemsTableViewCell", bundle: nil), forCellReuseIdentifier: "CellID")
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        // Creating new tableview
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        
+        let tableViewContentSize = tableView.contentSize
+        
+        let diference = screenSize.height - 300//tableViewContentSize.height
+        
+        problemsTableView = UITableView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: diference))
+        
+        problemsTableView.tag = 2
+        problemsTableView.backgroundColor = Constants.Colors.gray
+        
+        problemsTableView.register(UINib(nibName: "ProblemsTableViewCell", bundle: nil), forCellReuseIdentifier: problemsTableViewCellID)
         
         let emptyBackgroundView = EmptyBackgroundView(image: UIImage(), top: topMessage, bottom: bottomMessage)
         
-        tableView.backgroundView = emptyBackgroundView
-        tableView.backgroundView?.isHidden = true
+        problemsTableView.backgroundView = emptyBackgroundView
+        problemsTableView.backgroundView?.isHidden = true
+        
+        problemsTableView.tableFooterView = UIView(frame: .zero)
+        
+        tableView.tableFooterView = problemsTableView
         
     }
     
@@ -142,10 +116,10 @@ class CompanyProfileViewController: GenericViewController {
                     
                     self.companyIssues = (getIssueResponse?.data)!
                     
-                    self.tableView.dataSource = self
-                    self.tableView.delegate = self
+                    self.problemsTableView.dataSource = self
+                    self.problemsTableView.delegate = self
                     
-                    self.tableView.reloadData()
+                    self.problemsTableView.reloadData()
                     
                 }
                 else if getIssueResponse?.responseAttrs.errorMessage != nil {
@@ -175,30 +149,60 @@ extension CompanyProfileViewController: UICollectionViewDataSource {
         
         let row = indexPath.row
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellID", for: indexPath)
-        
-        let imageView = cell.viewWithTag(1) as! UIImageView
-        let label = cell.viewWithTag(2) as! UILabel
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! TypeCollectionViewCell
+    
         if row == 0 {
             
-            imageView.image = UIImage(named: "ic_handshake")
-            label.text = "Solved"
+            cell.mLabel.text = "Solved"
+            
+            if issueTypeSearch == 0 {
+                cell.mLabel.textColor = Constants.Colors.orange
+                cell.mImage.image = UIImage(named: "ic_handshake_on")
+            }
+            else{
+                
+                cell.mLabel.textColor = UIColor.black
+                cell.mImage.image = UIImage(named: "ic_handshake")
+            }
         }
         else if row == 1 {
             
-            imageView.image = UIImage(named: "ic_sad")
-            label.text = "Unsolved"
+            cell.mLabel.text = "Unsolved"
+            
+            if issueTypeSearch == 1 {
+                cell.mLabel.textColor = Constants.Colors.orange
+                cell.mImage.image = UIImage(named: "ic_sad_on")
+            }
+            else{
+                cell.mLabel.textColor = UIColor.black
+                cell.mImage.image = UIImage(named: "ic_sad")
+            }
         }
         else if row == 2 {
             
-            imageView.image = UIImage(named: "ic_happy")
-            label.text = "Answered"
+            cell.mLabel.text = "Answered"
+            
+            if issueTypeSearch == 2 {
+                cell.mLabel.textColor = Constants.Colors.orange
+                cell.mImage.image = UIImage(named: "ic_happy_on")
+            }
+            else{
+                cell.mLabel.textColor = UIColor.black
+                cell.mImage.image = UIImage(named: "ic_happy")
+            }
         }
         else if row == 3 {
             
-            imageView.image = UIImage(named: "ic_question")
-            label.text = "Unanswered"
+            cell.mLabel.text = "Unanswered"
+            
+            if issueTypeSearch == 3 {
+                cell.mLabel.textColor = Constants.Colors.orange
+                cell.mImage.image = UIImage(named: "ic_question_on")
+            }
+            else{
+                cell.mLabel.textColor = UIColor.black
+                cell.mImage.image = UIImage(named: "ic_question")
+            }
         }
         
         return cell
@@ -215,8 +219,8 @@ extension CompanyProfileViewController: UICollectionViewDelegateFlowLayout {
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let cellWidth = flowLayout.itemSize.width + flowLayout.minimumInteritemSpacing
         
-        //15.00 was just extra spacing I wanted to add to my cell.
-        let totalCellWidth = cellWidth*4 + 15.00 * (4-1)
+        //2.00 was just extra spacing I wanted to add to my cell.
+        let totalCellWidth = cellWidth*4 + 2.00 * (4-1)
         let contentWidth = collectionView.frame.size.width - collectionView.contentInset.left - collectionView.contentInset.right
         
         if (totalCellWidth < contentWidth) {
@@ -230,9 +234,15 @@ extension CompanyProfileViewController: UICollectionViewDelegateFlowLayout {
             //Pretty much if the number of cells that exist take up
             // more room than the actual collectionView width there is no
             // point in trying to center them. So we leave the default behavior.
-            return UIEdgeInsetsMake(0, 40, 0, 40)
+            return UIEdgeInsetsMake(0, 70, 0, 70)
         }
 
+    }
+    
+    func collectionView(collectionView : UICollectionView,layout collectionViewLayout:UICollectionViewLayout,sizeForItemAtIndexPath indexPath:NSIndexPath) -> CGSize
+    {
+        
+        return CGSize(width: 70, height: 70)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -254,8 +264,12 @@ extension CompanyProfileViewController: UICollectionViewDelegateFlowLayout {
         }
         else if row == 3 {
             statusIds.removeAll()
-            statusIds.append(6)
+            statusIds.append(2)
         }
+        
+        issueTypeSearch = row
+        
+        collectionView.reloadData()
         
         getIssuesReport()
     }
@@ -267,44 +281,159 @@ extension CompanyProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if self.companyIssues.count == 0 {
+        if tableView.tag == 1{
             
-            self.tableView.separatorStyle = .none
-            self.tableView.backgroundView?.isHidden = false
-            
-        } else {
-            
-            self.tableView.separatorStyle = .singleLine
-            self.tableView.backgroundView?.isHidden = true
+            return 4
         }
-        
-        return companyIssues.count
+        else{
+            
+            if self.companyIssues.count == 0 {
+                
+                self.problemsTableView.separatorStyle = .none
+                self.problemsTableView.backgroundView?.isHidden = false
+                
+            } else {
+                
+                self.problemsTableView.separatorStyle = .singleLine
+                self.problemsTableView.backgroundView?.isHidden = true
+            }
+            
+            return companyIssues.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath) as! ProblemsTableViewCell
+        if tableView.tag == 1 {
         
-        let issue = companyIssues[row]
+            if row == 0 {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: companyCellID, for: indexPath) as! CompanyCell
+                
+                if company.average != nil {
+                    
+                    if company.average > 4 {
+                        cell.imgLogo.image = UIImage(named: "ic_orange")
+                    }
+                    else if company.average > 3 {
+                        cell.imgLogo.image = UIImage(named: "ic_yellow_dark")
+                    }
+                    else if company.average > 2 {
+                        cell.imgLogo.image = UIImage(named: "ic_yellow")
+                    }
+                    else if company.average > 1 {
+                        cell.imgLogo.image = UIImage(named: "ic_blue")
+                    }
+                    else {
+                        cell.imgLogo.image = UIImage(named: "ic_purple")
+                    }
+                }
+                else{
+                    
+                    cell.imgLogo.image = UIImage(named: "ic_orange")
+                }
+                
+                cell.lblName.text = company.name
+                
+                cell.selectionStyle = .none
+                
+                return cell
+                
+            }
+            else if row == 1 {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+                
+                cell.imageView?.image = UIImage(named: "ic_domain")
+                
+                if company.webSite.isEmpty {
+                
+                    cell.textLabel?.text = "Não informado"
+                }
+                else{
+                    cell.textLabel?.text = company.webSite
+                }
+                
+                cell.textLabel?.font = UIFont.systemFont(ofSize: 13.0)
+                
+                cell.selectionStyle = .none
+                
+                return cell
+            }
+            else if row == 2 {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+                
+                cell.imageView?.image = UIImage(named: "ic_marker")
+                
+                cell.textLabel?.font = UIFont.systemFont(ofSize: 13.0)
+                
+                if company.city != nil && !company.city.isEmpty {
+                    
+                    if company.country != nil && !company.country.isEmpty {
+                        
+                        cell.textLabel?.text = company.city + "/" + company.country
+                    }
+                    else{
+                        cell.textLabel?.text = company.city
+                    }
+                }
+                else if company.country != nil && !company.country.isEmpty {
+                    cell.textLabel?.text = company.country
+                }
+                else{
+                    
+                    cell.textLabel?.text = "Não informado"
+                }
+                
+                cell.selectionStyle = .none
+                
+                return cell
+                
+            }
+            else if row == 3{
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: collectionTableViewCellID, for: indexPath) as! CollectionTableViewCell
+                
+                cell.collectionView.delegate = self
+                cell.collectionView.dataSource = self
+                
+                cell.collectionView.register(UINib(nibName: "TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellID)
+                
+                cell.selectionStyle = .none
+                
+                return cell
+                
+            }
+        }
+        else{
         
-        cell.companyLogo.isHidden = true
-        
-        cell.companyName.text = issue.company.name
-        
-        let date = issue.creationDate.toDate()
-        
-        let format = NSLocalizedString("DATE_FORMAT", comment: "")
-        
-        cell.problemDate.text = DateHelper.formatDate(date: date, withFormat: format)
-        
-        cell.problemSubject.text = issue.subject
-        cell.problemStatus.text = issue.status.name
+            let cell = tableView.dequeueReusableCell(withIdentifier: problemsTableViewCellID, for: indexPath) as! ProblemsTableViewCell
+            
+            let issue = companyIssues[row]
+            
+            cell.companyLogo.isHidden = true
+            
+            cell.companyName.text = issue.company.name
+            
+            let date = issue.creationDate.toDate()
+            
+            let format = NSLocalizedString("DATE_FORMAT", comment: "")
+            
+            cell.problemDate.text = DateHelper.formatDate(date: date, withFormat: format)
+            
+            cell.problemSubject.text = issue.subject
+            cell.problemStatus.text = issue.status.name
+            
+            cell.selectionStyle = .none
+            
+            return cell
+            
+        }
 
-        cell.selectionStyle = .none
-        
-        return cell
+        return UITableViewCell()
     }
 }
 
@@ -313,7 +442,24 @@ extension CompanyProfileViewController: UITableViewDataSource {
 extension CompanyProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        
+        let row = indexPath.row
+        
+        if tableView.tag == 1 {
+        
+            if row == 0 {
+                return 80
+            }
+            else if row == 1 || row == 2{
+                return 44
+            }
+            else {
+                return 75
+            }
+        }
+        else {
+            return 120
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

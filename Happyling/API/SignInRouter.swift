@@ -48,9 +48,8 @@ enum SignInRouter: URLRequestConvertible{
             case .MakeLoginFacebook(let parameters):
                 return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
             case .ForgottenPassword(let parameters):
-                return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
-            default:
-                return urlRequest
+                return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
+            
             
         }
     }

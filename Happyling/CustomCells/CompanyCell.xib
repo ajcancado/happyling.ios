@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,9 +21,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NIs-DQ-Yll">
                         <rect key="frame" x="8" y="17" width="44" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="FQk-Ub-uAS"/>
-                            <constraint firstAttribute="width" constant="44" id="Jmg-eO-562"/>
-                            <constraint firstAttribute="height" constant="44" id="Qq3-ZG-4xP"/>
+                            <constraint firstAttribute="width" constant="44" id="ZpK-0c-C3x"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWS-xC-K21">
@@ -34,13 +32,13 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="bottom" secondItem="xWS-xC-K21" secondAttribute="bottom" id="6qZ-8R-YOk"/>
-                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="CyK-0o-uIn"/>
-                    <constraint firstItem="xWS-xC-K21" firstAttribute="leading" secondItem="NIs-DQ-Yll" secondAttribute="trailing" constant="8" symbolic="YES" id="Ek8-Lc-LT2"/>
-                    <constraint firstItem="xWS-xC-K21" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="JjN-6F-C5Z"/>
-                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="Y7Z-Cs-lpq"/>
-                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="top" secondItem="xWS-xC-K21" secondAttribute="top" id="wGG-6p-fOm"/>
-                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="xW7-kD-rru"/>
+                    <constraint firstItem="xWS-xC-K21" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="0Mj-RS-dlZ"/>
+                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="top" secondItem="xWS-xC-K21" secondAttribute="top" id="6X2-c0-1NB"/>
+                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7r2-Zc-qmP"/>
+                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="XHg-al-aeb"/>
+                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="bottom" secondItem="xWS-xC-K21" secondAttribute="bottom" id="Y7K-CM-c6Q"/>
+                    <constraint firstItem="xWS-xC-K21" firstAttribute="leading" secondItem="NIs-DQ-Yll" secondAttribute="trailing" constant="8" symbolic="YES" id="aKf-s3-wo2"/>
+                    <constraint firstItem="NIs-DQ-Yll" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kIm-4M-qEN"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

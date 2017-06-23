@@ -27,10 +27,15 @@ class ProblemDetailsViewController: GenericViewController {
         
         setupTableFooterView()
         
-        let send = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(makeInteraction))
+        if issue.status.id == 5 {
         
-        navigationItem.rightBarButtonItem = send
+            let send = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(makeInteraction))
+            
+            navigationItem.rightBarButtonItem = send
+            
+        }
         
+
         validateIssueCanBeEvaluated()
 
     }
@@ -53,7 +58,7 @@ class ProblemDetailsViewController: GenericViewController {
     
     func setupTableFooterView(){
         
-        if canEvaluate != true {
+        if canEvaluate {
         
             let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
             customView.backgroundColor = Constants.Colors.orange
