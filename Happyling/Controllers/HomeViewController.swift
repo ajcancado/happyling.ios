@@ -116,14 +116,10 @@ class HomeViewController: GenericViewController {
                     let facebookUser = Mapper<FacebookUser>().map(JSON: result as! [String: Any])
                     
                     self.tryLoginWithFacebook(facebookUser: facebookUser!)
-                    
-                    
                 }
                 else{
-                
                     self.hideHUD()
                 }
-            
         })
         
     }

@@ -210,6 +210,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // Print full message.
         print("%@", userInfo)
         
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Constants.NotificationKeys.newInteraction), object: self)
+        
         completionHandler([])
     }
     
@@ -217,6 +219,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Notification: iOS 10 delegate(didReceive response)")
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Constants.NotificationKeys.newInteraction), object: self)
         
         let userInfo = response.notification.request.content.userInfo
         // Print message ID.

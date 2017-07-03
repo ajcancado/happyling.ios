@@ -36,6 +36,9 @@ class SearchViewController: GenericViewController {
     
     var delegate: SelectCompanyProtocol!
     
+    let topMessage = "Happyling"
+    let bottomMessage = "No companies found."
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -68,6 +71,11 @@ class SearchViewController: GenericViewController {
         
         tableView.register(UINib(nibName: "CellNotFoundCell", bundle: nil), forCellReuseIdentifier: "CellNotFoundCellID")
         tableView.register(UINib(nibName: "CompanyCell", bundle: nil), forCellReuseIdentifier: "CompanyCellID")
+        
+        let emptyBackgroundView = EmptyBackgroundView(image: UIImage(), top: topMessage, bottom: bottomMessage)
+        
+        tableView.backgroundView = emptyBackgroundView
+        tableView.backgroundView?.isHidden = true
         
         tableView.tableFooterView = UIView(frame: .zero)
     }
@@ -234,12 +242,14 @@ extension SearchViewController: CreateCompanyProtocol{
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true;
+        searchActive = true
+        tableView.backgroundView?.isHidden = true
         searchBar.setShowsCancelButton(true, animated: true)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
+        searchActive = false
+        tableView.backgroundView?.isHidden = false
         searchBar.setShowsCancelButton(false, animated: true)
     }
 
@@ -281,8 +291,17 @@ extension SearchViewController: UITableViewDataSource {
             
             return filteredCompanies.count
         }
-        
-        return companies.count
+        else {
+            
+            if self.companies.count == 0 {
+                self.tableView.backgroundView?.isHidden = false
+            }
+            else {
+                self.tableView.backgroundView?.isHidden = true
+            }
+            
+            return companies.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

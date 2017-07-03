@@ -58,6 +58,13 @@ struct Constants {
         
     }
     
+    struct NotificationKeys {
+        
+        static let newInteraction = "NEW_INTERACTION"
+        
+    }
+
+    
     struct Path {
         static let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         static let tmp = NSTemporaryDirectory()

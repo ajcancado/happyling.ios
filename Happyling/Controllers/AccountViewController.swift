@@ -292,10 +292,12 @@ extension AccountViewController: UITableViewDataSource {
                 cell.textLabel?.text = NSLocalizedString("MY_ACCOUNT", comment: "")
             }
             else if row == 1{
+                cell.imageView?.image = UIImage(named: "ic_change_password")
                 cell.textLabel?.text = NSLocalizedString("CHANGE_PASSWORD", comment: "")
             }
             else{
                 
+                cell.imageView?.image = UIImage(named: "ic_can_receive_notitications")
                 cell.textLabel?.text = NSLocalizedString("NOTIFICATIONS", comment: "")
                 
                 let switchView = UISwitch(frame: .zero)
@@ -344,7 +346,8 @@ extension AccountViewController: UITableViewDataSource {
         }
         else {
             
-           cell.textLabel?.text = NSLocalizedString("SIGN_OUT", comment: "")
+            cell.textLabel?.text = NSLocalizedString("SIGN_OUT", comment: "")
+            cell.imageView?.image = UIImage()
         }
         
 

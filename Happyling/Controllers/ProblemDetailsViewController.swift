@@ -14,6 +14,8 @@ class ProblemDetailsViewController: GenericViewController {
 
     var issue: Issue!
     
+    var isFromCompanyDetails: Bool!
+    
     var canEvaluate = false
     
     @IBOutlet weak var tableView: UITableView!
@@ -27,7 +29,7 @@ class ProblemDetailsViewController: GenericViewController {
         
         setupTableFooterView()
         
-        if issue.status.id == 5 {
+        if issue.status.id == 5 && issue.user.id == SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId) {
         
             let send = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(makeInteraction))
             
@@ -58,7 +60,7 @@ class ProblemDetailsViewController: GenericViewController {
     
     func setupTableFooterView(){
         
-        if canEvaluate {
+        if canEvaluate && issue.user.id == SessionManager.getIntegerForKey(key: Constants.SessionKeys.userId) {
         
             let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
             customView.backgroundColor = Constants.Colors.orange
@@ -145,9 +147,22 @@ class ProblemDetailsViewController: GenericViewController {
                 
                 switch response.result {
                     
-                case .success(let json):
+                case .success( _):
                     
-                    print("Sucesso !!! \(json)")
+                    if self.issue.status.id == 2 {
+                        self.issue.status.id = 5
+                    }
+                    
+                    let interaction = Interaction()
+                    
+                    interaction.date = Date()
+                    interaction.descricao = firstTextField.text
+                    interaction.issueReportId = self.issue.id
+                    interaction.owner = "USER"
+                    
+                    self.issue.interactions.append(interaction)
+                    
+                    self.tableView.reloadData()
                     
                 case .failure(let error):
                     
@@ -225,6 +240,14 @@ extension ProblemDetailsViewController: UITableViewDataSource {
             let issueInteraction = issue.interactions[row]
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath)
+            
+            if issueInteraction.owner == "USER" {
+            
+                cell.imageView?.image = UIImage(named: "ic_long_arrow_right")
+            }
+            else{
+                cell.imageView?.image = UIImage(named: "ic_long_arrow_left")
+            }
             
             cell.textLabel?.text = issueInteraction.descricao
             

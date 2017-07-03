@@ -1362,7 +1362,7 @@
         <!--Problem Details View Controller-->
         <scene sceneID="mKb-97-xTp">
             <objects>
-                <viewController id="eBP-fC-15u" customClass="ProblemDetailsViewController" customModule="Happyling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProblemDetailsViewControllerID" id="eBP-fC-15u" customClass="ProblemDetailsViewController" customModule="Happyling" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qFN-cW-veh"/>
                         <viewControllerLayoutGuide type="bottom" id="xc1-EY-qD8"/>

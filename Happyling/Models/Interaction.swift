@@ -19,6 +19,8 @@ class Interaction: NSObject, Mappable {
     var attachments: [Attachment]!
     var issueReportId: Int!
     
+    override init(){}
+    
     required init?(map: Map) {
         
     }

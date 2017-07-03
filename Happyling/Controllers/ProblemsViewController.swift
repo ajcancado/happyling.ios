@@ -29,10 +29,21 @@ class ProblemsViewController: GenericViewController {
         self.view.backgroundColor = Constants.Colors.gray
         
         navigationItem.title = problemType
+        
+        setupNotificationCenter()
     
         setupTableView()
         
         startServiceCalls()
+    }
+    
+    func setupNotificationCenter(){
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(startServiceCalls),
+                                               name: NSNotification.Name(rawValue: Constants.NotificationKeys.newInteraction),
+                                               object: nil)
+        
     }
     
     func setupTableView(){
@@ -130,6 +141,7 @@ class ProblemsViewController: GenericViewController {
             let svc = segue.destination as! ProblemDetailsViewController
             
             svc.issue = issue
+            svc.isFromCompanyDetails = false
         }
     }
 }

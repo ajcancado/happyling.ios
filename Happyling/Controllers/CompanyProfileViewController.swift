@@ -464,6 +464,22 @@ extension CompanyProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if tableView.tag == 2 {
+            
+            let row = indexPath.row
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let svc = storyboard.instantiateViewController(withIdentifier: "ProblemDetailsViewControllerID") as! ProblemDetailsViewController
+            
+            let issue = companyIssues[row]
+            
+            svc.issue = issue
+            svc.isFromCompanyDetails = true
+            
+            self.navigationController?.pushViewController(svc, animated: true)
+        }
+        
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
