@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         
-        UserDefaults.standard.register(defaults: [Constants.SessionKeys.environment: 1])
+        UserDefaults.standard.register(defaults: [Constants.SessionKeys.environment: 0])
         
         // [START register_for_notifications]
         

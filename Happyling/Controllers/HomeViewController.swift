@@ -176,6 +176,7 @@ class HomeViewController: GenericViewController {
         params["facebookId"] = facebookUser.id
         params["name"] = facebookUser.name
         params["email"] = facebookUser.email
+        params["language"] = LanguageHelper.getLanguage()
         
         if SessionManager.containsObjectForKey(key: Constants.SessionKeys.deviceToken) {
             params["deviceToken"] = SessionManager.getObjectForKey(key: Constants.SessionKeys.deviceToken)
