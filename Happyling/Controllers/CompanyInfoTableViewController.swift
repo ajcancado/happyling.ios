@@ -10,7 +10,12 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-class CompanyInfoTableViewController: GenericTableViewController {
+protocol SelectCategoryProtocol{
+    
+    func selectCategory(category: CompanyCategorie)
+}
+
+class CompanyInfoTableViewController: GenericTableViewController, SelectCategoryProtocol {
     
     @IBOutlet var labels: [UILabel]!
     
@@ -24,6 +29,8 @@ class CompanyInfoTableViewController: GenericTableViewController {
     @IBOutlet var txState: UITextField!
     @IBOutlet var txCountry: UITextField!
     @IBOutlet var txPhoneNumber: UITextField!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categorySelectedLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +57,12 @@ class CompanyInfoTableViewController: GenericTableViewController {
                                                 constant: maxLabelWidth)
             label.addConstraint(constraint)
         }
+    }
+    
+    func selectCategory(category: CompanyCategorie){
+        
+        self.categorySelectedLabel.text = category.name
+        
     }
     
     func validate() -> Bool {
@@ -80,6 +93,7 @@ class CompanyInfoTableViewController: GenericTableViewController {
             params["state"]  = txState.text
             params["country"]  = txCountry.text
             params["phoneNumber"]  = txPhoneNumber.text
+            params["category"] = categorySelectedLabel.text
     
             print(params)
             
@@ -124,7 +138,22 @@ class CompanyInfoTableViewController: GenericTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
         let section = indexPath.section
+        let row = indexPath.row
         
+        if section == 0{
+            
+            if row == 1 {
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let viewController = storyboard.instantiateViewController(withIdentifier: "CategoriesViewControllerID") as! CategoriesViewController
+                
+                viewController.delegate = self
+                
+                self.navigationController?.pushViewController(viewController, animated: true)
+            }
+            
+        }
         if section == 1 {
             saveCompany()
         }

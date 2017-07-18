@@ -54,4 +54,33 @@ class Company: NSObject , Mappable {
         status                      <- map["status"]
         webSite                     <- map["webSite"]
     }
+    
+    func validateAverageImage() -> UIImage{
+        
+        var averageImage: UIImage!
+        
+        if self.average != nil {
+            
+            if self.average > 4 {
+                averageImage = UIImage(named: "ic_orange")
+            }
+            else if self.average > 3 {
+                averageImage = UIImage(named: "ic_yellow_dark")
+            }
+            else if self.average > 2 {
+                averageImage = UIImage(named: "ic_yellow")
+            }
+            else if self.average > 1 {
+                averageImage = UIImage(named: "ic_blue")
+            }
+            else {
+                averageImage = UIImage(named: "ic_purple")
+            }
+        }
+        else {
+            averageImage = UIImage(named: "ic_orange")
+        }
+        
+        return averageImage
+    }
 }

@@ -213,9 +213,7 @@ extension ProblemDetailsViewController: UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProblemCellID", for: indexPath) as! ProblemsTableViewCell
             
-            cell.companyLogo.backgroundColor = Constants.Colors.orange
-            cell.companyLogo.layer.cornerRadius = cell.companyLogo.frame.size.width / 2
-            cell.companyLogo.clipsToBounds = true
+            cell.companyLogo.image = issue.company.validateAverageImage()
             
             cell.companyName.text = issue.company.name
             

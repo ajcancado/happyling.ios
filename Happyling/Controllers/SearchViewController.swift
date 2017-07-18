@@ -330,29 +330,7 @@ extension SearchViewController: UITableViewDataSource {
         
         cell.lblName.text = company.name
         
-        if company.average != nil {
-        
-            if company.average > 4 {
-                cell.imgLogo.image = UIImage(named: "ic_orange")
-            }
-            else if company.average > 3 {
-                cell.imgLogo.image = UIImage(named: "ic_yellow_dark")
-            }
-            else if company.average > 2 {
-                cell.imgLogo.image = UIImage(named: "ic_yellow")
-            }
-            else if company.average > 1 {
-                cell.imgLogo.image = UIImage(named: "ic_blue")
-            }
-            else {
-                cell.imgLogo.image = UIImage(named: "ic_purple")
-            }
-        }
-        else {
-            
-            cell.imgLogo.image = UIImage(named: "ic_orange")
-            
-        }
+        cell.imgLogo.image = company.validateAverageImage()
         
         return cell
     }

@@ -14,6 +14,8 @@ class CategoriesViewController: GenericViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var delegate: SelectCategoryProtocol!
+    
     var companyCategories: [CompanyCategorie] = []
     var categoriesFiltered: [CompanyCategorie] = []
     
@@ -163,14 +165,20 @@ extension CategoriesViewController: UITableViewDelegate {
             companyCategorie = companyCategories[row]
         }
         
+        if delegate != nil {
+            
+            delegate.selectCategory(category: companyCategorie)
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+        else{
+            let viewController = storyboard?.instantiateViewController(withIdentifier: "SearchViewControllerID") as!SearchViewController
+            
+            viewController.mParams["categoryId"] = companyCategorie.id
 
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "SearchViewControllerID") as!SearchViewController
-        
-        viewController.mParams["categoryId"] = companyCategorie.id
-
-        
-        self.navigationController?.pushViewController(viewController, animated: true)
-        
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

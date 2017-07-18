@@ -189,7 +189,7 @@ class IssueViewController: GenericTableViewController, SelectCompanyProtocol, Se
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewControllerID") as!SearchViewController
+            let viewController = storyboard.instantiateViewController(withIdentifier: "SearchViewControllerID") as! SearchViewController
             
             viewController.delegate = self
             

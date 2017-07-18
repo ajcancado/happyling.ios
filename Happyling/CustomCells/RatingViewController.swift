@@ -10,12 +10,15 @@ import UIKit
 import AARatingBar
 import Alamofire
 
-
 class RatingViewController: GenericViewController {
 
     var issue: Issue!
     
     @IBOutlet weak var rating: AARatingBar!
+    
+    @IBOutlet weak var isResolvedSwitch: UISwitch!
+    
+    @IBOutlet weak var isResolvedLabel: UILabel!
     
     @IBOutlet weak var txtAvaliation: UITextField!
     
@@ -23,6 +26,10 @@ class RatingViewController: GenericViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        isResolvedLabel.text = "Your problem is resolved ?"
+        
+        isResolvedSwitch.onTintColor = Constants.Colors.orange
     }
     
     @IBAction func close(_ sender: Any) {
@@ -39,6 +46,7 @@ class RatingViewController: GenericViewController {
         params["comment"] = txtAvaliation.text
         params["value"] = Int.init(rating.value)
         params["issueReport"] = issue.id
+        params["isResolved"] = isResolvedSwitch.isOn
         
         Alamofire.request(IssueRouter.MakeIsseuReportRating(params)).responseJSON { response in
             
