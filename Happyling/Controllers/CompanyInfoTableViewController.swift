@@ -32,6 +32,8 @@ class CompanyInfoTableViewController: GenericTableViewController, SelectCategory
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categorySelectedLabel: UILabel!
     
+    var categorySelected: CompanyCategorie!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,8 +63,9 @@ class CompanyInfoTableViewController: GenericTableViewController, SelectCategory
     
     func selectCategory(category: CompanyCategorie){
         
-        self.categorySelectedLabel.text = category.name
+        categorySelected = category
         
+        self.categorySelectedLabel.text = categorySelected.name
     }
     
     func validate() -> Bool {
@@ -93,7 +96,7 @@ class CompanyInfoTableViewController: GenericTableViewController, SelectCategory
             params["state"]  = txState.text
             params["country"]  = txCountry.text
             params["phoneNumber"]  = txPhoneNumber.text
-            params["category"] = categorySelectedLabel.text
+            params["category"] = categorySelected.id
     
             print(params)
             

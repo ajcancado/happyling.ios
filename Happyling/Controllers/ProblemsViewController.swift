@@ -210,9 +210,9 @@ extension ProblemsViewController: UITableViewDelegate {
         
         let issue = issues[section]
         
-        if issue.status.id != 1  {
-            performSegue(withIdentifier: "segueToIssueDescription", sender: self)
-        }
+        
+        performSegue(withIdentifier: "segueToIssueDescription", sender: self)
+        
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

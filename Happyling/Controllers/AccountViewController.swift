@@ -221,6 +221,7 @@ class AccountViewController: GenericViewController {
                 statusIds.append(1)
                 statusIds.append(2)
                 statusIds.append(5)
+                statusIds.append(6)
                 
                 svc.problemType = NSLocalizedString("PROBLEMS_OPENED", comment: "")
             }
