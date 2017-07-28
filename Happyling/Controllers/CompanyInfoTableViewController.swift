@@ -29,6 +29,7 @@ class CompanyInfoTableViewController: GenericTableViewController, SelectCategory
     @IBOutlet var txState: UITextField!
     @IBOutlet var txCountry: UITextField!
     @IBOutlet var txPhoneNumber: UITextField!
+    
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categorySelectedLabel: UILabel!
     
@@ -66,11 +67,34 @@ class CompanyInfoTableViewController: GenericTableViewController, SelectCategory
         categorySelected = category
         
         self.categorySelectedLabel.text = categorySelected.name
+        
+        tableView.reloadData()
     }
     
     func validate() -> Bool {
         
-        return true
+        var flag = true
+        
+        if categorySelected == nil{
+            flag = false
+        }
+        
+        if (txName.text?.isEmpty)!{
+            flag = false
+            txName.addError()
+        }
+        
+        if (txEmail.text?.isEmpty)!{
+            flag = false
+            txEmail.addError()
+        }
+        
+        if (txIdentificationNumber.text?.isEmpty)!{
+            flag = false
+            txIdentificationNumber.addError()
+        }
+        
+        return flag
     }
     
     func saveCompany(){
@@ -141,26 +165,34 @@ class CompanyInfoTableViewController: GenericTableViewController, SelectCategory
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
         let section = indexPath.section
-        let row = indexPath.row
         
-        if section == 0{
+        if section == 1{
             
-            if row == 1 {
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                
-                let viewController = storyboard.instantiateViewController(withIdentifier: "CategoriesViewControllerID") as! CategoriesViewController
-                
-                viewController.delegate = self
-                
-                self.navigationController?.pushViewController(viewController, animated: true)
-            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let viewController = storyboard.instantiateViewController(withIdentifier: "CategoriesViewControllerID") as! CategoriesViewController
+            
+            viewController.delegate = self
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
             
         }
-        if section == 1 {
+        else if section == 2 {
             saveCompany()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension CompanyInfoTableViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        textField.removeError()
+        
+        return true
     }
 }

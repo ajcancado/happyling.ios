@@ -10,7 +10,12 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-class ProblemDetailsViewController: GenericViewController {
+protocol RefreshIssueProtocolAfterEvaluate{
+    
+    func refreshAfterEvaluate()
+}
+
+class ProblemDetailsViewController: GenericViewController,RefreshIssueProtocolAfterEvaluate {
 
     var issue: Issue!
     
@@ -18,7 +23,12 @@ class ProblemDetailsViewController: GenericViewController {
     
     var canEvaluate = false
     
+    var delegate: RefreshIssueProtocol!
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    var getDescription = false
+    var getCanBeEvaluate = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +47,9 @@ class ProblemDetailsViewController: GenericViewController {
             
         }
         
-
-        validateIssueCanBeEvaluated()
-
+        showHUD()
+        
+        startServiceCalls()
     }
 
     func setupTableView(){
@@ -80,13 +90,45 @@ class ProblemDetailsViewController: GenericViewController {
         
     }
     
+    func startServiceCalls(){
+        
+        getIssueDescription()
+        
+        validateIssueCanBeEvaluated()
+        
+    }
+    
+    func getIssueDescription(){
+        
+        Alamofire.request(IssueRouter.GetIssueDescription(issue.id)).responseJSON { response in
+            
+            switch response.result {
+                
+            case .success(let json):
+                
+                let getIssueDescriptionResponse = Mapper<GetIssueDescriptionResponse>().map(JSON: json as! [String: Any])
+                
+                if getIssueDescriptionResponse?.data != nil {
+                    
+                    self.issue = getIssueDescriptionResponse?.data
+                    
+                    self.getDescription = true
+                    
+                    self.validateServiceResponse()
+                }
+                
+                
+            case .failure(let error):
+                
+                
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func validateIssueCanBeEvaluated(){
         
-        showHUD()
-        
         Alamofire.request(IssueRouter.CanBeEvaluated(issue.id)).responseJSON { response in
-            
-            self.hideHUD()
             
             switch response.result {
                 
@@ -98,10 +140,11 @@ class ProblemDetailsViewController: GenericViewController {
                 
                 if canEvaluateResponse?.data != nil {
                     
+                    self.getCanBeEvaluate = true
+                    
                     self.canEvaluate = canEvaluateResponse!.data
                     
-                    self.setupTableFooterView()
-                    
+                    self.validateServiceResponse()
                 }
                 
             case .failure(let error):
@@ -113,15 +156,40 @@ class ProblemDetailsViewController: GenericViewController {
 
     }
     
+    func validateServiceResponse(){
+        
+        if  getDescription && getCanBeEvaluate {
+            
+            if delegate != nil {
+                
+                self.delegate.refreshIssue(issue: self.issue)
+            }
+            
+            self.tableView.reloadData()
+            
+            self.setupTableFooterView()
+            
+            hideHUD()
+        }
+    }
+    
     func makeEvaluate(){
         
         let svc = RatingViewController()
         svc.modalTransitionStyle = .coverVertical
         
         svc.issue = issue
+        svc.delegate = self
         
         present(svc, animated: true, completion: nil)
         
+    }
+    
+    func refreshAfterEvaluate(){
+        
+        showHUD()
+        
+        startServiceCalls()
     }
     
     func makeInteraction(){
@@ -143,26 +211,11 @@ class ProblemDetailsViewController: GenericViewController {
             
             Alamofire.request(IssueRouter.MakeIssueInteraction(params)).responseJSON { response in
                 
-                self.hideHUD()
-                
                 switch response.result {
                     
                 case .success( _):
                     
-                    if self.issue.status.id == 2 {
-                        self.issue.status.id = 5
-                    }
-                    
-                    let interaction = Interaction()
-                    
-                    interaction.date = Date()
-                    interaction.descricao = firstTextField.text
-                    interaction.issueReportId = self.issue.id
-                    interaction.owner = "USER"
-                    
-                    self.issue.interactions.append(interaction)
-                    
-                    self.tableView.reloadData()
+                    self.startServiceCalls()
                     
                 case .failure(let error):
                     

@@ -39,7 +39,7 @@ class Company: NSObject , Mappable {
     func mapping(map: Map) {
         
         businessPerson              <- map["businessPerson"]
-        categorie                   <- map["categorie"]
+        categorie                   <- map["category"]
         city                        <- map["city"]
         country                     <- map["country"]
         email                       <- map["email"]

@@ -22,6 +22,8 @@ class RatingViewController: GenericViewController {
     
     @IBOutlet weak var txtAvaliation: UITextField!
     
+    var delegate: RefreshIssueProtocolAfterEvaluate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,6 +59,10 @@ class RatingViewController: GenericViewController {
             case .success(let json):
                 
                 print("Sucesso !!! \(json)")
+                
+                if self.delegate != nil {
+                    self.delegate.refreshAfterEvaluate()
+                }
                 
                 self.dismiss(animated: true, completion: nil)
                 

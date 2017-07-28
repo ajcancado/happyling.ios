@@ -10,15 +10,19 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-class ProblemsViewController: GenericViewController {
+protocol RefreshIssueProtocol{
+    
+    func refreshIssue(issue: Issue)
+    
+}
+
+class ProblemsViewController: GenericViewController,RefreshIssueProtocol {
 
     @IBOutlet weak var tableView: UITableView!
     
     var issues: [Issue] = []
 
     var statusIds: [Int] = []
-    
-    var problemType: String!
     
     let topMessage = "Happyling"
     let bottomMessage = "No problems found"
@@ -28,23 +32,59 @@ class ProblemsViewController: GenericViewController {
 
         self.view.backgroundColor = Constants.Colors.gray
         
-        navigationItem.title = problemType
+        navigationItem.title = NSLocalizedString("PROBLEMS_NOT_SOLVED", comment: "")
         
         setupNotificationCenter()
     
         setupTableView()
         
-        startServiceCalls()
+        showHUD()
+        
+        statusIds.append(1)
+        statusIds.append(2)
+        statusIds.append(5)
+        statusIds.append(6)
+        
+        getIssuesFromUserAndStatus()
     }
     
     func setupNotificationCenter(){
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(startServiceCalls),
+                                               selector: #selector(getIssuesFromUserAndStatus),
                                                name: NSNotification.Name(rawValue: Constants.NotificationKeys.newInteraction),
                                                object: nil)
         
     }
+    
+    @IBAction func segmentedControlCchange(_ sender: Any) {
+        
+        let segmentedControll = sender as! UISegmentedControl
+        
+        statusIds.removeAll()
+        
+        switch segmentedControll.selectedSegmentIndex {
+            case 0:
+                statusIds.append(1)
+                statusIds.append(2)
+                statusIds.append(5)
+                statusIds.append(6)
+            case 1:
+                statusIds.append(3)
+            case 2:
+                statusIds.append(4)
+            default:
+                break
+        }
+        
+        showHUD()
+        
+        getIssuesFromUserAndStatus()
+        
+        
+        
+    }
+    
     
     func setupTableView(){
         
@@ -59,13 +99,6 @@ class ProblemsViewController: GenericViewController {
         
         tableView.backgroundView = emptyBackgroundView
         tableView.backgroundView?.isHidden = true
-    }
-    
-    func startServiceCalls(){
-        
-        showHUD()
-        
-        getIssuesFromUserAndStatus()
     }
     
     func getIssuesFromUserAndStatus() {
@@ -128,18 +161,37 @@ class ProblemsViewController: GenericViewController {
         
     }
     
+    func refreshIssue(issue: Issue) {
+        
+        for i in self.issues {
+            
+            if i.id == issue.id{
+                
+                let index = self.issues.index(of: i)
+                
+                self.issues[index!] = issue
+                
+                self.tableView.reloadData()
+            }
+            
+        }
+        
+        
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "segueToIssueDescription" {
             
-            let row = (tableView.indexPathForSelectedRow?.row)!
+            let section = (tableView.indexPathForSelectedRow?.section)!
             
-            let issue = issues[row]
+            let issue = issues[section]
             
             let svc = segue.destination as! ProblemDetailsViewController
             
+            svc.delegate = self
             svc.issue = issue
             svc.isFromCompanyDetails = false
         }
@@ -205,11 +257,6 @@ extension ProblemsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let section = indexPath.section
-        
-        let issue = issues[section]
-        
         
         performSegue(withIdentifier: "segueToIssueDescription", sender: self)
         

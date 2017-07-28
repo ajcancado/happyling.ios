@@ -210,35 +210,7 @@ class AccountViewController: GenericViewController {
         
         if segue.identifier == "segueToIssues" {
             
-            let svc = segue.destination as! ProblemsViewController
-            
-            let section = tableView.indexPathForSelectedRow?.section
-            
-            var statusIds: [Int] = []
-            
-            if section == 1 {
-                
-                statusIds.append(1)
-                statusIds.append(2)
-                statusIds.append(5)
-                statusIds.append(6)
-                
-                svc.problemType = NSLocalizedString("PROBLEMS_OPENED", comment: "")
-            }
-            else if section == 2 {
-                
-                svc.problemType = NSLocalizedString("PROBLEMS_SOLVED", comment: "")
-                
-                statusIds.append(3)
-            }
-            else if section == 3{
-                
-                svc.problemType = NSLocalizedString("PROBLEMS_NOT_SOLVED", comment: "")
-                
-                statusIds.append(4)
-            }
-            
-           svc.statusIds = statusIds
+           
         }
     }
 }
@@ -248,12 +220,12 @@ class AccountViewController: GenericViewController {
 extension AccountViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 8
+        return 6
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 {
+        if section == 1 {
             return 3
         }
         
@@ -265,7 +237,7 @@ extension AccountViewController: UITableViewDataSource {
         let row = indexPath.row
         let section = indexPath.section
         
-        if section == 0 && row == 1 {
+        if section == 1 && row == 1 {
             
             if isFromFacebook || userId == Constants.SessionKeys.guestUserId{
                 
@@ -285,7 +257,23 @@ extension AccountViewController: UITableViewDataSource {
        
         cell.accessoryView = UIView(frame: .zero)
         
-        if section == 0{
+        if section == 0 {
+            
+            cell.imageView?.image = UIImage(named: "ic_can_receive_notitications")
+            cell.textLabel?.text = NSLocalizedString("NOTIFICATIONS", comment: "")
+            
+            let switchView = UISwitch(frame: .zero)
+            
+            cell.accessoryView = switchView
+            
+            let haveToken = SessionManager.containsObjectForKey(key: Constants.SessionKeys.deviceToken)
+            
+            switchView.setOn(haveToken, animated: false)
+            switchView.onTintColor = Constants.Colors.orange
+            switchView.addTarget(self, action: #selector(self.switchValueChanged(sender:)), for: .valueChanged)
+            
+        }
+        else if section == 1{
             
             if row == 0 {
                 
@@ -298,49 +286,22 @@ extension AccountViewController: UITableViewDataSource {
             }
             else{
                 
-                cell.imageView?.image = UIImage(named: "ic_can_receive_notitications")
-                cell.textLabel?.text = NSLocalizedString("NOTIFICATIONS", comment: "")
-                
-                let switchView = UISwitch(frame: .zero)
-                
-                cell.accessoryView = switchView
-                
-                let haveToken = SessionManager.containsObjectForKey(key: Constants.SessionKeys.deviceToken)
-                
-                switchView.setOn(haveToken, animated: false)
-                switchView.onTintColor = Constants.Colors.orange
-                switchView.addTarget(self, action: #selector(self.switchValueChanged(sender:)), for: .valueChanged)
+                cell.textLabel?.text = NSLocalizedString("PROBLEMS_OPENED", comment: "")
+                cell.imageView?.image = UIImage(named: "ic_question")
             
             }
         }
-        else if section == 1{
-            
-            cell.textLabel?.text = NSLocalizedString("PROBLEMS_OPENED", comment: "")
-            cell.imageView?.image = UIImage(named: "ic_question")
-        }
         else if section == 2 {
-            
-            cell.textLabel?.text = NSLocalizedString("PROBLEMS_SOLVED", comment: "")
-            cell.imageView?.image = UIImage(named: "ic_happy")
-            
-        }
-        else if section == 3 {
-            
-            cell.textLabel?.text = NSLocalizedString("PROBLEMS_NOT_SOLVED", comment: "")
-            cell.imageView?.image = UIImage(named: "ic_sad")
-            
-        }
-        else if section == 4 {
             
             cell.textLabel?.text = NSLocalizedString("RATING_APP", comment: "")
             cell.imageView?.image = UIImage(named: "ic_rating_this_app")
         }
-        else if section == 5{
+        else if section == 3{
             
             cell.textLabel?.text = NSLocalizedString("TERMS_OF_USE", comment: "")
             cell.imageView?.image = UIImage(named: "ic_termsconditions")
         }
-        else if section == 6 {
+        else if section == 4 {
             
             cell.textLabel?.text = NSLocalizedString("HAPPYLING_FOR_BUSINESS", comment: "")
             cell.imageView?.image = UIImage(named: "ic_termsconditions")
@@ -365,7 +326,7 @@ extension AccountViewController: UITableViewDelegate {
         let row = indexPath.row
         let section = indexPath.section
         
-        if section == 0 {
+        if section == 1 {
             
             if row == 0  {
                 
@@ -382,26 +343,26 @@ extension AccountViewController: UITableViewDelegate {
             else if row == 1{
                 self.changeUserPassword()
             }
-        }
-        else if section == 1 || section == 2 || section == 3  {
-            
-            if userId != Constants.SessionKeys.guestUserId {
-                
-                performSegue(withIdentifier: "segueToIssues", sender: self)
-            }
             else{
                 
-                alertToSignUp()
+                if userId != Constants.SessionKeys.guestUserId {
+                    
+                    performSegue(withIdentifier: "segueToIssues", sender: self)
+                }
+                else{
+                    
+                    alertToSignUp()
+                }
             }
         }
-        else if section == 4{
+        else if section == 2{
             
             UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/1225068773")!)
         }
-        else if section == 5{
+        else if section == 3{
             
         }
-        else if section == 6{
+        else if section == 4{
             
             if userId != Constants.SessionKeys.guestUserId {
                 
@@ -413,7 +374,7 @@ extension AccountViewController: UITableViewDelegate {
             }
             
         }
-        else if section == 7 {
+        else if section == 5 {
             
             SessionManager.removeObjectForKey(key: Constants.SessionKeys.userId)
             
